@@ -1,20 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
     android:background="@drawable/widget_bg">
-    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <TextView android:text="ADAM FINANCE" android:textColor="#B8C8D9" android:textSize="11sp" android:letterSpacing="0.12" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/updated" android:text="LIVE" android:textColor="#8DE5C1" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <TextView android:id="@+id/savings" android:text="RM 0.00" android:textColor="#FFFFFF" android:textSize="27sp" android:textStyle="bold" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <TextView android:text="JUMLAH TABUNGAN" android:textColor="#9EACC2" android:textSize="9sp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <LinearLayout android:orientation="horizontal" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-            <TextView android:text="EMAS 999 / g" android:textColor="#9EACC2" android:textSize="9sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <TextView android:id="@+id/gold_price" android:text="RM —" android:textColor="#F4D58A" android:textSize="16sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADAM FINANCE"
+                android:textColor="#B9C9DA"
+                android:textSize="9sp"
+                android:letterSpacing="0.18"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Hi Mr. ADAM."
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
         </LinearLayout>
-        <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-            <TextView android:text="NILAI EMAS" android:textColor="#9EACC2" android:textSize="9sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <TextView android:id="@+id/gold_value" android:text="RM 0.00" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/updated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="9dp"
+            android:paddingVertical="5dp"
+            android:background="@drawable/widget_pill"
+            android:text="SYNC"
+            android:textColor="#91E8C4"
+            android:textSize="8sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@drawable/widget_panel">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JUMLAH TABUNGAN TUNAI"
+            android:textColor="#AABBD0"
+            android:textSize="8sp"
+            android:letterSpacing="0.12"/>
+        <TextView
+            android:id="@+id/savings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="RM 0.00"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Sikit demi sedikit, lama-lama jadi bukit."
+            android:textColor="#8FA4BA"
+            android:textSize="9sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="@drawable/widget_panel">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✦ HARGA EMAS / g"
+                android:textColor="#AABBD0"
+                android:textSize="8sp"/>
+            <TextView
+                android:id="@+id/gold_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="RM —"
+                android:textColor="#F5D88E"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="@drawable/widget_panel">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NILAI PEGANGAN EMAS"
+                android:textColor="#AABBD0"
+                android:textSize="8sp"/>
+            <TextView
+                android:id="@+id/gold_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="RM 0.00"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/gold_grams"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="0 g dimiliki"
+                android:textColor="#8FA4BA"
+                android:textSize="8sp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
