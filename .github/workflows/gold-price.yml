@@ -1,0 +1,31 @@
+name: Update gold price
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: gold-price-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Fetch latest 999 spot price
+        run: |
+          curl --fail --silent --show-error "https://api.hargaemas.my/prices" -o /tmp/prices.json
+          node -e "const fs=require('fs');const q=JSON.parse(fs.readFileSync('/tmp/prices.json','utf8'));const p=Number(q?.prices?.spotSellRmPerKg)/1000;if(!(p>0))throw Error('Invalid spot price');fs.writeFileSync('gold-price.json',JSON.stringify({pricePerGram:p,lastUpdate:q.lastUpdate||new Date().toISOString(),isStale:!!q.isStale,source:'HargaEmas.my'},null,2)+'\n')"
+      - name: Commit updated price
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gold-price.json
+          if git diff --cached --quiet; then
+            echo "Gold price unchanged"
+          else
+            git commit -m "Update live gold spot price"
+            git push
+          fi
