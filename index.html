@@ -38,7 +38,7 @@
 </div>
 <div class="footer">ADAM PERSONAL FINANCE • Data disimpan pada browser peranti ini.</div>
 </main>
-<nav class="tabs"><button class="active" data-tab="home">⌂ Utama</button><button data-tab="budgetViewPage">▤ Bajet</button><button onclick="openModal('transaction')">＋ Rekod</button><button data-tab="tools">⚙ Tools</button></nav>
+<nav class="tabs"><button class="active" data-tab="home">⌂ Utama</button><button data-tab="transactionsSection">▤ Rekod</button><button data-tab="budgetViewPage">◷ Bajet</button><button data-tab="insights">⌁ Analisis</button><button data-tab="tools">⚙ Tools</button></nav>
 <div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Tambah rekod</h2><form id="modalForm" class="formgrid"></form><div class="dialog-actions"><button class="btn" type="button" onclick="closeModal()">Batal</button><button class="btn primary" type="button" id="saveModal">Simpan</button></div></div></div>
 <script>
 const KEY='adam-finance-v1';let data={cash:0,debt:0,budget:200,goal:1000,goldGrams:0,goldPrice:0,goldUpdated:'',transactions:[]};let mode='';
@@ -57,7 +57,7 @@ function saveBudget(){data.budget=Math.max(0,Number($('budgetInput').value)||0);
 function setGoal(){let n=Number(prompt('Sasaran simpanan (RM):',data.goal));if(n>0){data.goal=n;persist()}}
 function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='adam-finance-backup.json';a.click();URL.revokeObjectURL(a.href)}
 function importData(e){let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.transactions))throw Error();data={...data,...d};persist();alert('Data berjaya dipulihkan.')}catch(err){alert('Fail backup tidak sah.')}};r.readAsText(file);e.target.value=''}
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));if(b.dataset.tab==='budgetViewPage'){$('budgetViewPage').style.display='block';$('budgetViewPage').scrollIntoView({behavior:'smooth'})}else if(b.dataset.tab==='tools'){document.querySelector('.footer').scrollIntoView({behavior:'smooth'})}else window.scrollTo({top:0,behavior:'smooth'})}));
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));let target=$(b.dataset.tab);if(target){if(target.id==='budgetViewPage')target.style.display='block';target.scrollIntoView({behavior:'smooth',block:'start'})}}));
 $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});$('today').textContent=new Date().toLocaleDateString('ms-MY',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
 load();render();refreshGoldPrice();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script></body></html>
