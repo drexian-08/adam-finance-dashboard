@@ -179,14 +179,19 @@ class MainActivity : Activity() {
     private fun uploadCurrentValues(url: String, token: String) {
         val cash = savings.text.toString().toDoubleOrNull() ?: prefs.getString("savings", "0")?.toDoubleOrNull() ?: 0.0
         val gold = grams.text.toString().toDoubleOrNull() ?: prefs.getString("grams", "0")?.toDoubleOrNull() ?: 0.0
-        val payload = JSONObject().put("cash", cash).put("goldGrams", gold)
+        // Preserve the full dashboard payload; only update the two widget-owned values.
+        val payload = try {
+            val existing = JSONObject(requestText(url, "GET", null, null, token))
+            val raw = existing.optJSONObject("fields")?.optJSONObject("payloadJson")?.optString("stringValue")
+            if (!raw.isNullOrBlank()) JSONObject(raw) else JSONObject()
+        } catch (_: Exception) { JSONObject() }
+        payload.put("cash", cash).put("goldGrams", gold)
         val fields = JSONObject().put("payloadJson", JSONObject().put("stringValue", payload.toString()))
-        val body = JSONObject().put("fields", fields)
-        requestJson(url, "PATCH", body, token)
+        requestJson(url, "PATCH", JSONObject().put("fields", fields), token)
         prefs.edit().putString("savings", cash.toString()).putString("grams", gold.toString()).apply()
         runOnUiThread {
             savings.setText(cash.toString()); grams.setText(gold.toString())
-            refreshWidget(); note.text = "Nilai widget dimuat naik ke cloud."
+            refreshWidget(); note.text = "Tabungan dan emas widget disegerakkan tanpa memadam data dashboard lain."
         }
     }
 
