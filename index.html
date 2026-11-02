@@ -7,6 +7,12 @@
 <link rel="stylesheet" href="assets/liquid-glass.css?v=4">
 <title>ADAM • Finance</title>
 <style>
+/* Performance-first: disable expensive glass filters on low-power/mobile browsers */
+.hero,.card,.tabs,.dialog{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.hero{animation:none!important}.hero:after{display:none!important}
+body{background-image:linear-gradient(145deg,#08111e,#111c2e 55%,#0b1423)!important}
+.tabs{background:#0b1525!important}
+
 :root{--bg:#0a1220;--panel:rgba(255,255,255,.075);--line:rgba(255,255,255,.13);--muted:#9eacc2;--text:#f3f6fc;--mint:#8de5c1;--gold:#f4d58a;--red:#ff8f9b}
 *{box-sizing:border-box}body{margin:0;color:var(--text);font:15px Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at 15% 0%,#203a55 0,transparent 38%),radial-gradient(ellipse at 100% 30%,#27334e 0,transparent 35%),linear-gradient(145deg,#08111e,#111c2e 55%,#0b1423);min-height:100vh;padding:22px 16px 100px}
 .wrap{max-width:980px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin:8px 2px 22px}.brand{font-size:12px;letter-spacing:3px;color:#aebbd0}.date{font-size:12px;color:var(--muted)}.hero{padding:25px 23px;border:1px solid var(--line);border-radius:27px;background:linear-gradient(120deg,rgba(255,255,255,.14),rgba(255,255,255,.045));backdrop-filter:blur(22px);box-shadow:0 18px 55px #0005;position:relative;overflow:hidden;animation:rise .8s ease both}.hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-80px;top:-110px;background:#9debd322;filter:blur(5px)}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.hello{font-size:clamp(27px,6vw,39px);font-weight:750;letter-spacing:-1.5px;margin:7px 0 8px}.hello span{color:var(--mint)}.sub{color:#b6c3d5;font-size:13px}.balance-label{font-size:12px;color:#b8c4d5;margin-top:25px}.balance{font-size:clamp(32px,8vw,43px);font-weight:750;letter-spacing:-1.5px;margin:5px 0}.hero-foot{display:flex;gap:20px;flex-wrap:wrap;color:#b8c4d5;font-size:12px}.hero-foot b{color:var(--mint);font-weight:650}
@@ -84,10 +90,13 @@ document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()
 $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});$('today').textContent=new Date().toLocaleDateString('ms-MY',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
 load();recordWealthSnapshot();render();setupMotion();refreshGoldPrice();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
+(async()=>{
+const loadSdk=src=>new Promise((resolve,reject)=>{const el=document.createElement("script");el.src=src;el.onload=resolve;el.onerror=()=>reject(new Error("Firebase SDK tidak dapat dimuat"));document.head.appendChild(el)});
+try{
+await loadSdk("https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js");
+await loadSdk("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js");
+await loadSdk("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js");
 const ADAM_FIREBASE_CONFIG={apiKey:"AIzaSyBoxjdpEuVaHPjc2MvSmb_45R42y8c5vKw",authDomain:"adam-finance-private.firebaseapp.com",projectId:"adam-finance-private",storageBucket:"adam-finance-private.firebasestorage.app",messagingSenderId:"333715112009",appId:"1:333715112009:web:d1d9263de7675fdd447f98",measurementId:"G-4S19JTDFXV"};
 firebase.initializeApp(ADAM_FIREBASE_CONFIG);
 const adamAuth=firebase.auth(),adamDb=firebase.firestore();
@@ -104,6 +113,8 @@ document.getElementById('cloudSync').onclick=async()=>{await pushCloudData();};
 adamAuth.onAuthStateChanged(async user=>{adamCloudUser=user;const logged=!!user;document.getElementById('cloudLogin').hidden=logged;document.getElementById('cloudRegister').hidden=logged;document.getElementById('cloudLogout').hidden=!logged;document.getElementById('cloudSync').hidden=!logged;document.getElementById('cloudEmail').disabled=logged;document.getElementById('cloudPassword').disabled=logged;if(!user){if(adamCloudUnsub)adamCloudUnsub();adamCloudUnsub=null;adamCloudReady=false;cloudMessage('Log masuk menggunakan akaun Firebase untuk menyegerakkan data kewangan antara dashboard dan peranti lain.','Belum log masuk');return;}cloudMessage('Akaun '+user.email+' disambungkan. Memuatkan data…','Menyambung…');await pullCloudData();beginCloudListener();adamCloudReady=true;});
 const oldAdamPersist=window.persist;
 window.persist=function(){localStorage.setItem(KEY,JSON.stringify(data));render();if(adamCloudUser&&!adamApplyingRemote)pushCloudData();};
+}catch(error){console.warn("Cloud sync tidak tersedia buat sementara:",error);const status=document.getElementById("cloudStatus");if(status)status.textContent="Cloud sync tidak tersedia. Dashboard masih boleh digunakan secara offline."}
+})();
 </script>
 
 </body></html>
