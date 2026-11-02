@@ -1,28 +1,19 @@
-/* ADAM Finance — Liquid Glass 3D visual upgrade */
-html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{background-attachment:fixed;perspective:1200px;overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(65px);opacity:.45;animation:adamOrb 18s ease-in-out infinite alternate}
-body:before{width:280px;height:280px;left:-130px;top:20vh;background:#438cba33}
-body:after{width:330px;height:330px;right:-170px;bottom:8vh;background:#70d9b533;animation-delay:-8s}
-@keyframes adamOrb{to{transform:translate3d(38px,-28px,0) scale(1.1)}}
-.hero,.card{position:relative;isolation:isolate;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.75,.25,1),border-color .35s,box-shadow .4s,background .4s}
-.hero{background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.05) 48%,rgba(141,229,193,.05));border-color:rgba(255,255,255,.22);box-shadow:0 24px 70px #0006,inset 0 1px 0 #ffffff38,inset 0 -1px 0 #ffffff0b}
-.hero:before,.card:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.13),transparent 35%,transparent 70%,rgba(141,229,193,.06));z-index:-1}
-.card{background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035));border-color:rgba(255,255,255,.16);box-shadow:0 14px 38px #0003,inset 0 1px 0 #ffffff22}
-.card:hover{transform:translateY(-4px) rotateX(1deg);border-color:rgba(141,229,193,.34);box-shadow:0 22px 48px #0005,inset 0 1px 0 #ffffff2b}
-.hero:hover{box-shadow:0 28px 80px #0007,inset 0 1px 0 #ffffff38}
-.metric,.balance{text-shadow:0 3px 18px #0004}
-.btn{transition:transform .22s ease,background .25s,border-color .25s,box-shadow .25s;box-shadow:inset 0 1px 0 #ffffff18}
-.btn:hover{transform:translateY(-2px);border-color:#8de5c188;box-shadow:0 8px 20px #0003}
-.btn.primary{box-shadow:0 7px 22px #8de5c126,inset 0 1px 0 #ffffff66}
-.tabs{box-shadow:0 -12px 35px #0003}.tabs button{transition:background .25s,color .25s,transform .25s}.tabs button:active{transform:scale(.94)}
-.field{transition:border-color .25s,box-shadow .25s,background .25s}.field:focus{background:#14243a;box-shadow:0 0 0 3px #8de5c11c,0 8px 24px #0002}
-.reveal{opacity:0;transform:translateY(20px) scale(.99);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.25,1)}.reveal.is-visible{opacity:1;transform:none}
-.chart-card{overflow:hidden;background:linear-gradient(145deg,rgba(111,173,190,.14),rgba(255,255,255,.045) 55%,rgba(141,229,193,.07))}
-.chart-wrap{width:100%;min-height:185px;margin-top:12px}.chart-wrap svg{display:block;width:100%;height:auto;overflow:visible}.chart-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-top:6px}.chart-empty{color:var(--muted);font-size:12px;text-align:center;padding:26px 8px}
+/* ADAM Finance — lightweight Liquid Glass (mobile-first) */
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{overflow-x:hidden;background-attachment:scroll}
+.hero,.card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:none;transition:box-shadow .22s ease,border-color .22s ease,background-color .22s ease}
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.045));border-color:rgba(255,255,255,.2);box-shadow:0 12px 28px #0004,inset 0 1px 0 #ffffff30}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));border-color:rgba(255,255,255,.14);box-shadow:0 8px 22px #0003,inset 0 1px 0 #ffffff1c}
+.hero:before,.hero:after,.card:before{display:none!important}
+.metric,.balance{text-shadow:none}
+.btn,.tabs button,.field,.item{transition:background-color .18s ease,border-color .18s ease,color .18s ease}
+.btn:active,.tabs button:active{transform:scale(.98)}
+.reveal{opacity:1;transform:none;transition:opacity .28s ease}
+.chart-card{overflow:hidden;background:linear-gradient(145deg,rgba(111,173,190,.11),rgba(255,255,255,.035) 60%,rgba(141,229,193,.05))}
+.chart-wrap{width:100%;min-height:150px;margin-top:10px}.chart-wrap svg{display:block;width:100%;height:auto}
+.chart-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-top:6px}
+.chart-empty{color:var(--muted);font-size:12px;text-align:center;padding:22px 8px}
 .chart-switch{display:flex;gap:5px}.chart-switch button{border:1px solid #ffffff1b;background:#ffffff08;color:#b8c4d5;border-radius:9px;padding:6px 9px;font-size:10px}.chart-switch button.active{background:#8de5c126;color:var(--mint);border-color:#8de5c155}
-.dialog{backdrop-filter:blur(26px);background:linear-gradient(145deg,rgba(28,45,68,.97),rgba(13,25,42,.97));box-shadow:0 30px 100px #000b,inset 0 1px 0 #ffffff20;animation:adamDialog .28s cubic-bezier(.2,.8,.2,1)}
-@keyframes adamDialog{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
-.item{transition:transform .25s,border-color .25s,background .25s}.item:hover{transform:translateX(3px);border-color:#8de5c144;background:#ffffff0b}
-@media(max-width:520px){.chart-wrap{min-height:155px}.hero,.card:hover{transform:none}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+.dialog{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:0 18px 45px #0009}
+@media(hover:hover) and (pointer:fine){.card:hover{border-color:#8de5c155;box-shadow:0 12px 28px #0004}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
