@@ -68,6 +68,8 @@ body{background-image:linear-gradient(145deg,#08111e,#111c2e 55%,#0b1423)!import
 <article class="card"><input class="field search" id="txSearch" placeholder="Cari transaksi atau kategori…" oninput="renderTransactions()"><div class="list" id="transactions"><div class="empty">Belum ada transaksi. Tambah rekod pertama kau.</div></div></article>
 <div class="view" id="budgetViewPage"><section class="section"><h2>Perancangan</h2></section><article class="card"><h3>Had perbelanjaan bulanan (RM)</h3><input class="field" id="budgetInput" type="number" min="0" step="0.01" value="200"><div class="progress"><i id="budgetProgress"></i></div><div class="small" id="budgetProgressText">0% digunakan</div><div class="actions"><button class="btn primary" onclick="saveBudget()">Simpan bajet</button></div><p class="hint">Contoh: RM200 untuk perbelanjaan makan dan keperluan bulanan.</p></article></div>
 <section class="section" id="insights"><h2>Analisis perbelanjaan</h2><span class="small">Bulan semasa</span></section><article class="card"><div class="row"><div><h3>Jumlah mengikut kategori</h3><div class="small">Kategori perbelanjaan paling tinggi</div></div><div class="metric red" id="insightTotal">RM 0.00</div></div><div class="category-bars" id="categoryBars" style="margin-top:16px"><div class="empty">Belum ada data perbelanjaan.</div></div></article>
+<section class="section" id="savingsForecast"><h2>🔮 Savings Forecast</h2><span class="small">Anggaran masa untuk capai matlamat simpanan</span></section>
+<article class="card" id="savingsForecastCard"><div class="row"><div><h3>Unjuran simpanan</h3><div class="small">Berdasarkan kadar simpanan bulanan yang kau masukkan</div></div></div><div class="formgrid" style="margin-top:14px"><label>Sasaran simpanan (RM)<input class="field" id="forecastTarget" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Contoh: 10000"></label><label>Simpanan semasa (RM)<input class="field" id="forecastCurrent" type="number" min="0" step="0.01" inputmode="decimal"></label><label>Jumlah mampu simpan sebulan (RM)<input class="field" id="forecastMonthly" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Contoh: 200"></label></div><div class="actions"><button class="btn primary" type="button" id="forecastCalculate">Kira unjuran</button><button class="btn" type="button" id="forecastUseCash">Guna simpanan tunai semasa</button></div><div id="forecastResult" class="list" style="margin-top:14px"><div class="empty">Masukkan sasaran dan jumlah simpanan bulanan untuk mula mengira.</div></div><p class="hint">Ini anggaran mudah tanpa pulangan pelaburan atau perubahan harga emas. Nilai simpanan semasa dan kadar bulanan perlu dikemas kini sendiri.</p></article>
 <section class="section" id="smartInsights"><h2>💡 Smart Financial Insights</h2><span class="small">Analisis automatik • tanpa AI luar</span></section>
 <article class="card" id="smartInsightsCard"><div class="row"><div><h3>Corak kewangan bulan ini</h3><div class="small" id="smartInsightPeriod">Berdasarkan transaksi yang direkodkan</div></div><span class="small" id="smartInsightCount">0 rekod</span></div><div class="grid" style="margin-top:14px"><div><div class="small">Purata belanja sehari</div><div class="metric red" id="smartDailyAverage">RM 0.00</div></div><div><div class="small">Perubahan vs bulan lepas</div><div class="metric" id="smartMonthChange">—</div></div></div><div id="smartInsightList" class="list" style="margin-top:14px"><div class="empty">Tambah transaksi untuk dapatkan analisis.</div></div><p class="hint">Analisis ini menggunakan rekod yang kau masukkan sahaja. Ia bukan nasihat kewangan profesional.</p></article>
 <section class="section"><h2>Laporan kewangan bulanan</h2><span class="small">Ringkasan transaksi</span></section>
@@ -97,6 +99,28 @@ function recordWealthSnapshot(){if(!Array.isArray(data.wealthHistory))data.wealt
 function persist(){recordWealthSnapshot();localStorage.setItem(KEY,JSON.stringify(data));render()}
 function monthTx(){let m=new Date().toISOString().slice(0,7);return data.transactions.filter(t=>(t.date||'').slice(0,7)===m)}
 function renderMonthlyReport(){const picker=$('reportMonth');if(!picker)return;const month=picker.value||new Date().toISOString().slice(0,7);const tx=data.transactions.filter(t=>(t.date||'').slice(0,7)===month);const income=tx.filter(t=>t.type==='income').reduce((s,t)=>s+(Number(t.amount)||0),0);const expense=tx.filter(t=>t.type==='expense').reduce((s,t)=>s+(Number(t.amount)||0),0);const net=income-expense;$('reportIncome').textContent=money(income);$('reportExpense').textContent=money(expense);$('reportNet').textContent=(net>=0?'+ ':'− ')+money(Math.abs(net));$('reportNet').className='metric '+(net>=0?'mint':'red');$('reportCount').textContent=String(tx.length);$('reportExpenseBar').style.width=(income>0?Math.min(100,expense/income*100):expense>0?100:0)+'%';$('reportSummary').textContent=tx.length?('Bulan '+month+' • '+(net>=0?'Lebihan ':'Defisit ')+money(Math.abs(net))+' • '+tx.filter(t=>t.type==='income').length+' pendapatan, '+tx.filter(t=>t.type==='expense').length+' perbelanjaan'):'Tiada transaksi direkodkan untuk bulan '+month+'.';}
+function calculateSavingsForecast(){
+const target=Math.max(0,Number($('forecastTarget')?.value)||0);
+const current=Math.max(0,Number($('forecastCurrent')?.value)||0);
+const monthly=Math.max(0,Number($('forecastMonthly')?.value)||0);
+const host=$('forecastResult');if(!host)return;
+if(!(target>0)){host.innerHTML='<div class="empty">Masukkan sasaran simpanan yang lebih besar daripada RM0.</div>';return;}
+if(current>=target){host.innerHTML='<div class="item"><strong>🎉 Sasaran sudah dicapai!</strong><small>Simpanan semasa '+money(current)+' telah mencapai sasaran '+money(target)+'.</small></div>';return;}
+if(!(monthly>0)){host.innerHTML='<div class="empty">Masukkan jumlah simpanan bulanan melebihi RM0 untuk mengira tempoh.</div>';return;}
+const remaining=target-current,months=Math.ceil(remaining/monthly),date=new Date();date.setDate(1);date.setMonth(date.getMonth()+months);
+const monthLabel=date.toLocaleDateString('ms-MY',{month:'long',year:'numeric'});
+const totalAtFinish=current+monthly*months;
+const progress=Math.min(100,current/target*100);
+host.innerHTML='<div class="item" style="display:block"><div class="small">Baki diperlukan</div><strong class="metric">'+money(remaining)+'</strong><div class="progress"><i style="width:'+progress+'%"></i></div><small>Kemajuan semasa: '+Math.round(progress)+'%</small></div><div class="grid"><div class="item"><div class="small">Anggaran tempoh</div><strong>'+months+' bulan</strong></div><div class="item"><div class="small">Anggaran capai</div><strong>'+monthLabel+'</strong></div></div><div class="item"><strong>Jika konsisten menyimpan</strong><small>Anggaran jumlah terkumpul pada bulan sasaran: '+money(totalAtFinish)+'.</small></div>';
+}
+function initSavingsForecast(){
+const target=$('forecastTarget'),current=$('forecastCurrent'),monthly=$('forecastMonthly');
+if(!target||!current||!monthly)return;
+if(!target.value&&Number(data.goal)>0)target.value=data.goal;
+if(!current.value)current.value=Math.max(0,Number(data.cash)||0);
+$('forecastCalculate').addEventListener('click',calculateSavingsForecast);
+$('forecastUseCash').addEventListener('click',()=>{current.value=Math.max(0,Number(data.cash)||0);calculateSavingsForecast()});
+}
 function renderSmartInsights(){
 const host=$('smartInsightList');if(!host)return;
 const now=new Date(),year=now.getFullYear(),month=now.getMonth();
@@ -169,7 +193,7 @@ function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'app
 function importData(e){let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.transactions))throw Error();data={...data,...d};persist();alert('Data berjaya dipulihkan.')}catch(err){alert('Fail backup tidak sah.')}};r.readAsText(file);e.target.value=''}
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));let target=$(b.dataset.tab);if(target){if(target.id==='budgetViewPage')target.style.display='block';target.scrollIntoView({behavior:'smooth',block:'start'})}}));
 $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});$('today').textContent=new Date().toLocaleDateString('ms-MY',{weekday:'short',day:'numeric',month:'short',year:'numeric'});$('reportMonth').value=new Date().toISOString().slice(0,7);$('reportMonth').addEventListener('change',renderMonthlyReport);
-load();recordWealthSnapshot();render();setupMotion();refreshGoldPrice();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+load();recordWealthSnapshot();render();initSavingsForecast();setupMotion();refreshGoldPrice();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 <script>
 (async()=>{
