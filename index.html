@@ -66,6 +66,12 @@ body{background-image:linear-gradient(145deg,#08111e,#111c2e 55%,#0b1423)!import
 </div>
 <div class="actions"><button class="btn primary" type="button" id="addInvestment">＋ Simpan pelaburan</button></div>
 <div class="list" id="investmentList" style="margin-top:13px"><div class="empty">Belum ada pelaburan direkodkan.</div></div>
+<div style="border-top:1px solid var(--line);margin-top:16px;padding-top:14px">
+<div class="row"><h3 style="margin:0">🗓️ Investment History</h3><span class="small">6 bulan terakhir</span></div>
+<div id="investmentHistoryChart" style="display:flex;align-items:flex-end;gap:9px;height:132px;padding:12px 4px 0"><div class="empty" style="width:100%">Sejarah akan direkodkan apabila nilai pelaburan disimpan.</div></div>
+<div id="investmentHistoryList" class="list" style="margin-top:10px"></div>
+</div>
+<p class="hint">Sejarah menyimpan satu snapshot sehari berdasarkan jumlah nilai semasa yang direkodkan dalam dashboard. Hari sebelum tracker digunakan tidak dapat dipulihkan.</p>
 <p class="hint">Rekod manual sahaja. Untung/rugi dikira daripada nilai semasa berbanding modal; belum mengambil kira dividen, fi, cukai atau pengeluaran melainkan dimasukkan dalam nilai semasa.</p>
 </article>
 <section class="section" id="wealthAllocation"><h2>💎 Wealth Allocation</h2><span class="small">Pecahan aset semasa</span></section>
@@ -209,12 +215,24 @@ const target=Number(prompt('Jumlah sasaran (RM):',g.target));if(!Number.isFinite
 const monthly=Number(prompt('Simpanan bulanan (RM):',g.monthly||0));if(!Number.isFinite(monthly)||monthly<0)return;const d=prompt('Tarikh sasaran (YYYY-MM-DD), kosongkan untuk buang:',g.deadline||'');if(d===null)return;const deadline=/^\d{4}-\d{2}-\d{2}$/.test(d.trim())?d.trim():'';
 const p=prompt('Keutamaan: Tinggi, Sederhana atau Rendah',g.priority||'Sederhana')||g.priority||'Sederhana';const priority=['Tinggi','Sederhana','Rendah'].includes(p)?p:'Sederhana';data.goals[i]={...g,name:name.trim()||g.name,target,saved,monthly,deadline,priority};persist();}
 function deleteFinancialGoal(i){if(!data.goals?.[i]||!confirm('Padam matlamat ini?'))return;data.goals.splice(i,1);persist();}
+function recordInvestmentSnapshot(){
+if(!Array.isArray(data.investmentsHistory))data.investmentsHistory=[];
+const rows=Array.isArray(data.investments)?data.investments:[],value=rows.reduce((a,x)=>a+Math.max(0,Number(x.current)||0),0),capital=rows.reduce((a,x)=>a+Math.max(0,Number(x.cost)||0),0),today=new Date().toISOString().slice(0,10),last=data.investmentsHistory[data.investmentsHistory.length-1];
+if(last&&last.date===today){last.value=value;last.capital=capital;last.time=new Date().toISOString();}
+else data.investmentsHistory.push({date:today,value,capital,time:new Date().toISOString()});
+data.investmentsHistory=data.investmentsHistory.slice(-365);
+}
 function renderInvestmentPerformance(){
 const list=$('investmentList');if(!list)return;
 if(!Array.isArray(data.investments))data.investments=[];
+recordInvestmentSnapshot();
 const rows=data.investments,capital=rows.reduce((a,x)=>a+Math.max(0,Number(x.cost)||0),0),value=rows.reduce((a,x)=>a+Math.max(0,Number(x.current)||0),0),profit=value-capital,rate=capital?profit/capital*100:0;
 $('investmentCapital').textContent=money(capital);$('investmentValue').textContent=money(value);$('investmentProfit').textContent=(profit>=0?'+ ':'− ')+money(Math.abs(profit));$('investmentProfit').className='metric '+(profit>=0?'mint':'red');$('investmentReturn').textContent=(rate>=0?'+':'')+rate.toFixed(1)+'%';$('investmentReturn').className='metric '+(rate>=0?'mint':'red');$('investmentProgress').style.width=(capital?Math.max(0,Math.min(100,value/capital*100)):0)+'%';
 list.innerHTML=rows.length?rows.map((x,i)=>'<div class="item"><span><strong>'+escapeHtml(x.name||'Pelaburan')+'</strong><small>Modal '+money(x.cost)+' • Semasa '+money(x.current)+'</small><small class="'+(Number(x.current)>=Number(x.cost)?'mint':'red')+'">'+(Number(x.current)>=Number(x.cost)?'+':'−')+money(Math.abs(Number(x.current)-Number(x.cost)))+'</small></span><div class="actions" style="margin:0"><button class="btn" type="button" data-investment-edit="'+i+'">Edit</button><button class="btn" type="button" data-investment-delete="'+i+'">Padam</button></div></div>').join(''):'<div class="empty">Belum ada pelaburan direkodkan. Tambah rekod pertama di atas.</div>';
+const history=Array.isArray(data.investmentsHistory)?data.investmentsHistory:[],months=new Map();history.forEach(h=>{const m=(h.date||'').slice(0,7);if(m)months.set(m,h);});
+const points=[...months.values()].slice(-6),chart=$('investmentHistoryChart'),historyList=$('investmentHistoryList');
+if(chart){if(!points.length){chart.innerHTML='<div class="empty" style="width:100%">Belum ada data sejarah.</div>';}else{const max=Math.max(1,...points.map(p=>Number(p.value)||0));chart.innerHTML=points.map(p=>{const height=Math.max(5,(Number(p.value)||0)/max*100),label=new Date(p.date+'T12:00:00').toLocaleDateString('ms-MY',{month:'short',year:'2-digit'});return '<div style="flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px"><small style="font-size:9px;color:var(--muted);white-space:nowrap">'+money(p.value)+'</small><i title="'+label+' '+money(p.value)+'" style="display:block;width:100%;max-width:34px;height:'+height+'%;min-height:3px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#8de5c1,#568dba)"></i><small style="font-size:9px;color:var(--muted)">'+label+'</small></div>';}).join('');}}
+if(historyList)historyList.innerHTML=points.slice().reverse().map(p=>'<div class="item"><span><strong>'+new Date(p.date+'T12:00:00').toLocaleDateString('ms-MY',{day:'numeric',month:'short',year:'numeric'})+'</strong><small>Modal direkodkan: '+money(p.capital)+'</small></span><strong>'+money(p.value)+'</strong></div>').join('');
 }
 function renderWealthAllocation(){
 const cash=Math.max(0,Number(data.cash)||0),gold=Math.max(0,Number(data.goldGrams)||0)*Math.max(0,Number(data.goldPrice)||0),investments=Array.isArray(data.investments)?data.investments.reduce((a,x)=>a+Math.max(0,Number(x.current)||0),0):0,other=Math.max(0,Number(data.otherAssets)||0),total=cash+gold+investments+other;
