@@ -216,3 +216,17 @@ body{
 #monthlyReport #reportSummary{font-size:11px;color:#7b8272;line-height:1.5;padding:10px 12px;border-radius:12px;background:rgba(238,245,225,.55)}
 @media(max-width:600px){#monthlyReport{padding:15px!important;gap:13px!important}#monthlyReport>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding-bottom:12px}#monthlyReport>.grid>div{padding:11px 10px;border-radius:13px}#monthlyReport>.grid .small{font-size:10px;min-height:25px}#monthlyReport>.grid .metric{font-size:17px!important}#monthlyReport .cashflow-chart{min-height:125px;padding:8px 4px 2px}#monthlyReport .cashflow-legend{gap:14px}#monthlyReport .report-category-breakdown{padding:11px;gap:10px}#monthlyReport .report-category-meta{font-size:11px}}
 @media(min-width:601px) and (max-width:899px){#monthlyReport>.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+
+/* Annual report visual polish */
+#annualReport{padding:20px!important;display:flex;flex-direction:column;gap:15px!important}
+#annualReport>.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding-bottom:13px;border-bottom:1px solid rgba(72,87,48,.10)}
+#annualReport>.row h3{margin:0 auto 0 0;font-size:15px}
+#annualReport .annual-metrics{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:9px!important;margin:0!important}
+#annualReport .annual-metrics>div{min-width:0;padding:12px 10px;border:1px solid rgba(222,232,208,.75);border-radius:14px;background:linear-gradient(145deg,#fff,rgba(245,249,237,.86));box-shadow:0 3px 9px rgba(39,53,24,.035),inset 0 1px 0 #fff}
+#annualReport .annual-metrics .small{font-size:10px;line-height:1.35;min-height:27px}
+#annualReport .annual-metrics .metric{font-size:clamp(15px,2vw,20px)!important;line-height:1.2;overflow-wrap:anywhere;margin-top:5px}
+#annualReport .cashflow-head{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+#annualReport .cashflow-chart{min-height:145px;padding:10px 5px 3px;border-radius:16px;background:linear-gradient(145deg,#fff,rgba(245,249,237,.78));border:1px solid rgba(225,233,215,.75);overflow:hidden}
+#annualReport .cashflow-chart svg{width:100%;height:auto;display:block}
+@media(max-width:600px){#annualReport{padding:15px!important;gap:12px!important}#annualReport .annual-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}#annualReport .annual-metrics>div{padding:11px 10px}#annualReport>.row{gap:7px}#annualReport>.row h3{width:100%}#annualReport .cashflow-chart{min-height:125px;padding:7px 2px}}
+@media(min-width:601px) and (max-width:899px){#annualReport .annual-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
