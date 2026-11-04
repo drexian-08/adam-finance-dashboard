@@ -33,3 +33,11 @@ body{color:#20231f!important;background:radial-gradient(ellipse at 12% 0%,rgba(1
 .chart-switch button{color:#5e6558!important;background:rgba(255,255,255,.72)!important;border-color:rgba(70,80,50,.12)!important}.chart-switch button.active{color:#34451b!important;background:#dff5a9!important;border-color:#b6df62!important}
 .calendar-day{color:#282d23!important;background:rgba(255,255,255,.66)!important;border-color:rgba(65,75,46,.10)!important}.calendar-day.selected{background:rgba(191,232,104,.34)!important;border-color:#9bcf32!important}.calendar-weekday{color:#777d70!important}.footer{color:#888e81!important}
 @media(hover:hover) and (pointer:fine){.card:hover{border-color:rgba(151,201,47,.48)!important;box-shadow:0 14px 30px rgba(49,58,34,.10)!important}}
+
+/* Final canvas refinement: clean white background */
+body{
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(210,245,145,.13),transparent 34%),
+    radial-gradient(ellipse at 100% 26%,rgba(231,247,205,.16),transparent 38%),
+    #ffffff!important;
+}
