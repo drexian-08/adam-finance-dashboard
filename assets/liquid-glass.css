@@ -17,3 +17,19 @@ body{overflow-x:hidden;background-attachment:scroll}
 .dialog{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:0 18px 45px #0009}
 @media(hover:hover) and (pointer:fine){.card:hover{border-color:#8de5c155;box-shadow:0 12px 28px #0004}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* ADAM Lime Glass — warm light palette, mobile-friendly */
+:root{--bg:#eef0e8!important;--panel:rgba(255,255,255,.66)!important;--line:rgba(34,38,31,.09)!important;--muted:#777c72!important;--text:#20231f!important;--mint:#8fc91c!important;--gold:#a5b83a!important;--red:#d65b55!important}
+body{color:#20231f!important;background:radial-gradient(ellipse at 12% 0%,rgba(197,235,112,.22),transparent 34%),radial-gradient(ellipse at 100% 28%,rgba(220,228,205,.62),transparent 38%),linear-gradient(145deg,#f4f5ef,#e9ece3 58%,#f5f6f0)!important}
+.brand{color:#596052!important}.date,.sub,.small,.hint,.hero-foot,.balance-label{color:#74796f!important}
+.hero{color:#20231f!important;background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,255,255,.48))!important;border-color:rgba(255,255,255,.88)!important;box-shadow:0 14px 34px rgba(49,58,34,.09),inset 0 1px 0 rgba(255,255,255,.95)!important}
+.card{color:#20231f!important;background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.53))!important;border-color:rgba(255,255,255,.9)!important;box-shadow:0 10px 26px rgba(48,56,36,.07),inset 0 1px 0 rgba(255,255,255,.96)!important}
+.card h3,.section h2{color:#292d26!important}.metric,.balance{color:#20231f}.mint,.hero-foot b{color:#6c9f10!important}.gold{color:#9aae28!important}.red{color:#c94f49!important}
+.btn{color:#30352b!important;background:rgba(255,255,255,.72)!important;border-color:rgba(80,92,55,.13)!important}.btn.primary{color:#20251a!important;background:linear-gradient(120deg,#d9f58b,#a8dc36)!important;box-shadow:0 5px 14px rgba(143,201,28,.18)!important}
+.field{color:#252920!important;background:rgba(255,255,255,.78)!important;border-color:rgba(68,78,48,.14)!important}.field::placeholder{color:#9a9e92!important}
+.tabs{background:rgba(248,249,244,.94)!important;border-top-color:rgba(56,65,42,.10)!important;box-shadow:0 -8px 24px rgba(40,48,30,.06)!important}.tabs button{color:#70766b!important}.tabs button.active{color:#263019!important;background:linear-gradient(120deg,#d9f58b,#b9e75a)!important}
+.item{background:rgba(255,255,255,.67)!important;border-color:rgba(66,77,47,.09)!important}.dialog{color:#242820!important;background:rgba(250,251,246,.98)!important;border-color:rgba(255,255,255,.95)!important}.dialog h2,.formgrid label{color:#30352b!important}
+.gold-panel,.sync-card,.chart-card{background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(225,239,192,.40))!important}.progress,.category-track{background:rgba(43,53,29,.10)!important}.progress>i,.category-track i{background:linear-gradient(90deg,#a9dd38,#d8f58a)!important}
+.chart-switch button{color:#5e6558!important;background:rgba(255,255,255,.72)!important;border-color:rgba(70,80,50,.12)!important}.chart-switch button.active{color:#34451b!important;background:#dff5a9!important;border-color:#b6df62!important}
+.calendar-day{color:#282d23!important;background:rgba(255,255,255,.66)!important;border-color:rgba(65,75,46,.10)!important}.calendar-day.selected{background:rgba(191,232,104,.34)!important;border-color:#9bcf32!important}.calendar-weekday{color:#777d70!important}.footer{color:#888e81!important}
+@media(hover:hover) and (pointer:fine){.card:hover{border-color:rgba(151,201,47,.48)!important;box-shadow:0 14px 30px rgba(49,58,34,.10)!important}}
