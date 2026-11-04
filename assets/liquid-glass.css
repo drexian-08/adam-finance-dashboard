@@ -190,3 +190,29 @@ body{
  .section h2:before{height:15px;width:4px;margin-right:7px}
  #investmentPerformance .card,#wealthAllocation .card,#calendarSection .card,#transactionsSection .card,#insights .card,#savingsForecast .card,#smartInsights .card,#tools .card{border-radius:19px!important}
 }
+
+/* Monthly report layout cleanup */
+#monthlyReport{padding:20px!important;display:flex;flex-direction:column;gap:16px!important}
+#monthlyReport>.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:13px;border-bottom:1px solid rgba(72,87,48,.10)}
+#monthlyReport>.row h3{margin:0;font-size:15px}
+#monthlyReport>.grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px 12px!important;margin:0!important;padding:2px 0 15px;border-bottom:1px solid rgba(72,87,48,.10)}
+#monthlyReport>.grid>div{min-width:0;padding:12px 11px;border-radius:15px;background:linear-gradient(145deg,#fff,rgba(245,249,237,.82));border:1px solid rgba(222,232,208,.72);box-shadow:0 3px 10px rgba(39,53,24,.035),inset 0 1px 0 #fff}
+#monthlyReport>.grid .small{font-size:10px;line-height:1.35;min-height:27px;color:#777e6e!important}
+#monthlyReport>.grid .metric{font-size:clamp(16px,2vw,21px)!important;line-height:1.2;overflow-wrap:anywhere;margin-top:5px}
+#monthlyReport>.progress{margin:0!important}
+#monthlyReport .cashflow-head{display:flex;flex-direction:column;align-items:flex-start;gap:3px;margin:2px 0 0;padding-top:3px}
+#monthlyReport .cashflow-head strong{font-size:14px;color:#30352b}
+#monthlyReport .cashflow-head .small{font-size:11px;color:#8a9081!important}
+#monthlyReport .cashflow-chart{padding:12px 8px 4px;border-radius:17px;background:linear-gradient(145deg,#fff,rgba(245,249,237,.78));border:1px solid rgba(225,233,215,.75);min-height:145px;overflow:hidden}
+#monthlyReport .cashflow-chart svg{display:block;width:100%;height:auto;max-height:180px}
+#monthlyReport .cashflow-legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:11px;color:#72796a;padding:0 0 7px}
+#monthlyReport .report-category-breakdown{display:grid;grid-template-columns:1fr;gap:11px;padding:13px;border-radius:17px;background:linear-gradient(145deg,#fff,rgba(245,249,237,.78));border:1px solid rgba(225,233,215,.75)}
+#monthlyReport .report-category-row{min-width:0}
+#monthlyReport .report-category-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px;font-size:12px}
+#monthlyReport .report-category-meta strong{color:#343a2e;font-weight:700}
+#monthlyReport .report-category-meta span{color:#707766;font-size:11px;white-space:nowrap}
+#monthlyReport .report-category-track{height:7px;border-radius:99px;background:#edf1e7;overflow:hidden}
+#monthlyReport .report-category-track i{display:block;height:100%;border-radius:99px}
+#monthlyReport #reportSummary{font-size:11px;color:#7b8272;line-height:1.5;padding:10px 12px;border-radius:12px;background:rgba(238,245,225,.55)}
+@media(max-width:600px){#monthlyReport{padding:15px!important;gap:13px!important}#monthlyReport>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding-bottom:12px}#monthlyReport>.grid>div{padding:11px 10px;border-radius:13px}#monthlyReport>.grid .small{font-size:10px;min-height:25px}#monthlyReport>.grid .metric{font-size:17px!important}#monthlyReport .cashflow-chart{min-height:125px;padding:8px 4px 2px}#monthlyReport .cashflow-legend{gap:14px}#monthlyReport .report-category-breakdown{padding:11px;gap:10px}#monthlyReport .report-category-meta{font-size:11px}}
+@media(min-width:601px) and (max-width:899px){#monthlyReport>.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
