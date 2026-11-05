@@ -3,8 +3,8 @@
   "short_name": "ADAM Finance",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#0a1220",
-  "theme_color": "#101a2b",
+  "background_color": "#ffffff",
+  "theme_color": "#eef0e8",
   "description": "Private personal finance dashboard",
   "icons": [
     {
