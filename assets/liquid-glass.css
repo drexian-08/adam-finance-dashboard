@@ -301,3 +301,18 @@ html{scroll-behavior:smooth}
  .allocation-label small{font-size:10px!important}
  .allocation-legend-row>strong{font-size:13px!important}
 }
+
+/* Phase 4 — navigation and modal micro-interactions */
+.tabs button{position:relative;isolation:isolate;overflow:hidden;transition:color .22s ease,background .25s ease,box-shadow .25s ease,transform .22s ease!important}
+.tabs button:after{content:"";position:absolute;left:18%;right:18%;bottom:4px;height:3px;border-radius:99px;background:#78a91d;transform:scaleX(0);transform-origin:center;transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:-1;opacity:.55}
+.tabs button.active:after{transform:scaleX(1)}
+.tabs button.active{box-shadow:0 4px 13px rgba(117,164,42,.13)!important}
+.tabs button:focus-visible,.btn:focus-visible{outline:2px solid #91c52e!important;outline-offset:3px}
+.tab-arrive{animation:adamSectionArrive .42s cubic-bezier(.2,.8,.2,1) both;scroll-margin-top:18px}
+@keyframes adamSectionArrive{from{opacity:.72;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.modal{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .24s ease,visibility .24s ease!important}
+.modal.show{opacity:1;visibility:visible;pointer-events:auto;animation:adamModalBackdrop .24s ease both}
+.modal .dialog{transform:translateY(16px) scale(.975);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .24s ease!important;will-change:transform,opacity}
+.modal.show .dialog{transform:translateY(0) scale(1);opacity:1}
+@keyframes adamModalBackdrop{from{background:rgba(24,30,17,0)}to{background:rgba(24,30,17,.42)}}
+@media(prefers-reduced-motion:reduce){.tab-arrive,.modal.show{animation:none!important}.modal,.modal .dialog{transition:none!important}.tabs button:after{transition:none!important}}
