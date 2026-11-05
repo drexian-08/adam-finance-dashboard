@@ -338,3 +338,6 @@ body.adam-loading .wrap>:not(#adamBootSkeleton){display:none!important}
 @media(min-width:900px){.adam-toast{left:calc(50% + 95px);bottom:24px}}
 @media(max-width:390px){.skeleton-grid{gap:9px}.skeleton-grid>div{height:86px}.skeleton-hero{height:165px}}
 @media(prefers-reduced-motion:reduce){.skeleton-brand:after,.skeleton-hero:after,.skeleton-grid>div:after,.skeleton-panel:after{animation:none}.adam-toast{transition:none}}
+
+/* Phase 5 fix — keep the skeleton hidden after dashboard initialization */
+body:not(.adam-loading) #adamBootSkeleton{display:none!important}
