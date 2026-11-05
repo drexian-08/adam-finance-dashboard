@@ -250,3 +250,10 @@ html{scroll-behavior:smooth}
 .typing-caret.typing-done{animation:none;opacity:0;transition:opacity .5s ease}
 @keyframes adamCaret{50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible,.view.active{opacity:1;transform:none;filter:none;transition:none;animation:none}.typing-caret{display:none}.btn,.tabs button,.calendar-day,.progress>i,.category-track i{transition:none}}
+
+/* Wealth chart: crisp gradient line and accessible data-point hints */
+.chart-wrap{position:relative;min-height:150px;padding:8px 0 2px;touch-action:pan-y}
+.chart-wrap svg{display:block;width:100%;height:auto;overflow:visible}
+.wealth-point{fill:#fff;stroke:#91c52e;stroke-width:2.5;cursor:crosshair;transition:r .18s ease,stroke-width .18s ease}
+.wealth-point:hover,.wealth-point:focus{r:6;stroke-width:3.5;outline:none;filter:drop-shadow(0 2px 4px rgba(113,159,35,.25))}
+@media(prefers-reduced-motion:reduce){.wealth-point{transition:none}}
