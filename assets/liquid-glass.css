@@ -230,3 +230,23 @@ body{
 #annualReport .cashflow-chart svg{width:100%;height:auto;display:block}
 @media(max-width:600px){#annualReport{padding:15px!important;gap:12px!important}#annualReport .annual-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}#annualReport .annual-metrics>div{padding:11px 10px}#annualReport>.row{gap:7px}#annualReport>.row h3{width:100%}#annualReport .cashflow-chart{min-height:125px;padding:7px 2px}}
 @media(min-width:601px) and (max-width:899px){#annualReport .annual-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+/* ADAM motion polish — subtle, purposeful and mobile-friendly */
+:root{--adam-ease:cubic-bezier(.22,.8,.25,1)}
+html{scroll-behavior:smooth}
+.view.active{animation:adamViewIn .34s var(--adam-ease) both}
+@keyframes adamViewIn{0%{opacity:0;transform:translate3d(0,9px,0);filter:blur(1px)}100%{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+.reveal{opacity:0;transform:translate3d(0,15px,0);transition:opacity .58s var(--adam-ease),transform .58s var(--adam-ease)}
+.reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
+.card.reveal:nth-of-type(2n).is-visible{transition-delay:.035s}
+.hero{transition:transform .45s var(--adam-ease),box-shadow .45s var(--adam-ease)}
+.tabs button,.btn,.calendar-day{transition:background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s var(--adam-ease)}
+.btn:active,.tabs button:active{transform:scale(.97)}
+.progress>i,.category-track i{transition:width .8s var(--adam-ease)}
+.hello .typing-text{display:inline}
+.hello .typing-text span{color:var(--mint)}
+.typing-caret{display:inline-block;width:2px;height:.82em;margin-left:3px;vertical-align:-.06em;background:var(--mint);border-radius:2px;animation:adamCaret .8s steps(1) infinite}
+.typing-caret.typing-done{animation:none;opacity:0;transition:opacity .5s ease}
+@keyframes adamCaret{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible,.view.active{opacity:1;transform:none;filter:none;transition:none;animation:none}.typing-caret{display:none}.btn,.tabs button,.calendar-day,.progress>i,.category-track i{transition:none}}
