@@ -324,3 +324,14 @@ html{scroll-behavior:smooth}
 .adam-toast.error{background:rgba(142,49,43,.96)}
 @media(min-width:900px){.adam-toast{left:calc(50% + 95px);bottom:24px}}
 @media(prefers-reduced-motion:reduce){.adam-toast{transition:none}}
+
+/* Phase 6 — local data health and connection feedback */
+.data-health{white-space:pre-line;margin-top:12px;padding:11px 13px;border-radius:13px;background:rgba(143,201,28,.09);border:1px solid rgba(108,159,16,.14);color:#596052;font-size:11px;line-height:1.65}
+/* Phase 10 — compact mobile navigation and quick action */
+.tabs{justify-content:flex-start;gap:4px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:10px;padding-right:10px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;min-height:42px;padding:9px 12px;font-size:11px;touch-action:manipulation}
+.quick-add{position:fixed;z-index:6;right:17px;bottom:calc(76px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:7px;border:0;border-radius:999px;padding:13px 17px;background:linear-gradient(120deg,#d9f58b,#a8dc36);color:#263019;font-size:14px;font-weight:750;box-shadow:0 8px 22px rgba(70,95,22,.2);touch-action:manipulation}
+.quick-add:active{transform:scale(.96)}
+@media(min-width:900px){.tabs{justify-content:center}.quick-add{right:28px;bottom:28px}}
+@media(prefers-reduced-motion:reduce){.quick-add{transition:none}}
