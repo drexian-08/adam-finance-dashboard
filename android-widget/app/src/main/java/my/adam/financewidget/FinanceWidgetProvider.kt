@@ -1,5 +1,7 @@
 package my.adam.financewidget
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
@@ -27,6 +29,9 @@ class FinanceWidgetProvider : AppWidgetProvider() {
             val grams = p.getString("grams", "0")?.toDoubleOrNull() ?: 0.0
             val price = p.getFloat("gold_price", 0f).toDouble()
             val views = RemoteViews(context.packageName, R.layout.finance_widget)
+            val openIntent = Intent(context, MainActivity::class.java)
+            val pendingIntent = PendingIntent.getActivity(context, 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            views.setOnClickPendingIntent(R.id.widget_root, pendingIntent)
             views.setTextViewText(R.id.savings, rm(cash))
             views.setTextViewText(R.id.gold_price, if (price > 0) rm(price) else "RM —")
             views.setTextViewText(R.id.gold_value, rm(price * grams))
