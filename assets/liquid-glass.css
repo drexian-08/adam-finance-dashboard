@@ -269,3 +269,35 @@ html{scroll-behavior:smooth}
 .allocation-label strong{display:block;color:#343a2e}.allocation-label small{display:block;margin-top:3px;color:#858b7d;font-size:10px}.allocation-legend-row>strong{white-space:nowrap;color:#59634b}
 .allocation-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;width:180px;height:180px;border:18px solid #edf1e7;border-radius:50%;font-size:24px;font-weight:800;color:#a0a895}.allocation-empty small{font-size:10px;font-weight:500;margin-top:4px}
 @media(prefers-reduced-motion:reduce){.allocation-donut circle{transition:none}}
+
+/* Wealth allocation readability pass — larger chart and clearer labels */
+#wealthAllocationCard{padding:22px!important}
+#wealthAllocationCard>.row{align-items:flex-start!important;gap:14px!important}
+#wealthAllocationCard>.row h3{font-size:16px!important;line-height:1.35!important;color:#30372a!important;margin:0 0 5px!important}
+#wealthAllocationCard>.row .small{font-size:12px!important;line-height:1.5!important;max-width:280px;color:#737b68!important}
+#wealthAllocationCard #allocationTotal{font-size:clamp(19px,4vw,25px)!important;white-space:nowrap;line-height:1.2}
+#allocationVisual{min-height:300px!important;padding:12px 0!important;margin:8px 0 17px!important}
+.allocation-donut{width:min(100%,300px)!important;height:auto!important}
+.donut-caption{font-size:10px!important;letter-spacing:1.35px!important}
+.donut-value{font-size:14px!important;font-weight:850!important}
+#allocationLegend{gap:10px!important}
+.allocation-legend-row{padding:13px 15px!important;border-radius:16px!important;font-size:14px!important;min-height:58px}
+.allocation-label{gap:12px!important}
+.allocation-label>i{width:13px!important;height:13px!important;flex-basis:13px!important}
+.allocation-label strong{font-size:13px!important;line-height:1.35!important}
+.allocation-label small{font-size:11px!important;margin-top:4px!important}
+.allocation-legend-row>strong{font-size:14px!important;font-weight:800!important}
+.allocation-empty{width:230px!important;height:230px!important;font-size:28px!important;border-width:22px!important}
+.allocation-empty small{font-size:12px!important}
+@media(max-width:600px){
+ #wealthAllocationCard{padding:17px!important}
+ #wealthAllocationCard>.row h3{font-size:15px!important}
+ #wealthAllocationCard>.row .small{font-size:11px!important;max-width:220px}
+ #wealthAllocationCard #allocationTotal{font-size:18px!important}
+ #allocationVisual{min-height:275px!important;margin:6px 0 14px!important}
+ .allocation-donut{width:min(100%,270px)!important}
+ .allocation-legend-row{padding:12px!important;min-height:56px}
+ .allocation-label strong{font-size:12px!important}
+ .allocation-label small{font-size:10px!important}
+ .allocation-legend-row>strong{font-size:13px!important}
+}
