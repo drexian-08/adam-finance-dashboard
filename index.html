@@ -66,6 +66,7 @@ body{background-image:none!important;background-color:#fff!important}
 </div>
 <div class="actions"><button class="btn primary" type="button" id="addInvestment">＋ Simpan pelaburan</button></div>
 <div class="list" id="investmentList" style="margin-top:13px"><div class="empty">Belum ada pelaburan direkodkan.</div></div>
+<div style="border-top:1px solid var(--line);margin-top:16px;padding-top:14px"><div class="row"><h3 style="margin:0">🧩 Portfolio Breakdown</h3><span class="small">Pecahan setiap pelaburan</span></div><div class="small" id="portfolioBreakdownSummary" style="margin-top:5px">Bahagian setiap aset dalam portfolio</div><div id="portfolioBreakdown" class="list" style="margin-top:12px"><div class="empty">Tambah pelaburan untuk melihat pecahan portfolio.</div></div><div class="hint" id="portfolioConcentrationHint" style="margin-top:10px">Pecahan dikira berdasarkan nilai semasa setiap pelaburan.</div></div>
 <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:14px">
 <div class="row"><h3 style="margin:0">💸 Dividend Tracker</h3><span class="small">Rekod agihan diterima</span></div>
 <div class="formgrid" style="margin-top:12px">
@@ -271,12 +272,21 @@ if(last&&last.date===today){last.value=value;last.capital=capital;last.time=new 
 else data.investmentsHistory.push({date:today,value,capital,time:new Date().toISOString()});
 data.investmentsHistory=data.investmentsHistory.slice(-365);
 }
+function renderPortfolioBreakdown(){
+const host=$('portfolioBreakdown'),summary=$('portfolioBreakdownSummary'),hint=$('portfolioConcentrationHint');if(!host)return;
+const rows=(Array.isArray(data.investments)?data.investments:[]).map(x=>({name:String(x.name||'Pelaburan'),value:Math.max(0,Number(x.current)||0),cost:Math.max(0,Number(x.cost)||0)})).filter(x=>x.value>0).sort((a,b)=>b.value-a.value),total=rows.reduce((a,x)=>a+x.value,0);
+if(summary)summary.textContent='Jumlah portfolio: '+money(total)+' • '+rows.length+' aset bernilai';
+if(!rows.length){host.innerHTML='<div class="empty">Belum ada nilai pelaburan untuk dipaparkan. Tambah atau kemas kini nilai semasa aset.</div>';if(hint)hint.textContent='Pecahan dikira berdasarkan nilai semasa setiap pelaburan.';return;}
+host.innerHTML=rows.map(x=>{const share=x.value/total*100,profit=x.value-x.cost;return '<div class="item" style="display:block"><div class="row"><strong>'+escapeHtml(x.name)+'</strong><strong>'+share.toFixed(1)+'%</strong></div><div class="row"><span class="small">'+money(x.value)+' nilai semasa</span><span class="small '+(profit>=0?'mint':'red')+'">'+(profit>=0?'+ ':'− ')+money(Math.abs(profit))+'</span></div><div class="progress" role="img" aria-label="'+escapeHtml(x.name)+': '+share.toFixed(1)+' peratus daripada portfolio"><i style="width:'+Math.max(1,Math.min(100,share)).toFixed(2)+'%"></i></div></div>';}).join('');
+const largest=rows[0],share=largest.value/total*100;if(hint)hint.textContent=share>=50?'Tumpuan tinggi: '+largest.name+' membentuk '+share.toFixed(1)+'% portfolio. Pertimbangkan risiko penumpuan.':'Aset terbesar ialah '+largest.name+' ('+share.toFixed(1)+'%). Pecahan ini berdasarkan nilai semasa yang direkodkan.';
+}
 function renderInvestmentPerformance(){
 const list=$('investmentList');if(!list)return;
 if(!Array.isArray(data.investments))data.investments=[];
 recordInvestmentSnapshot();
 const rows=data.investments,capital=rows.reduce((a,x)=>a+Math.max(0,Number(x.cost)||0),0),value=rows.reduce((a,x)=>a+Math.max(0,Number(x.current)||0),0),profit=value-capital,rate=capital?profit/capital*100:0;
 $('investmentCapital').textContent=money(capital);$('investmentValue').textContent=money(value);$('investmentProfit').textContent=(profit>=0?'+ ':'− ')+money(Math.abs(profit));$('investmentProfit').className='metric '+(profit>=0?'mint':'red');$('investmentReturn').textContent=(rate>=0?'+':'')+rate.toFixed(1)+'%';$('investmentReturn').className='metric '+(rate>=0?'mint':'red');$('investmentProgress').style.width=(capital?Math.max(0,Math.min(100,value/capital*100)):0)+'%';
+renderPortfolioBreakdown();
 list.innerHTML=rows.length?rows.map((x,i)=>'<div class="item"><span><strong>'+escapeHtml(x.name||'Pelaburan')+'</strong><small>Modal '+money(x.cost)+' • Semasa '+money(x.current)+'</small><small class="'+(Number(x.current)>=Number(x.cost)?'mint':'red')+'">'+(Number(x.current)>=Number(x.cost)?'+':'−')+money(Math.abs(Number(x.current)-Number(x.cost)))+'</small></span><div class="actions" style="margin:0"><button class="btn" type="button" data-investment-edit="'+i+'">Edit</button><button class="btn" type="button" data-investment-delete="'+i+'">Padam</button></div></div>').join(''):'<div class="empty">Belum ada pelaburan direkodkan. Tambah rekod pertama di atas.</div>';
 const history=Array.isArray(data.investmentsHistory)?data.investmentsHistory:[],months=new Map();history.forEach(h=>{const m=(h.date||'').slice(0,7);if(m)months.set(m,h);});
 const points=[...months.values()].slice(-6),chart=$('investmentHistoryChart'),historyList=$('investmentHistoryList');
