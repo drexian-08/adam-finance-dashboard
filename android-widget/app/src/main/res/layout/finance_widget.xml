@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="✦ HARGA EMAS / g"
-                android:textColor="#AABBD0"
+                android:textColor="#89927F"
                 android:textSize="8sp"/>
             <TextView
                 android:id="@+id/gold_price"
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NILAI PEGANGAN EMAS"
-                android:textColor="#AABBD0"
+                android:textColor="#89927F"
                 android:textSize="8sp"/>
             <TextView
                 android:id="@+id/gold_value"
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="RM 0.00"
-                android:textColor="#FFFFFF"
+                android:textColor="#26321F"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
             <TextView
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="0 g dimiliki"
-                android:textColor="#8FA4BA"
+                android:textColor="#77816F"
                 android:textSize="8sp"/>
         </LinearLayout>
     </LinearLayout>
