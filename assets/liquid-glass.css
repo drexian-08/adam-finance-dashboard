@@ -257,3 +257,15 @@ html{scroll-behavior:smooth}
 .wealth-point{fill:#fff;stroke:#91c52e;stroke-width:2.5;cursor:crosshair;transition:r .18s ease,stroke-width .18s ease}
 .wealth-point:hover,.wealth-point:focus{r:6;stroke-width:3.5;outline:none;filter:drop-shadow(0 2px 4px rgba(113,159,35,.25))}
 @media(prefers-reduced-motion:reduce){.wealth-point{transition:none}}
+
+/* Wealth allocation donut chart */
+#allocationVisual{display:flex!important;align-items:center;justify-content:center;height:auto!important;min-height:190px;padding:8px 0!important;margin:12px 0 15px!important;background:radial-gradient(circle,rgba(218,240,183,.18),transparent 68%)!important;overflow:visible!important}
+.allocation-donut{width:min(100%,220px);height:auto;overflow:visible;filter:drop-shadow(0 5px 9px rgba(55,75,30,.08))}
+.allocation-donut circle{transition:stroke-dasharray .65s cubic-bezier(.22,.8,.25,1),stroke-dashoffset .65s cubic-bezier(.22,.8,.25,1)}
+.donut-caption{font:700 8px Inter,system-ui,sans-serif;letter-spacing:1.2px;fill:#8b927f}
+.donut-value{font:800 12px Inter,system-ui,sans-serif;fill:#30372a}
+.allocation-legend-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid rgba(220,231,204,.72);border-radius:14px;background:linear-gradient(120deg,#fff,rgba(247,250,241,.88));font-size:12px}
+.allocation-label{display:flex;align-items:center;gap:9px;min-width:0}.allocation-label>i{width:10px;height:10px;flex:0 0 10px;border-radius:50%;box-shadow:0 0 0 3px rgba(120,140,90,.08)}
+.allocation-label strong{display:block;color:#343a2e}.allocation-label small{display:block;margin-top:3px;color:#858b7d;font-size:10px}.allocation-legend-row>strong{white-space:nowrap;color:#59634b}
+.allocation-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;width:180px;height:180px;border:18px solid #edf1e7;border-radius:50%;font-size:24px;font-weight:800;color:#a0a895}.allocation-empty small{font-size:10px;font-weight:500;margin-top:4px}
+@media(prefers-reduced-motion:reduce){.allocation-donut circle{transition:none}}
