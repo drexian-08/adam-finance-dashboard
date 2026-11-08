@@ -158,3 +158,22 @@ body{
 @media(prefers-reduced-motion:reduce){
   .reveal,.reveal.is-visible,.view.active,.tab-arrive{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
 }
+
+/* Phase 14 — compact, readable action plan */
+.action-plan-head{display:flex;align-items:center;gap:14px;justify-content:space-between;margin-bottom:14px}
+.action-plan-head strong{font-size:15px}
+.action-plan-track{height:7px;flex:1;max-width:180px;border-radius:20px;background:rgba(125,151,91,.15);overflow:hidden}
+.action-plan-track i{display:block;height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,#a7d64d,#76b82a);transition:width .2s ease}
+.action-plan-list{display:grid;gap:10px}
+.action-plan-item{display:flex;align-items:center;gap:11px;padding:13px;border:1px solid rgba(150,170,120,.2);border-radius:15px;background:rgba(255,255,255,.45)}
+.action-plan-number{width:27px;height:27px;flex:0 0 27px;display:grid;place-items:center;border-radius:9px;background:rgba(151,193,75,.16);font-size:12px;font-weight:800}
+.action-plan-copy{min-width:0;flex:1}
+.action-plan-copy strong{display:block;font-size:13px;margin:2px 0 4px}
+.action-plan-copy .small{line-height:1.45}
+.action-plan-meta{font-size:10px;font-weight:750;color:#73933f;text-transform:uppercase;letter-spacing:.05em}
+.action-plan-toggle{border:1px solid rgba(129,160,83,.32);border-radius:11px;padding:8px 10px;background:rgba(244,249,235,.82);color:#40552b;font-size:11px;font-weight:750;white-space:nowrap}
+.action-plan-item.is-done{opacity:.66}
+.action-plan-item.is-done .action-plan-copy strong{text-decoration:line-through}
+.action-plan-item.is-done .action-plan-toggle{background:rgba(158,202,83,.2)}
+@media(max-width:520px){.action-plan-item{align-items:flex-start;flex-wrap:wrap}.action-plan-copy{flex-basis:calc(100% - 42px)}.action-plan-toggle{margin-left:38px}.action-plan-head{align-items:flex-start;flex-direction:column}.action-plan-track{width:100%;max-width:none;flex:auto}}
+@media(max-width:700px){.action-plan-track i{transition:none!important}}
