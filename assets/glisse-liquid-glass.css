@@ -129,3 +129,32 @@ body{
 @media(prefers-reduced-motion:reduce){
   .card,.item,.btn,.tabs button{transition:none!important}
 }
+
+/* Mobile performance pass: preserve the glass look without costly scroll-time effects */
+@media(max-width:700px){
+  html{scroll-behavior:smooth}
+  body{
+    background:linear-gradient(145deg,#f7f9f2 0%,#f1f5e9 55%,#fbfcf8 100%)!important;
+    background-attachment:scroll!important;
+  }
+  .hero,.card,.card[id],.tabs,.dialog,.item,.allocation-legend-row,
+  .calendar-day,.data-health,.chart-switch,.btn:not(.primary),.field,.adam-toast{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+  .hero,.card,.card[id],.tabs,.dialog,.item,.allocation-legend-row,
+  .calendar-day,.data-health{
+    box-shadow:0 3px 12px rgba(39,53,24,.065),inset 0 1px 0 rgba(255,255,255,.92)!important;
+  }
+  .hero:after{display:none!important}
+  .reveal,.reveal.is-visible{opacity:1!important;transform:none!important;transition:none!important}
+  .view.active,.tab-arrive{animation:none!important;filter:none!important}
+  .hero,.card,.item,.btn,.tabs button,.calendar-day,.field,
+  .progress>i,.category-track i,.chart-switch button{
+    transition:none!important;
+  }
+  .adam-toast{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.is-visible,.view.active,.tab-arrive{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
+}
