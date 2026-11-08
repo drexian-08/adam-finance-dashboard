@@ -61,6 +61,16 @@ body{background-image:none!important;background-color:#fff!important}
 </div>
 <div class="hint" id="smartIntelligenceDisclaimer">Analisis berdasarkan transaksi dan snapshot yang direkodkan dalam dashboard. Semakin lengkap rekod, semakin berguna hasil analisis.</div>
 </article>
+<section class="section" id="advancedInsights"><h2>🧮 Advanced Financial Insights</h2><span class="small">Nisbah & daya tahan kewangan</span></section>
+<article class="card" id="advancedInsightsCard">
+<div class="grid" style="margin-top:0">
+<div class="item" style="display:block"><div class="small">💚 Kadar simpanan</div><div class="metric mint" id="advancedSavingsRate">—</div><div class="small" id="advancedSavingsRateNote">Berdasarkan aliran tunai 90 hari</div></div>
+<div class="item" style="display:block"><div class="small">🧾 Nisbah perbelanjaan</div><div class="metric" id="advancedExpenseRatio">—</div><div class="small" id="advancedExpenseRatioNote">Perbelanjaan berbanding pendapatan</div></div>
+<div class="item" style="display:block"><div class="small">⚖️ Hutang kepada aset</div><div class="metric" id="advancedDebtRatio">—</div><div class="small" id="advancedDebtRatioNote">Bahagian aset yang dibiayai hutang</div></div>
+<div class="item" style="display:block"><div class="small">🛟 Perlindungan tunai</div><div class="metric mint" id="advancedCashRunway">—</div><div class="small" id="advancedCashRunwayNote">Anggaran bulan perbelanjaan boleh ditampung</div></div>
+</div>
+<p class="hint">Nisbah menggunakan transaksi 90 hari terkini dan nilai aset semasa. Perlindungan tunai menganggap baki tunai sebagai dana yang boleh digunakan; ia bukan jaminan kecemasan atau nasihat kewangan.</p>
+</article>
 <section class="section" id="investmentPerformance"><h2>📊 Investment Performance</h2><span class="small">Prestasi pelaburan</span></section>
 <article class="card" id="investmentCard">
 <div class="grid" style="margin-top:0">
@@ -444,7 +454,28 @@ savingNote.textContent=recommendation>0?'Cadangan konservatif: sehingga 50% lebi
 }
 function nowForSmartSavings(){return new Date().toISOString().slice(0,10);}
 
-const adamOriginalRender=render;render=function(){adamOriginalRender();renderSmartIntelligence();};
+function renderAdvancedInsights(){
+const tx=Array.isArray(data.transactions)?data.transactions:[];
+const now=new Date(),start=new Date(now);start.setDate(start.getDate()-90);
+const valid=tx.filter(t=>{const d=new Date((t.date||'')+'T12:00:00');return Number.isFinite(d.getTime())&&d>=start&&d<=now;});
+const income=valid.filter(t=>t.type==='income').reduce((n,t)=>n+(Number(t.amount)||0),0);
+const expense=valid.filter(t=>t.type==='expense').reduce((n,t)=>n+(Number(t.amount)||0),0);
+const rate=income>0?(income-expense)/income*100:null;
+const savings=$('advancedSavingsRate'),savingsNote=$('advancedSavingsRateNote');
+if(savings&&savingsNote){savings.textContent=rate===null?'Data belum cukup':rate.toFixed(1)+'%';savings.className='metric '+(rate===null?'':rate>=20?'mint':rate>=0?'':'red');savingsNote.textContent=income>0?'Lebihan '+money(income-expense)+' daripada pendapatan '+money(income)+' • 90 hari':'Perlu rekod pendapatan dalam 90 hari';}
+const ratio=$('advancedExpenseRatio'),ratioNote=$('advancedExpenseRatioNote');
+if(ratio&&ratioNote){ratio.textContent=income>0?(expense/income*100).toFixed(1)+'%':'Data belum cukup';ratio.className='metric '+(income>0?(expense<=income?'mint':'red'):'');ratioNote.textContent=income>0?money(expense)+' perbelanjaan daripada '+money(income)+' pendapatan':'Nisbah hanya dikira apabila pendapatan direkodkan';}
+const assets=Math.max(0,Number(data.cash)||0)+Math.max(0,Number(data.goldGrams)||0)*Math.max(0,Number(data.goldPrice)||0)+Math.max(0,Number(data.otherAssets)||0)+(Array.isArray(data.investments)?data.investments.reduce((n,x)=>n+Math.max(0,Number(x.current)||0),0):0);
+const debt=Math.max(0,Number(data.debt)||0),debtRatio=assets>0?debt/assets*100:null;
+const debtEl=$('advancedDebtRatio'),debtNote=$('advancedDebtRatioNote');
+if(debtEl&&debtNote){debtEl.textContent=debtRatio===null?'Data belum cukup':debtRatio.toFixed(1)+'%';debtEl.className='metric '+(debtRatio===null?'':debtRatio<=30?'mint':debtRatio<=60?'':'red');debtNote.textContent=assets>0?money(debt)+' hutang berbanding '+money(assets)+' jumlah aset':'Masukkan nilai aset untuk mengira nisbah hutang';}
+const months={};valid.filter(t=>t.type==='expense').forEach(t=>{const m=(t.date||'').slice(0,7);if(!months[m])months[m]=0;months[m]+=Number(t.amount)||0;});
+const monthValues=Object.values(months),avgMonthly=monthValues.length?monthValues.reduce((a,b)=>a+b,0)/monthValues.length:0;
+const cash=Math.max(0,Number(data.cash)||0),runway=$('advancedCashRunway'),runwayNote=$('advancedCashRunwayNote');
+if(runway&&runwayNote){runway.textContent=avgMonthly>0?(cash/avgMonthly).toFixed(1)+' bulan':'Data belum cukup';runway.className='metric '+(avgMonthly>0&&cash/avgMonthly>=3?'mint':'');runwayNote.textContent=avgMonthly>0?money(cash)+' tunai ÷ purata '+money(avgMonthly)+' perbelanjaan bulanan ('+monthValues.length+' bulan aktif)':'Perlu rekod perbelanjaan dalam tempoh 90 hari';}
+}
+
+const adamOriginalRender=render;render=function(){adamOriginalRender();renderSmartIntelligence();renderAdvancedInsights();};
 load();recordWealthSnapshot();render();refreshDataHealth();initSavingsForecast();initWealthProjection();initInvestmentAlerts();document.getElementById('saveOtherAssets')?.addEventListener('click',()=>{const n=Number(document.getElementById('otherAssetsInput').value);if(!Number.isFinite(n)||n<0){alert('Masukkan nilai aset yang sah.');return;}data.otherAssets=n;data.otherAssetsName=document.getElementById('otherAssetsName').value.trim()||'Aset lain';persist();});$('dividendDate').value=new Date().toISOString().slice(0,10);$('dividendInvestment')?.addEventListener('change',()=>{const wrap=$('dividendManualWrap');if(wrap)wrap.style.display=$('dividendInvestment').value==='manual'?'grid':'none';});$('addDividend')?.addEventListener('click',()=>{const idx=$('dividendInvestment').value,amount=Number($('dividendAmount').value),date=$('dividendDate').value,note=$('dividendNote').value.trim(),investments=Array.isArray(data.investments)?data.investments:[],manual=idx==='manual',investmentName=manual?$('dividendManualName').value.trim():investments[Number(idx)]?.name;if(idx===''||!investmentName||(!manual&&!investments[Number(idx)])||!Number.isFinite(amount)||amount<=0||!date){alert('Pilih atau masukkan nama pelaburan, jumlah dividen dan tarikh yang sah.');return;}if(!Array.isArray(data.dividends))data.dividends=[];data.dividends.push({investmentName,investmentIndex:manual?null:Number(idx),amount,date,note,createdAt:new Date().toISOString()});$('dividendAmount').value='';$('dividendNote').value='';$('dividendManualName').value='';$('dividendInvestment').value='';$('dividendManualWrap').style.display='none';persist();});$('dividendList')?.addEventListener('click',e=>{const b=e.target.closest('[data-dividend-delete]');if(!b)return;const i=Number(b.dataset.dividendDelete);if(Number.isInteger(i)&&i>=0&&i<data.dividends.length&&confirm('Padam rekod dividen ini?')){data.dividends.splice(i,1);persist();}});$('addInvestment')?.addEventListener('click',()=>{const name=$('investmentName').value.trim(),cost=Number($('investmentCost').value),current=Number($('investmentCurrent').value);if(!name||!Number.isFinite(cost)||cost<=0||!Number.isFinite(current)||current<0){alert('Isi nama pelaburan, modal yang sah dan nilai semasa.');return;}if(!Array.isArray(data.investments))data.investments=[];data.investments.push({name,cost,current,updatedAt:new Date().toISOString()});$('investmentName').value='';$('investmentCost').value='';$('investmentCurrent').value='';persist();});$('investmentList')?.addEventListener('click',e=>{const edit=e.target.closest('[data-investment-edit]');if(edit){const i=Number(edit.dataset.investmentEdit),x=data.investments[i];if(!x)return;const name=prompt('Nama pelaburan',x.name||'');if(name===null)return;const costText=prompt('Jumlah modal (RM)',String(x.cost));if(costText===null)return;const currentText=prompt('Nilai semasa (RM)',String(x.current));if(currentText===null)return;const cost=Number(costText),current=Number(currentText);if(!name.trim()||!Number.isFinite(cost)||cost<=0||!Number.isFinite(current)||current<0){alert('Maklumat tidak sah. Modal mesti lebih RM0 dan nilai semasa tidak boleh negatif.');return;}data.investments[i]={...x,name:name.trim(),cost,current,updatedAt:new Date().toISOString()};persist();return;}const b=e.target.closest('[data-investment-delete]');if(!b)return;const i=Number(b.dataset.investmentDelete);if(Number.isInteger(i)&&i>=0&&i<data.investments.length&&confirm('Padam rekod pelaburan ini?')){data.investments.splice(i,1);persist();}});setupMotion();setupTyping();setupScrollSpy();refreshGoldPrice();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 document.getElementById('reportYear')?.addEventListener('change',renderAnnualReport);
 </script>
