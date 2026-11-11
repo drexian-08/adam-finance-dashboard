@@ -26,7 +26,7 @@ body{background-image:none!important;background-color:#fff!important}
 .sync-status{font-size:12px;color:var(--muted);line-height:1.5;margin:9px 0}
 .sync-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=9">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=10">
 
 </head>
 <body><main class="wrap">
@@ -292,6 +292,65 @@ body{background-image:none!important;background-color:#fff!important}
 <div id="adamToast" class="adam-toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Tambah rekod</h2><form id="modalForm" class="formgrid"></form><div class="dialog-actions"><button class="btn" type="button" onclick="closeModal()">Batal</button><button class="btn primary" type="button" id="saveModal">Simpan</button></div></div></div>
 <script>
+
+/* ADAM SVG icon system: replaces decorative emoji in initial and dynamically rendered UI. */
+const ADAM_ICON_MAP={
+'🌱':['sprout','green'],'🌿':['sprout','green'],'💚':['heart','green'],'🌟':['award','gold'],'🎉':['award','gold'],'🏆':['award','gold'],'🥇':['award','gold'],'💎':['gem','gold'],'💰':['wallet','green'],'💸':['wallet','gold'],'📈':['chart','green'],'📊':['chart','blue'],'🧾':['receipt','blue'],'🎯':['target','green'],'🗓':['calendar','blue'],'🧠':['brain','violet'],'💡':['bulb','gold'],'🧮':['calculator','blue'],'⚖':['scale','red'],'🛟':['shield','blue'],'🧭':['compass','blue'],'🧩':['grid','violet'],'🔔':['bell','gold'],'🔭':['sparkles','violet'],'🔮':['sparkles','violet'],'📤':['upload','blue'],'🛡':['shield','green'],'🔁':['repeat','blue'],'☁':['cloud','blue'],'⚠':['alert','red']
+};
+const ADAM_ICON_PATHS={
+'sprout':'<path d="M7 20h10M12 20v-8M12 12C12 6 7 4 3 4c0 5 2 8 9 8ZM12 12c0-5 4-8 9-8 0 5-2 8-9 8Z"/>',
+'heart':'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>',
+'award':'<circle cx="12" cy="8" r="6"/><path d="m8.2 13-1.3 8L12 18l5.1 3-1.3-8M9 8l2 2 4-4"/>',
+'gem':'<path d="M6 3h12l4 6-10 12L2 9l4-6ZM2 9h20M8 9l4 12 4-12-4-6-4 6Z"/>',
+'wallet':'<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 8h15a3 3 0 0 1 3 3v2h-5a2 2 0 0 0 0 4h5m-5-4h.01"/>',
+'chart':'<path d="M3 3v18h18m-2-12-5 5-4-4-5 5"/>',
+'receipt':'<path d="M4 2v20l4-2 4 2 4-2 4 2V2l-4 2-4-2-4 2-4-2Zm4 6h8m-8 4h8m-8 4h5"/>',
+'target':'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+'calendar':'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/>',
+'brain':'<path d="M12 18V5a3 3 0 0 0-5.8-1A4 4 0 0 0 4 11a4 4 0 0 0 1 7 3 3 0 0 0 5 2m2-2V5a3 3 0 0 1 5.8-1A4 4 0 0 1 20 11a4 4 0 0 1-1 7 3 3 0 0 1-5 2"/>',
+'bulb':'<path d="M9 18h6m-5 4h4m-6-8a7 7 0 1 1 8 0c-.8.6-1 1.2-1 2H9c0-.8-.2-1.4-1-2Z"/>',
+'calculator':'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8v4H8zM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>',
+'scale':'<path d="m16 16 3-8 3 8a5 5 0 0 1-6 0Zm-14 0 3-8 3 8a5 5 0 0 1-6 0ZM12 3v18M5 8h14M9 21h6"/>',
+'shield':'<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Zm-3-10 2 2 4-4"/>',
+'compass':'<circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.7 5.7-5.7 2.7 2.7-5.7 5.7-2.7Z"/>',
+'grid':'<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="5" rx="1"/><rect x="13" y="10" width="8" height="11" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/>',
+'bell':'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 13h4"/>',
+'sparkles':'<path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Zm7 11 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14Z"/>',
+'upload':'<path d="M12 16V4m-4 4 4-4 4 4M4 16v4h16v-4"/>',
+'repeat':'<path d="m17 2 4 4-4 4M3 11V9a3 3 0 0 1 3-3h15m-14 16-4-4 4-4m14-1v2a3 3 0 0 1-3 3H3"/>',
+'cloud':'<path d="M20 16.2A4.5 4.5 0 0 0 18 7.5 6 6 0 0 0 6.3 9 4 4 0 0 0 6 17h13"/>',
+'alert':'<path d="m10.3 3.9-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.1l-8-14a2 2 0 0 0-3.4 0ZM12 9v4m0 4h.01"/>'
+};
+function adamReplaceEmojiIcons(root){
+if(!root)return;
+const pattern=/\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?/gu;
+const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){
+const parent=node.parentElement;if(!parent||parent.closest('script,style,textarea,input,option,.adam-icon'))return NodeFilter.FILTER_REJECT;
+pattern.lastIndex=0;const found=pattern.test(node.nodeValue||'');pattern.lastIndex=0;
+return found?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+}});
+const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+nodes.forEach(node=>{
+const value=node.nodeValue;pattern.lastIndex=0;if(!pattern.test(value))return;pattern.lastIndex=0;
+const fragment=document.createDocumentFragment();let last=0,match;
+while((match=pattern.exec(value))){
+if(match.index>last)fragment.append(document.createTextNode(value.slice(last,match.index)));
+const key=match[0].replace(/[\uFE0E\uFE0F]/g,''),config=ADAM_ICON_MAP[key]||['sparkles','neutral'];
+const span=document.createElement('span');span.className='adam-icon adam-icon--'+config[1];span.setAttribute('aria-hidden','true');
+span.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false">'+ADAM_ICON_PATHS[config[0]]+'</svg>';
+fragment.append(span);last=pattern.lastIndex;
+}
+if(last<value.length)fragment.append(document.createTextNode(value.slice(last)));
+node.parentNode.replaceChild(fragment,node);
+});
+}
+adamReplaceEmojiIcons(document.body);
+const adamIconObserver=new MutationObserver(records=>records.forEach(record=>{
+if(record.type==='characterData')adamReplaceEmojiIcons(record.target.parentNode);
+else record.addedNodes.forEach(node=>{if(node.nodeType===Node.ELEMENT_NODE)adamReplaceEmojiIcons(node);else if(node.nodeType===Node.TEXT_NODE)adamReplaceEmojiIcons(node.parentNode);});
+}));
+adamIconObserver.observe(document.body,{subtree:true,childList:true,characterData:true});
+
 const KEY='adam-finance-v1';let data={cash:0,debt:0,budget:200,goal:1000,goldGrams:0,goldPrice:0,goldUpdated:'',transactions:[]};let mode='';
 const $=id=>document.getElementById(id);const money=n=>'RM '+Number(n||0).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
 function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d)data={...data,...d}}catch(e){}}
