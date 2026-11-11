@@ -979,7 +979,32 @@ window.addEventListener('offline',()=>cloudMessage('Tiada internet. Data masih d
 window.addEventListener('online',()=>{cloudMessage('Internet kembali tersedia. Menyemak sync…','Online');if(adamCloudUser)pushCloudData()});
 function cloudDoc(){return adamDb.collection('users').doc(adamCloudUser.uid).collection('private').doc('finance');}
 function preserveCloudRecoverySnapshot(reason){try{const payload=localStorage.getItem(KEY)||JSON.stringify(data);if(!payload)return false;localStorage.setItem('adam-finance-cloud-recovery-v1',JSON.stringify({createdAt:new Date().toISOString(),reason,payloadJson:payload}));refreshDataHealth();return true}catch(e){console.warn('Cloud recovery snapshot could not be saved:',e);return false}}
-async function pushCloudData(){if(!adamCloudUser||adamApplyingRemote)return;if(!navigator.onLine){cloudMessage('Offline. Perubahan kekal pada peranti dan menunggu sambungan internet.','Menunggu sync');return;}try{await cloudDoc().set({payloadJson:JSON.stringify(data),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});localStorage.setItem('adam-finance-last-cloud-sync',new Date().toISOString());cloudMessage('Data berjaya disegerakkan ke cloud pada '+new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'})+'.','Disambungkan ✓');}catch(e){console.error(e);cloudMessage('Sync gagal: '+(e.message||'Semak sambungan dan Firestore Rules.'),'Ralat');}}
+let adamCloudSyncPromise=null,adamCloudSyncRequested=false;
+function pushCloudData(){
+ if(!adamCloudUser||adamApplyingRemote)return Promise.resolve();
+ if(!navigator.onLine){cloudMessage('Offline. Perubahan kekal pada peranti dan menunggu sambungan internet.','Menunggu sync');return Promise.resolve();}
+ adamCloudSyncRequested=true;
+ if(adamCloudSyncPromise)return adamCloudSyncPromise;
+ const targetUser=adamCloudUser;
+ const targetDoc=adamDb.collection('users').doc(targetUser.uid).collection('private').doc('finance');
+ adamCloudSyncPromise=(async()=>{
+  try{
+   while(adamCloudSyncRequested&&adamCloudUser?.uid===targetUser.uid){
+    adamCloudSyncRequested=false;
+    if(!navigator.onLine){cloudMessage('Offline. Perubahan kekal pada peranti dan menunggu sambungan internet.','Menunggu sync');break;}
+    const payloadJson=JSON.stringify(data);
+    await targetDoc.set({payloadJson,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    localStorage.setItem('adam-finance-last-cloud-sync',new Date().toISOString());
+    if(!adamCloudSyncRequested)cloudMessage('Data berjaya disegerakkan ke cloud pada '+new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'})+'.','Disambungkan ✓');
+   }
+  }catch(e){console.error(e);cloudMessage('Sync gagal: '+(e.message||'Semak sambungan dan Firestore Rules.'),'Ralat');}
+  finally{
+   adamCloudSyncPromise=null;
+   if(adamCloudSyncRequested&&adamCloudUser?.uid===targetUser.uid&&navigator.onLine)pushCloudData();
+  }
+ })();
+ return adamCloudSyncPromise;
+}
 async function pullCloudData(){if(!adamCloudUser)return;try{const snap=await cloudDoc().get();const doc=snap.exists?snap.data():null;let remote=doc?.payloadJson?JSON.parse(doc.payloadJson):doc?.payload;if(remote){if(!remote||!Array.isArray(remote.transactions)||!Number.isFinite(Number(remote.cash))||!Number.isFinite(Number(remote.debt)))throw Error('Struktur data cloud tidak lengkap. Data peranti dikekalkan.');if(!preserveCloudRecoverySnapshot('Sebelum menerima data cloud'))throw Error('Salinan pemulihan setempat gagal disimpan. Data peranti dikekalkan.');adamApplyingRemote=true;data={...data,...remote};recordWealthSnapshot();localStorage.setItem(KEY,JSON.stringify(data));render();adamApplyingRemote=false;cloudMessage('Data cloud dimuatkan. Perubahan seterusnya akan disegerakkan automatik.','Disambungkan ✓');}else{await pushCloudData();cloudMessage('Data peranti ini dimuat naik sebagai data cloud pertama.','Disambungkan ✓');}}catch(e){adamApplyingRemote=false;console.error(e);cloudMessage('Gagal membaca cloud: '+(e.message||'Semak tetapan Firebase.'),'Ralat');}}
 function beginCloudListener(){if(adamCloudUnsub)adamCloudUnsub();adamCloudUnsub=cloudDoc().onSnapshot(snap=>{if(!snap.exists)return;const doc=snap.data();const remote=doc.payloadJson?JSON.parse(doc.payloadJson):doc.payload;if(!remote)return;if(!Array.isArray(remote.transactions)||!Number.isFinite(Number(remote.cash))||!Number.isFinite(Number(remote.debt))){cloudMessage('Data cloud tidak lengkap. Data peranti tidak diubah.','Perlu semakan');return;}const local=JSON.stringify(data),incoming=JSON.stringify(remote);if(local!==incoming){if(!preserveCloudRecoverySnapshot('Sebelum menerima kemas kini cloud')){cloudMessage('Kemas kini cloud ditangguhkan kerana salinan pemulihan gagal disimpan. Data peranti dikekalkan.','Perlu semakan');return;}adamApplyingRemote=true;data={...data,...remote};localStorage.setItem(KEY,JSON.stringify(data));render();adamApplyingRemote=false;cloudMessage('Data cloud terkini telah diterima.','Disambungkan ✓');}},e=>{console.error(e);cloudMessage('Listener cloud terhenti: '+e.message,'Ralat');});}
 document.getElementById('cloudLogin').onclick=async()=>{const email=document.getElementById('cloudEmail').value.trim(),password=document.getElementById('cloudPassword').value;if(!email||!password){cloudMessage('Masukkan email dan password dahulu.');return;}try{cloudMessage('Sedang log masuk…');await adamAuth.signInWithEmailAndPassword(email,password);}catch(e){cloudMessage('Log masuk gagal: '+e.message,'Ralat');}};
