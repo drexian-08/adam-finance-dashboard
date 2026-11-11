@@ -328,7 +328,7 @@ const isBillExpense=t=>t.type==='expense'&&bills.some(b=>{const name=String(b.na
 const income=recent.filter(t=>t.type==='income').reduce((n,t)=>n+Math.max(0,Number(t.amount)||0),0);
 const expense=recent.filter(t=>t.type==='expense'&&!isBillExpense(t)).reduce((n,t)=>n+Math.max(0,Number(t.amount)||0),0);
 const avgIncome=income/3,avgExpense=expense/3;
-const end=new Date(start);end.setDate(end.getDate()+30);
+const end=new Date(now);end.setHours(0,0,0,0);end.setDate(end.getDate()+30);
 const upcoming=bills.reduce((sum,b)=>{const due=new Date(String(b.nextDue||'')+'T12:00:00');return Number.isFinite(due.getTime())&&due>=new Date(now.getFullYear(),now.getMonth(),now.getDate())&&due<end?sum+Math.max(0,Number(b.amount)||0):sum;},0);
 const current=Math.max(0,Number(data.cash)||0),projected=current+avgIncome-avgExpense-upcoming;
 el('cashForecastBalance').textContent=money(projected);
