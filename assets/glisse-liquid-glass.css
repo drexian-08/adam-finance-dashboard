@@ -216,3 +216,83 @@ body{
 .debt-plan-metrics strong{font-size:14px;overflow-wrap:anywhere}
 .debt-plan-warning{padding:13px;border:1px solid rgba(202,95,75,.35);border-radius:13px;background:rgba(255,238,234,.55);font-size:13px}
 @media(max-width:480px){.debt-planner-fields{grid-template-columns:1fr}.debt-plan-metrics{gap:6px}.debt-plan-metrics>div{padding:10px 7px}.debt-plan-metrics strong{font-size:12px}.debt-plan-metrics .small{font-size:10px}}
+
+
+/* Phase 17.1 — typography and layout refinement for finance tools */
+#debtPayoffPlanner,#cashFlowForecast,#recurringBills{
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:7px 12px;
+  margin-top:26px;margin-bottom:11px;padding:0 2px;
+}
+#debtPayoffPlanner h2,#cashFlowForecast h2,#recurringBills h2{
+  margin:0;font-size:clamp(17px,2.4vw,20px);line-height:1.3;
+  letter-spacing:-.025em;font-weight:780;color:var(--text,#26351d);
+}
+#debtPayoffPlanner>.small,#cashFlowForecast>.small,#recurringBills>.small{
+  font-size:11px;line-height:1.5;color:var(--muted,#74816a);
+}
+.debt-planner-card,.cashflow-forecast-card,.recurring-card{
+  padding:clamp(15px,2.6vw,21px)!important;
+  border:1px solid rgba(137,165,102,.22)!important;
+  border-radius:20px!important;
+  box-shadow:0 4px 16px rgba(47,65,30,.055),inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+.debt-planner-principal{
+  padding:16px 17px!important;border-radius:16px!important;
+  background:linear-gradient(120deg,rgba(225,242,207,.72),rgba(250,253,246,.8))!important;
+}
+.debt-planner-principal .small,.cashflow-forecast-main .small,
+.recurring-summary .small{font-size:11px;line-height:1.45;letter-spacing:.01em}
+.debt-planner-principal strong{font-weight:800;letter-spacing:-.035em;color:#45652b}
+.debt-planner-fields label,.recurring-form label{
+  gap:7px!important;font-size:12px!important;line-height:1.4;
+  font-weight:750!important;color:#536347;
+}
+.debt-planner-fields .field,.recurring-form .field{
+  min-height:43px;border-radius:12px!important;font-size:13px;
+}
+#calculateDebtPlan,#addRecurringBill{min-height:42px;padding:10px 17px!important;font-weight:750}
+.debt-planner-result{gap:10px!important}
+.debt-plan-metrics>div{
+  align-content:start;min-height:76px;padding:12px!important;
+  background:rgba(247,250,242,.78)!important;
+}
+.debt-plan-metrics .small{font-size:10px;line-height:1.4}
+.debt-plan-metrics strong{font-size:clamp(13px,2vw,16px);line-height:1.35;font-weight:800;color:#405b2c}
+.debt-planner-card>.hint,.recurring-card>.hint,
+#cashForecastNote{display:block;margin-top:13px;line-height:1.55;font-size:11px;color:#74816a}
+.cashflow-forecast-main{
+  padding:18px!important;border-radius:17px!important;
+  background:linear-gradient(120deg,rgba(225,243,207,.78),rgba(255,255,255,.76))!important;
+}
+.cashflow-forecast-main .metric{font-weight:850;letter-spacing:-.04em;line-height:1.15;color:#456b2c}
+.cashflow-forecast-icon{width:48px;height:48px;display:grid;place-items:center;
+  border-radius:15px;background:rgba(255,255,255,.62);font-size:25px}
+.cashflow-forecast-grid{gap:10px!important}
+.cashflow-forecast-grid>div{
+  padding:14px!important;border-radius:14px!important;
+  background:rgba(248,251,244,.8)!important;
+}
+.cashflow-forecast-grid strong{font-size:clamp(13px,2vw,16px);font-weight:780;line-height:1.35;color:#34472b}
+.cashflow-forecast-card>.progress{margin-top:15px;height:8px;border-radius:20px;overflow:hidden}
+.recurring-summary{
+  gap:10px!important;padding:15px!important;border-radius:16px!important;
+  background:linear-gradient(120deg,rgba(232,244,218,.75),rgba(255,255,255,.7))!important;
+}
+.recurring-summary>div{min-width:0;display:grid;align-content:start;gap:3px}
+.recurring-summary .metric{font-weight:850;line-height:1.2;letter-spacing:-.03em}
+.recurring-form{gap:13px!important;margin-top:19px!important}
+.recurring-list{gap:9px!important;margin-top:15px!important}
+.recurring-item{padding:14px!important;border-radius:14px!important;gap:12px!important}
+.recurring-main strong{font-size:13px;line-height:1.4;font-weight:780;color:#34472b}
+.recurring-due strong{font-size:12px;line-height:1.4}
+.recurring-actions .btn{min-height:36px;padding:8px 11px;font-size:11px;font-weight:750}
+@media(max-width:600px){
+  #debtPayoffPlanner,#cashFlowForecast,#recurringBills{margin-top:22px;gap:5px 9px}
+  #debtPayoffPlanner h2,#cashFlowForecast h2,#recurringBills h2{font-size:17px}
+  .debt-planner-card,.cashflow-forecast-card,.recurring-card{padding:14px!important;border-radius:17px!important}
+  .debt-plan-metrics>div{min-height:72px;padding:9px 7px!important}
+  .cashflow-forecast-main{padding:14px!important}
+  .cashflow-forecast-grid>div{padding:11px!important}
+  .recurring-summary{padding:12px!important}
+  .recurring-item{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;padding:12px!important}
+}
