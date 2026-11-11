@@ -382,3 +382,56 @@ body{
 .fire-metrics strong{font-size:11px!important;line-height:1.35!important}
 }
 @media(max-width:360px){.fire-metrics{grid-template-columns:1fr!important}.fire-metrics>div{min-height:0!important;padding:10px!important}.fire-metrics .small{font-size:10px!important}.fire-metrics strong{font-size:13px!important}}
+
+
+/* Phase 19 — Emergency Fund Planner */
+#emergencyFundPlanner{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:27px 3px 12px;padding:0 2px}
+#emergencyFundPlanner .ef-section-copy{display:grid;gap:5px;min-width:0}
+#emergencyFundPlanner h2{margin:0;font-size:19px;line-height:1.25;font-weight:820;letter-spacing:-.035em;color:#26351d}
+#emergencyFundPlanner p{margin:0;font-size:11px;line-height:1.5;color:#74816a}
+.ef-section-icon{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:13px;background:rgba(224,243,204,.8);font-size:21px}
+.emergency-fund-card{display:grid;gap:16px;padding:19px!important;border:1px solid rgba(137,165,102,.22)!important;border-radius:21px!important}
+.ef-target-banner{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:12px;padding:17px 18px;border:1px solid rgba(145,175,105,.22);border-radius:17px;background:linear-gradient(120deg,rgba(225,243,207,.82),rgba(255,255,255,.78))}
+.ef-target-banner>div{display:grid;gap:7px;min-width:0}
+.ef-kicker{font-size:10px;line-height:1.4;font-weight:800;letter-spacing:.075em;text-transform:uppercase;color:#748461}
+.ef-target-banner strong{font-size:clamp(25px,4vw,33px);line-height:1.12;letter-spacing:-.045em;font-weight:850;color:#456b2c;overflow-wrap:anywhere}
+.ef-caption{font-size:11px;line-height:1.5;color:#74816a}
+.ef-banner-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.78);font-size:24px}
+.ef-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 16px}
+.ef-input-grid label{display:flex;flex-direction:column;align-items:stretch;gap:7px;min-width:0;margin:0;font-size:12px;line-height:1.4;font-weight:750;color:#435238}
+.ef-input-grid label>span{display:block;min-height:17px}
+.ef-input-grid .field{box-sizing:border-box;width:100%;min-width:0;height:45px;min-height:45px;margin:0;padding:0 12px;border:1px solid rgba(137,165,102,.28);border-radius:11px;background:rgba(255,255,255,.92);color:#26351d;font-size:13px;font-weight:650}
+.ef-input-grid .field::placeholder{color:#9aa58e;font-size:11px;font-weight:450}
+.emergency-fund-card>.actions{margin:0}
+#efCalculate{width:auto;min-height:44px;padding:0 19px!important;font-size:12px;font-weight:800}
+.ef-result{display:grid;gap:13px;padding:15px;border:1px solid rgba(145,175,105,.2);border-radius:16px;background:rgba(248,251,244,.72)}
+.ef-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px;font-weight:750;color:#657458}
+.ef-progress-head strong{font-size:15px;color:#527b31}
+.ef-progress{height:9px;margin:0;border-radius:20px;overflow:hidden;background:rgba(92,112,62,.12)}
+.ef-progress i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#a7d64d,#6fae2b)}
+.ef-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ef-metrics>div{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;min-height:84px;padding:12px;border:1px solid rgba(145,175,105,.18);border-radius:13px;background:rgba(255,255,255,.82)}
+.ef-metrics span{font-size:10px;line-height:1.4;color:#77836d}
+.ef-metrics strong{font-size:clamp(12px,1.7vw,15px);line-height:1.35;font-weight:820;color:#405b2c;overflow-wrap:anywhere}
+.ef-finish{padding:11px 13px;border:1px solid rgba(145,175,105,.16);border-radius:12px;background:rgba(231,244,216,.7);color:#4f6c35;font-size:11px;line-height:1.55;font-weight:650}
+.ef-note{margin:0;padding:12px 13px;border-radius:12px;background:rgba(244,248,237,.72);font-size:10px;line-height:1.65;color:#737f69}
+@media(max-width:600px){
+#emergencyFundPlanner{margin:23px 2px 12px;align-items:flex-start}
+#emergencyFundPlanner h2{font-size:17px}
+#emergencyFundPlanner p{max-width:290px;font-size:10px}
+.ef-section-icon{width:36px;height:36px;flex-basis:36px;font-size:19px}
+.emergency-fund-card{gap:14px;padding:14px!important}
+.ef-target-banner{padding:14px;grid-template-columns:minmax(0,1fr) 40px}
+.ef-banner-icon{width:40px;height:40px;font-size:22px}
+.ef-input-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+.ef-input-grid label>span{min-height:0}
+.ef-input-grid .field{height:44px;min-height:44px}
+.emergency-fund-card>.actions{display:block}
+#efCalculate{width:100%;min-height:44px}
+.ef-result{padding:12px;gap:11px}
+.ef-metrics{gap:6px}
+.ef-metrics>div{min-height:78px;padding:10px 7px;gap:6px}
+.ef-metrics span{font-size:9px;line-height:1.35}
+.ef-metrics strong{font-size:11px;line-height:1.35}
+}
+@media(max-width:360px){.ef-metrics{grid-template-columns:1fr}.ef-metrics>div{min-height:0;padding:10px}.ef-metrics span{font-size:10px}.ef-metrics strong{font-size:13px}}
