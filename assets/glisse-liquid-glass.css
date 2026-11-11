@@ -673,3 +673,8 @@ body{
 @keyframes aqjPop{from{opacity:0;transform:translateY(7px) scale(.97)}to{opacity:1;transform:none}}
 @media(min-width:700px){.adam-quick-jump{right:max(22px,calc((100vw - 980px)/2));bottom:88px}}
 @media(prefers-reduced-motion:reduce){.adam-quick-jump,.aqj-menu{transition:none;animation:none}}
+
+
+/* Keep quick jump clear of the floating Add Record button */
+.adam-quick-jump{bottom:calc(132px + env(safe-area-inset-bottom))}
+@media(min-width:900px){.adam-quick-jump{bottom:88px}}
