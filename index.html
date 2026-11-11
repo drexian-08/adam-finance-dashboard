@@ -307,7 +307,7 @@ const p=prompt('Keutamaan: Tinggi, Sederhana atau Rendah',g.priority||'Sederhana
 function deleteFinancialGoal(i){if(!data.goals?.[i]||!confirm('Padam matlamat ini?'))return;data.goals.splice(i,1);persist();}
 function recurringDateValue(value){const d=new Date(String(value||'')+'T00:00:00');return Number.isNaN(d.getTime())?null:d;}
 function recurringDateKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function recurringNextDate(date,frequency){const d=new Date(date.getFullYear(),date.getMonth(),date.getDate());if(frequency==='yearly')d.setFullYear(d.getFullYear()+1);else d.setMonth(d.getMonth()+1);return d;}
+function recurringNextDate(date,frequency){const day=date.getDate(),month=date.getMonth()+(frequency==='yearly'?12:1),first=new Date(date.getFullYear(),month,1),lastDay=new Date(first.getFullYear(),first.getMonth()+1,0).getDate();return new Date(first.getFullYear(),first.getMonth(),Math.min(day,lastDay));}
 function renderRecurringBills(){
 const host=$('recurringBillsList');if(!host)return;if(!Array.isArray(data.recurringBills))data.recurringBills=[];
 const bills=data.recurringBills.filter(x=>x&&x.active!==false),today=new Date();today.setHours(0,0,0,0);
