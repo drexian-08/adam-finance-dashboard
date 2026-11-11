@@ -987,6 +987,7 @@ function pushCloudData(){
  if(adamCloudSyncPromise)return adamCloudSyncPromise;
  const targetUser=adamCloudUser;
  const targetDoc=adamDb.collection('users').doc(targetUser.uid).collection('private').doc('finance');
+ let syncSucceeded=false;
  adamCloudSyncPromise=(async()=>{
   try{
    while(adamCloudSyncRequested&&adamCloudUser?.uid===targetUser.uid){
@@ -994,13 +995,14 @@ function pushCloudData(){
     if(!navigator.onLine){cloudMessage('Offline. Perubahan kekal pada peranti dan menunggu sambungan internet.','Menunggu sync');break;}
     const payloadJson=JSON.stringify(data);
     await targetDoc.set({payloadJson,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    syncSucceeded=true;
     localStorage.setItem('adam-finance-last-cloud-sync',new Date().toISOString());
     if(!adamCloudSyncRequested)cloudMessage('Data berjaya disegerakkan ke cloud pada '+new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'})+'.','Disambungkan ✓');
    }
   }catch(e){console.error(e);cloudMessage('Sync gagal: '+(e.message||'Semak sambungan dan Firestore Rules.'),'Ralat');}
   finally{
    adamCloudSyncPromise=null;
-   if(adamCloudSyncRequested&&adamCloudUser?.uid===targetUser.uid&&navigator.onLine)pushCloudData();
+   if(syncSucceeded&&adamCloudSyncRequested&&adamCloudUser?.uid===targetUser.uid&&navigator.onLine)pushCloudData();
   }
  })();
  return adamCloudSyncPromise;
