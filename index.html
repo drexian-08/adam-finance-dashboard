@@ -26,7 +26,7 @@ body{background-image:none!important;background-color:#fff!important}
 .sync-status{font-size:12px;color:var(--muted);line-height:1.5;margin:9px 0}
 .sync-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=4">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=5">
 
 </head>
 <body><main class="wrap">
@@ -180,15 +180,15 @@ body{background-image:none!important;background-color:#fff!important}
 <section class="section"><h2>Financial Goals Tracker</h2><span class="small">Jejak sasaran simpanan jangka pendek dan panjang</span></section>
 <article class="card" id="goalsTracker"><div class="row" style="align-items:center"><div><h3>🎯 Matlamat kewangan</h3><div class="small">Kemajuan berdasarkan jumlah yang diperuntukkan</div></div><button class="btn primary" type="button" onclick="addFinancialGoal()">＋ Tambah matlamat</button></div><div id="financialGoalsList" style="margin-top:14px"><div class="empty">Belum ada matlamat.</div></div></article>
 
-<section class="section" id="fireCalculator"><h2>🔥 Financial Independence (FIRE) Calculator</h2><span class="small">Anggarkan sasaran dan tempoh menuju kebebasan kewangan</span></section>
+<section class="section" id="fireCalculator"><div class="fire-section-copy"><h2>Financial Independence (FIRE)</h2><p>Kira sasaran kebebasan kewangan dan anggaran masa untuk mencapainya.</p></div><span class="fire-section-icon">🌱</span></section>
 <article class="card fire-card" id="fireCalculatorCard">
   <div class="fire-intro"><div><span class="small">Sasaran dana kebebasan kewangan</span><strong id="fireTargetDisplay">—</strong><span class="small" id="fireTargetCaption">Berdasarkan perbelanjaan bulanan dan kadar pengeluaran</span></div><div class="fire-symbol">🌱</div></div>
   <div class="fire-fields">
-    <label>Perbelanjaan bulanan (RM)<input class="field" id="fireMonthlyExpense" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Contoh: 3000"></label>
-    <label>Aset boleh labur sekarang (RM)<input class="field" id="fireCurrentAssets" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Contoh: 50000"></label>
-    <label>Pelaburan bulanan (RM)<input class="field" id="fireMonthlyContribution" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Contoh: 1000"></label>
-    <label>Anggaran pulangan tahunan (%)<input class="field" id="fireAnnualReturn" type="number" min="0" max="20" step="0.1" inputmode="decimal"></label>
-    <label>Kadar pengeluaran tahunan (%)<input class="field" id="fireWithdrawalRate" type="number" min="2" max="8" step="0.1" inputmode="decimal"></label>
+    <label for="fireMonthlyExpense"><span class="fire-label-text">Perbelanjaan bulanan</span><input class="field" id="fireMonthlyExpense" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Contoh: 3000" placeholder="Contoh: RM 3,000" aria-label="Perbelanjaan bulanan"></label>
+    <label for="fireCurrentAssets"><span class="fire-label-text">Aset boleh labur sekarang</span><input class="field" id="fireCurrentAssets" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Contoh: 50000" placeholder="Contoh: RM 50,000" aria-label="Aset boleh labur sekarang"></label>
+    <label for="fireMonthlyContribution"><span class="fire-label-text">Pelaburan setiap bulan</span><input class="field" id="fireMonthlyContribution" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Contoh: 1000" placeholder="Contoh: RM 1,000" aria-label="Pelaburan setiap bulan"></label>
+    <label for="fireAnnualReturn"><span class="fire-label-text">Pulangan pelaburan setahun</span><input class="field" id="fireAnnualReturn" type="number" min="0" max="20" step="0.1" inputmode="decimal" placeholder="Contoh: 6" aria-label="Pulangan pelaburan setahun"></label>
+    <label for="fireWithdrawalRate"><span class="fire-label-text">Kadar pengeluaran setahun</span><input class="field" id="fireWithdrawalRate" type="number" min="2" max="8" step="0.1" inputmode="decimal" placeholder="Contoh: 4" aria-label="Kadar pengeluaran setahun"></label>
   </div>
   <div class="actions"><button class="btn primary" type="button" id="fireCalculate">Kira sasaran FIRE</button></div>
   <div id="fireResult" class="fire-result"><div class="empty">Masukkan perbelanjaan dan pelaburan bulanan untuk melihat unjuran.</div></div>
