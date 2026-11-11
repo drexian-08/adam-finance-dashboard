@@ -624,3 +624,34 @@ body{
 .card h3 .adam-icon,.section h2 .adam-icon,.row h3 .adam-icon{width:1.34em;height:1.34em}
 .tabs .adam-icon{width:1.15em;height:1.15em;padding:.08em;margin-inline:0 .18em;vertical-align:-.2em}
 @media(max-width:600px){.adam-icon{width:1.22em;height:1.22em}.card h3 .adam-icon,.section h2 .adam-icon{width:1.28em;height:1.28em}}
+
+
+/* Icon-only finish: transparent SVG marks, slightly larger and no badge-like backing. */
+.adam-icon{
+  width:1.38em;
+  height:1.38em;
+  padding:0!important;
+  margin-inline:.12em;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  vertical-align:-.22em;
+}
+.adam-icon--green,.adam-icon--gold,.adam-icon--red,
+.adam-icon--blue,.adam-icon--violet,.adam-icon--neutral{
+  background:transparent!important;
+}
+.card h3 .adam-icon,.section h2 .adam-icon,.row h3 .adam-icon{
+  width:1.43em;
+  height:1.43em;
+}
+.tabs .adam-icon{
+  width:1.2em;
+  height:1.2em;
+  margin-inline:0 .2em;
+}
+@media(max-width:600px){
+  .adam-icon{width:1.32em;height:1.32em}
+  .card h3 .adam-icon,.section h2 .adam-icon{width:1.36em;height:1.36em}
+}
