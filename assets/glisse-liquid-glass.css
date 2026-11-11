@@ -193,3 +193,13 @@ body{
 .recurring-item.is-soon{border-color:rgba(202,158,58,.45);background:rgba(255,248,225,.48)}
 .recurring-item.is-overdue{border-color:rgba(202,95,75,.45);background:rgba(255,238,234,.48)}
 @media(max-width:600px){.recurring-form{grid-template-columns:1fr}.recurring-summary{gap:8px;padding:11px}.recurring-summary .small{font-size:10px}.recurring-item{grid-template-columns:1fr 1fr;gap:9px}.recurring-actions{grid-column:1/-1}.recurring-actions .btn{flex:1}}
+
+/* Phase 16 — smart cash flow forecast */
+.cashflow-forecast-card{overflow:hidden}
+.cashflow-forecast-main{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border:1px solid rgba(145,175,105,.2);border-radius:17px;background:linear-gradient(120deg,rgba(222,244,205,.48),rgba(255,255,255,.55))}
+.cashflow-forecast-main .metric{font-size:clamp(25px,5vw,34px);margin-top:5px}
+.cashflow-forecast-icon{font-size:36px}
+.cashflow-forecast-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.cashflow-forecast-grid>div{display:grid;gap:5px;padding:12px;border:1px solid rgba(145,175,105,.16);border-radius:13px;background:rgba(255,255,255,.48);min-width:0}
+.cashflow-forecast-grid strong{font-size:14px;overflow-wrap:anywhere}
+@media(max-width:390px){.cashflow-forecast-grid{gap:8px}.cashflow-forecast-grid>div{padding:10px}.cashflow-forecast-grid .small{font-size:10px}}
