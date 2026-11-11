@@ -282,6 +282,7 @@ body{background-image:none!important;background-color:#fff!important}
 
 <article class="card sync-card"><div class="row"><h3>☁️ Cloud Sync</h3><span class="small" id="cloudState">Belum log masuk</span></div>
 <div class="sync-status" id="cloudStatus">Log masuk menggunakan akaun Firebase untuk menyegerakkan data kewangan antara dashboard dan peranti lain.</div>
+<div class="small sync-last" id="cloudLastSync" aria-live="polite">Menyemak rekod sync terakhir…</div>
 <div class="formgrid"><label>Email<input class="field" id="cloudEmail" type="email" autocomplete="username" placeholder="Email akaun"></label><label>Password<input class="field" id="cloudPassword" type="password" autocomplete="current-password" placeholder="Password akaun"></label></div>
 <div class="sync-actions"><button class="btn primary" id="cloudLogin">Log masuk</button><button class="btn" id="cloudRegister">Daftar akaun</button><button class="btn" id="cloudLogout" hidden>Log keluar</button><button class="btn" id="cloudSync" hidden>↻ Sync sekarang</button></div>
 <p class="hint">Data disimpan secara peribadi dalam Firebase Firestore. Gunakan akaun yang sama pada dashboard dan widget. Jangan kongsi password dengan sesiapa.</p></article>
@@ -975,6 +976,7 @@ firebase.initializeApp(ADAM_FIREBASE_CONFIG);
 const adamAuth=firebase.auth(),adamDb=firebase.firestore();
 let adamCloudUser=null,adamCloudUnsub=null,adamApplyingRemote=false,adamCloudReady=false;
 function cloudMessage(message,state){const el=document.getElementById('cloudStatus');if(el)el.textContent=message;const st=document.getElementById('cloudState');if(st)st.textContent=state||'';}
+function refreshCloudLastSync(){const el=document.getElementById('cloudLastSync');if(!el)return;const stamp=localStorage.getItem('adam-finance-last-cloud-sync');el.textContent=stamp?'Sync terakhir berjaya: '+new Date(stamp).toLocaleString('ms-MY',{dateStyle:'medium',timeStyle:'short'}):'Belum ada sync berjaya pada peranti ini.';}
 window.addEventListener('offline',()=>cloudMessage('Tiada internet. Data masih disimpan pada peranti dan sync akan dicuba semula apabila online.','Offline'));
 window.addEventListener('online',()=>{cloudMessage('Internet kembali tersedia. Menyemak sync…','Online');if(adamCloudUser)pushCloudData()});
 function cloudDoc(){return adamDb.collection('users').doc(adamCloudUser.uid).collection('private').doc('finance');}
@@ -996,7 +998,7 @@ function pushCloudData(){
     const payloadJson=JSON.stringify(data);
     await targetDoc.set({payloadJson,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
     syncSucceeded=true;
-    localStorage.setItem('adam-finance-last-cloud-sync',new Date().toISOString());
+    localStorage.setItem('adam-finance-last-cloud-sync',new Date().toISOString());refreshCloudLastSync();
     if(!adamCloudSyncRequested)cloudMessage('Data berjaya disegerakkan ke cloud pada '+new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'})+'.','Disambungkan ✓');
    }
   }catch(e){console.error(e);cloudMessage('Sync gagal: '+(e.message||'Semak sambungan dan Firestore Rules.'),'Ralat');}
@@ -1013,7 +1015,7 @@ document.getElementById('cloudLogin').onclick=async()=>{const email=document.get
 document.getElementById('cloudRegister').onclick=async()=>{const email=document.getElementById('cloudEmail').value.trim(),password=document.getElementById('cloudPassword').value;if(!email||password.length<6){cloudMessage('Masukkan email dan password sekurang-kurangnya 6 aksara.');return;}try{cloudMessage('Sedang mendaftarkan akaun…');await adamAuth.createUserWithEmailAndPassword(email,password);}catch(e){cloudMessage('Pendaftaran gagal: '+e.message,'Ralat');}};
 document.getElementById('cloudLogout').onclick=()=>adamAuth.signOut();
 document.getElementById('cloudSync').onclick=async()=>{await pushCloudData();};
-adamAuth.onAuthStateChanged(async user=>{adamCloudUser=user;const logged=!!user;document.getElementById('cloudLogin').hidden=logged;document.getElementById('cloudRegister').hidden=logged;document.getElementById('cloudLogout').hidden=!logged;document.getElementById('cloudSync').hidden=!logged;document.getElementById('cloudEmail').disabled=logged;document.getElementById('cloudPassword').disabled=logged;if(!user){if(adamCloudUnsub)adamCloudUnsub();adamCloudUnsub=null;adamCloudReady=false;cloudMessage('Log masuk menggunakan akaun Firebase untuk menyegerakkan data kewangan antara dashboard dan peranti lain.','Belum log masuk');return;}cloudMessage('Akaun '+user.email+' disambungkan. Memuatkan data…','Menyambung…');await pullCloudData();beginCloudListener();adamCloudReady=true;});
+adamAuth.onAuthStateChanged(async user=>{adamCloudUser=user;refreshCloudLastSync();const logged=!!user;document.getElementById('cloudLogin').hidden=logged;document.getElementById('cloudRegister').hidden=logged;document.getElementById('cloudLogout').hidden=!logged;document.getElementById('cloudSync').hidden=!logged;document.getElementById('cloudEmail').disabled=logged;document.getElementById('cloudPassword').disabled=logged;if(!user){if(adamCloudUnsub)adamCloudUnsub();adamCloudUnsub=null;adamCloudReady=false;cloudMessage('Log masuk menggunakan akaun Firebase untuk menyegerakkan data kewangan antara dashboard dan peranti lain.','Belum log masuk');return;}cloudMessage('Akaun '+user.email+' disambungkan. Memuatkan data…','Menyambung…');await pullCloudData();beginCloudListener();adamCloudReady=true;});
 const oldAdamPersist=window.persist;
 window.persist=function(){recordWealthSnapshot();localStorage.setItem(KEY,JSON.stringify(data));render();if(adamCloudUser&&!adamApplyingRemote)pushCloudData();};
 }catch(error){console.warn("Cloud sync tidak tersedia buat sementara:",error);const status=document.getElementById("cloudStatus");if(status)status.textContent="Cloud sync tidak tersedia. Dashboard masih boleh digunakan secara offline."}
