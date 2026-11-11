@@ -177,3 +177,19 @@ body{
 .action-plan-item.is-done .action-plan-toggle{background:rgba(158,202,83,.2)}
 @media(max-width:520px){.action-plan-item{align-items:flex-start;flex-wrap:wrap}.action-plan-copy{flex-basis:calc(100% - 42px)}.action-plan-toggle{margin-left:38px}.action-plan-head{align-items:flex-start;flex-direction:column}.action-plan-track{width:100%;max-width:none;flex:auto}}
 @media(max-width:700px){.action-plan-track i{transition:none!important}}
+
+/* Phase 15 — recurring bills and subscriptions */
+.recurring-card{overflow:hidden}
+.recurring-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px;border:1px solid rgba(145,175,105,.2);border-radius:16px;background:rgba(244,249,236,.55)}
+.recurring-summary .metric{font-size:clamp(17px,3vw,24px);margin-top:5px}
+.recurring-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.recurring-form label{display:grid;gap:6px;font-size:12px;font-weight:650}
+.recurring-list{display:grid;gap:10px;margin-top:16px}
+.recurring-item{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.7fr) auto;align-items:center;gap:12px;padding:13px;border:1px solid rgba(145,175,105,.2);border-radius:15px;background:rgba(255,255,255,.5)}
+.recurring-main,.recurring-due{display:grid;gap:4px;min-width:0}
+.recurring-main strong{overflow-wrap:anywhere}
+.recurring-due .small{color:var(--muted)}
+.recurring-actions{display:flex;gap:7px;flex-wrap:wrap}
+.recurring-item.is-soon{border-color:rgba(202,158,58,.45);background:rgba(255,248,225,.48)}
+.recurring-item.is-overdue{border-color:rgba(202,95,75,.45);background:rgba(255,238,234,.48)}
+@media(max-width:600px){.recurring-form{grid-template-columns:1fr}.recurring-summary{gap:8px;padding:11px}.recurring-summary .small{font-size:10px}.recurring-item{grid-template-columns:1fr 1fr;gap:9px}.recurring-actions{grid-column:1/-1}.recurring-actions .btn{flex:1}}
