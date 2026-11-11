@@ -323,7 +323,7 @@ const ADAM_ICON_PATHS={
 };
 function adamReplaceEmojiIcons(root){
 if(!root)return;
-const pattern=/\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?/gu;
+const pattern=/[\p{Extended_Pictographic}⌂▦▤◷⌁↻](?:\uFE0F|\uFE0E)?/gu;
 const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){
 const parent=node.parentElement;if(!parent||parent.closest('script,style,textarea,input,option,.adam-icon'))return NodeFilter.FILTER_REJECT;
 pattern.lastIndex=0;const found=pattern.test(node.nodeValue||'');pattern.lastIndex=0;
