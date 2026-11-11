@@ -678,3 +678,10 @@ body{
 /* Pin quick jump to the top-right so it never overlaps Add Record */
 .adam-quick-jump{top:calc(16px + env(safe-area-inset-top));bottom:auto}
 @media(min-width:900px){.adam-quick-jump{top:24px;bottom:auto}}
+
+
+/* Quick Jump relocation: centered at the top edge, clear of the Record action */
+.adam-quick-jump{top:calc(12px + env(safe-area-inset-top));bottom:auto;left:50%;right:auto;align-items:center;transform:translate(-50%,8px)}
+.adam-quick-jump.is-visible{transform:translate(-50%,0)}
+.aqj-menu{transform-origin:top center}
+@media(min-width:700px){.adam-quick-jump{top:18px;bottom:auto;left:50%;right:auto}}
