@@ -296,3 +296,36 @@ body{
   .recurring-summary{padding:12px!important}
   .recurring-item{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;padding:12px!important}
 }
+
+
+/* Phase 18.1 — FIRE calculator layout polish */
+#fireCalculator{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin:26px 0 11px;padding:0 2px}
+#fireCalculator h2{margin:0;font-size:clamp(17px,2.4vw,20px);line-height:1.3;letter-spacing:-.025em;font-weight:800;color:var(--text,#26351d)}
+#fireCalculator>.small{font-size:11px;line-height:1.5;color:var(--muted,#74816a)}
+.fire-card{display:grid;gap:16px;padding:clamp(15px,2.6vw,22px)!important;border:1px solid rgba(137,165,102,.22)!important;border-radius:21px!important}
+.fire-intro{display:grid;grid-template-columns:minmax(0,1fr) 48px;align-items:center;gap:12px;padding:17px 18px;border:1px solid rgba(145,175,105,.22);border-radius:17px;background:linear-gradient(120deg,rgba(225,243,207,.82),rgba(255,255,255,.78))}
+.fire-intro>div:first-child{display:grid;gap:6px;min-width:0}
+.fire-intro>div:first-child>.small:first-child{font-size:11px;font-weight:750;letter-spacing:.035em;text-transform:uppercase;color:#72845e}
+.fire-intro strong{display:block;font-size:clamp(25px,4.5vw,34px);line-height:1.12;letter-spacing:-.045em;font-weight:850;color:#456b2c;overflow-wrap:anywhere}
+.fire-intro #fireTargetCaption{font-size:11px;line-height:1.45;color:#74816a}
+.fire-symbol{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:rgba(255,255,255,.78);box-shadow:inset 0 1px 0 #fff;font-size:25px}
+.fire-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px 14px;margin:0}
+.fire-fields label{display:grid;align-content:start;gap:7px;min-width:0;font-size:12px;line-height:1.4;font-weight:750;color:#536347}
+.fire-fields .field{width:100%;min-width:0;min-height:45px;padding:10px 12px;border-radius:12px!important;font-size:13px;font-weight:600}
+.fire-card>.actions{display:flex;justify-content:flex-start;margin:0}
+#fireCalculate{min-height:43px;padding:11px 19px!important;border-radius:13px;font-size:12px;font-weight:800}
+.fire-result{display:grid;gap:12px;margin:0;padding:15px;border:1px solid rgba(145,175,105,.2);border-radius:16px;background:rgba(248,251,244,.72)}
+.fire-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.fire-progress-head .small{font-size:11px;font-weight:700;color:#69795b}
+.fire-progress-head strong{font-size:15px;font-weight:850;color:#527b31}
+.fire-progress{height:9px;margin:0;border-radius:20px;overflow:hidden;background:rgba(92,112,62,.12)}
+.fire-progress i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#a7d64d,#6fae2b)}
+.fire-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.fire-metrics>div{display:grid;align-content:start;gap:6px;min-width:0;min-height:78px;padding:12px;border:1px solid rgba(145,175,105,.18);border-radius:13px;background:rgba(255,255,255,.82)}
+.fire-metrics .small{font-size:10px;line-height:1.4;color:#74816a}
+.fire-metrics strong{font-size:clamp(12px,1.8vw,15px);line-height:1.35;font-weight:850;color:#405b2c;overflow-wrap:anywhere}
+.fire-finish{padding:11px 13px;border:1px solid rgba(145,175,105,.16);border-radius:12px;background:rgba(231,244,216,.7);color:#4f6c35;font-size:12px;line-height:1.5;font-weight:650}
+.fire-assumption{font-size:11px;line-height:1.5;color:#74816a}
+.fire-card>.hint{display:block;margin:0;padding:12px 13px;border-radius:12px;background:rgba(244,248,237,.72);font-size:11px;line-height:1.6;color:#74816a}
+@media(max-width:600px){#fireCalculator{margin-top:22px;gap:5px 9px}#fireCalculator h2{font-size:17px}.fire-card{gap:13px;padding:14px!important;border-radius:17px!important}.fire-intro{grid-template-columns:minmax(0,1fr) 42px;padding:14px;border-radius:14px}.fire-symbol{width:42px;height:42px;font-size:22px}.fire-fields{grid-template-columns:1fr;gap:11px}.fire-fields .field{min-height:43px}.fire-card>.actions{width:100%}#fireCalculate{width:100%;justify-content:center}.fire-result{gap:10px;padding:12px;border-radius:14px}.fire-metrics{gap:7px}.fire-metrics>div{min-height:74px;padding:10px 8px}.fire-metrics strong{font-size:11px}.fire-metrics .small{font-size:9px}.fire-card>.hint{font-size:10px;padding:10px 11px}}
+@media(max-width:360px){.fire-metrics{grid-template-columns:1fr}.fire-metrics>div{min-height:0}.fire-metrics strong{font-size:13px}}
