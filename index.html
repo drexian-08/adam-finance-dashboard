@@ -33,21 +33,7 @@ body{background-image:none!important;background-color:#fff!important}
 <header class="top" id="home"><div class="brand">ADAM / PRIVATE FINANCE</div><div class="date" id="today"></div></header>
 <section class="hero"><div class="brand">YOUR MONEY, YOUR PACE</div><div class="hello">Hi Mr. <span>ADAM.</span></div><div class="sub">Sikit demi sedikit, lama-lama jadi bukit.</div><div class="balance-label">Jumlah kekayaan bersih</div><div class="balance" id="netWorth">RM 0.00</div><div class="hero-foot"><span>↑ Aset <b id="assetsMini">RM 0.00</b></span><span>↓ Hutang <b id="debtMini">RM 0.00</b></span></div></section>
 
-<section class="adam-hybrid-nav" id="adamHybridNav" aria-label="Navigasi pantas">
-  <div class="ahn-heading"><div><span class="ahn-eyebrow">NAVIGASI PANTAS</span><h2>Ke mana kau nak pergi?</h2></div><span class="ahn-count">ADAM</span></div>
-  <label class="ahn-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="ahnSearch" type="search" placeholder="Cari modul… contoh: FIRE, emas, hutang" autocomplete="off"><kbd>/</kbd></label>
-  <div class="ahn-results" id="ahnResults" hidden></div>
-  <div class="ahn-shortcuts" aria-label="Akses pantas">
-    <button type="button" data-ahn-target="home"><span class="ahn-short-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Utama</span></button>
-    <button type="button" data-ahn-target="transactionsSection"><span class="ahn-short-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span>Rekod</span></button>
-    <button type="button" data-ahn-target="investmentPerformance"><span class="ahn-short-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l5-5 4 3 6-8M15 6h5v5"/></svg></span><span>Pelaburan</span></button>
-    <button type="button" data-ahn-target="financialGoalsList"><span class="ahn-short-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 6-6"/></svg></span><span>Matlamat</span></button>
-    <button type="button" data-ahn-target="fireCalculator"><span class="ahn-short-icon"><svg viewBox="0 0 24 24"><path d="M12 22c5 0 8-3 8-8 0-3-2-6-5-9 0 4-2 5-3 5 0-4-2-7-4-9 0 5-4 8-4 13 0 5 3 8 8 8Z"/></svg></span><span>FIRE</span></button>
-    <button type="button" data-ahn-target="tools"><span class="ahn-short-icon"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m19 13 2 1-2 4-2-1-2 2v2H9v-2l-2-2-2 1-2-4 2-1V9L3 8l2-4 2 1 2-2V1h6v2l2 2 2-1 2 4-2 1z"/></svg></span><span>Tools</span></button>
-  </div>
-  <div class="ahn-category-head"><strong>Kategori modul</strong><span>Tekan untuk lihat modul</span></div>
-  <div class="ahn-categories" id="ahnCategories"></div>
-</section>
+
 <section class="section"><h2>Kesihatan kewangan</h2><span class="small">Skor anggaran / 100</span></section>
 <article class="card" id="healthScoreCard">
 <div class="row" style="align-items:center"><div><div class="metric mint" id="healthScore" style="font-size:38px">—<span style="font-size:14px">/100</span></div><div class="small" id="healthLabel">Mengira keadaan kewangan…</div></div><div style="font-size:34px" id="healthEmoji">🌱</div></div>
@@ -1000,29 +986,4 @@ window.persist=function(){recordWealthSnapshot();localStorage.setItem(KEY,JSON.s
  ['Savings','Savings Forecast','savingsForecast','Unjuran simpanan'],['Savings','Emergency Fund Planner','emergencyFundPlanner','Dana kecemasan'],['Savings','Financial Goals Tracker','goalsTracker','Matlamat kewangan'],['Savings','Savings Goal Priority Planner','savingsGoalPriorityPlanner','Keutamaan matlamat'],
  ['Investment','Investment Performance','investmentPerformance','Prestasi pelaburan'],['Investment','Portfolio Breakdown','portfolioBreakdown','Pecahan portfolio'],['Investment','Portfolio emas','goldValue','Emas 999'],['Investment','Dividend Tracker','dividendList','Dividen'],['Investment','Investment Alerts','investmentAlerts','Amaran pelaburan'],
  ['Wealth Planning','Wealth Projection','wealthProjection','Unjuran kekayaan'],['Wealth Planning','Financial Independence FIRE','fireCalculator','Kebebasan kewangan'],['Wealth Planning','Net Worth Milestones','netWorthMilestones','Pencapaian kekayaan'],
- ['Intelligence','Smart Financial Intelligence','smartIntelligence','Analisis pintar'],['Intelligence','Advanced Financial Insights','advancedInsights','Nisbah kewangan'],['Intelligence','Smart Financial Insights','smartInsights','Corak kewangan'],['Intelligence','Smart Financial Action Plan','actionPlan','Pelan tindakan'],['Intelligence','Financial Stress Test','financialStressTest','Ujian tekanan'],['Intelligence','Smart Cash Flow Forecast','cashFlowForecast','Ramalan tunai'],
- ['Management','Debt Payoff Planner','debtPayoffPlanner','Pelan pembayaran hutang'],['Management','Recurring Bills','recurringBills','Bil berulang'],['Management','Laporan bulanan','monthlyReport','Laporan kewangan'],['Management','Laporan tahunan','annualReport','Laporan tahunan'],['Management','Tools & Data','tools','Backup dan tetapan']
- ];
- const icons={'Overview':'⌂','Daily Finance':'▤','Savings':'◎','Investment':'↗','Wealth Planning':'◇','Intelligence':'✳','Management':'⚙'};
- const groups=[...new Set(modules.map(x=>x[0]))],cats=document.getElementById('ahnCategories');
- cats.innerHTML=groups.map((g,i)=>'<details class="ahn-category" '+(i===0?'open':'')+'><summary><span class="ahn-cat-icon">'+icons[g]+'</span><span class="ahn-cat-copy"><strong>'+g+'</strong><small>'+modules.filter(x=>x[0]===g).length+' modul</small></span><span class="ahn-chevron">⌄</span></summary><div class="ahn-module-list">'+modules.filter(x=>x[0]===g).map(x=>'<button type="button" class="ahn-module" data-ahn-target="'+x[2]+'"><span>'+x[1]+'</span><small>'+x[3]+'</small><b>›</b></button>').join('')+'</div></details>').join('');
- const search=document.getElementById('ahnSearch'),results=document.getElementById('ahnResults');
- function jump(id){let target=document.getElementById(id);if(!target)return;
-  if(id==='budgetViewPage')target.style.display='block';
-  if(target.classList.contains('view'))target.classList.add('active');
-  const section=target.closest('.view')||target;
-  section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-  if(id==='home')window.scrollTo({top:0,behavior:'smooth'});
-  target.classList.add('ahn-jump-highlight');setTimeout(()=>target.classList.remove('ahn-jump-highlight'),1200);
- }
- root.addEventListener('click',e=>{const b=e.target.closest('[data-ahn-target]');if(!b)return;jump(b.dataset.ahnTarget);});
- function renderResults(){const q=search.value.trim().toLowerCase();if(!q){results.hidden=true;results.innerHTML='';return;}
-  const found=modules.filter(x=>x.join(' ').toLowerCase().includes(q)).slice(0,8);
-  results.hidden=false;results.innerHTML=found.length?found.map(x=>'<button type="button" class="ahn-result" data-ahn-target="'+x[2]+'"><span><strong>'+x[1]+'</strong><small>'+x[0]+' · '+x[3]+'</small></span><b>›</b></button>').join(''):'<div class="ahn-no-result">Tiada modul ditemui. Cuba kata kunci lain.</div>';
- }
- search.addEventListener('input',renderResults);
- search.addEventListener('keydown',e=>{if(e.key==='Enter'){const first=results.querySelector('[data-ahn-target]');if(first){jump(first.dataset.ahnTarget);search.blur();}}if(e.key==='Escape'){search.value='';renderResults();search.blur();}});
- document.addEventListener('keydown',e=>{if((e.key==='/'||e.key==='k'&&(e.ctrlKey||e.metaKey))&&!/input|textarea|select/i.test(document.activeElement.tagName)){e.preventDefault();search.focus();}});
-})();
-</script>
-</body></html>
+ ['Intelligence','Smart Financial Intelligence','smartIntelligence','Analisis pintar'],['Intelligence','Advanced Financial Insights','advancedInsights','Nisbah kewangan'],['Intelligence','Smart Financial Insights','smartInsights','Corak kewangan'],['Intelligence','Smart Financial Action Plan','actionPlan','Pelan tindakan'],['Intelligence','Financial Stress Test','financialStressTest','Ujian tekanan'],['Intelligence','Smart Cash Flow Forecast','cashFlowF
