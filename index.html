@@ -32,8 +32,6 @@ body{background-image:none!important;background-color:#fff!important}
 <body><main class="wrap">
 <header class="top" id="home"><div class="brand">ADAM / PRIVATE FINANCE</div><div class="date" id="today"></div></header>
 <section class="hero"><div class="brand">YOUR MONEY, YOUR PACE</div><div class="hello">Hi Mr. <span>ADAM.</span></div><div class="sub">Sikit demi sedikit, lama-lama jadi bukit.</div><div class="balance-label">Jumlah kekayaan bersih</div><div class="balance" id="netWorth">RM 0.00</div><div class="hero-foot"><span>↑ Aset <b id="assetsMini">RM 0.00</b></span><span>↓ Hutang <b id="debtMini">RM 0.00</b></span></div></section>
-
-
 <section class="section"><h2>Kesihatan kewangan</h2><span class="small">Skor anggaran / 100</span></section>
 <article class="card" id="healthScoreCard">
 <div class="row" style="align-items:center"><div><div class="metric mint" id="healthScore" style="font-size:38px">—<span style="font-size:14px">/100</span></div><div class="small" id="healthLabel">Mengira keadaan kewangan…</div></div><div style="font-size:34px" id="healthEmoji">🌱</div></div>
@@ -976,14 +974,4 @@ window.persist=function(){recordWealthSnapshot();localStorage.setItem(KEY,JSON.s
 })();
 </script>
 
-
-<script>
-(()=> {
- const root=document.getElementById('adamHybridNav'); if(!root||root.dataset.ready)return; root.dataset.ready='1';
- const modules=[
- ['Overview','Ringkasan kewangan','home','Utama'],['Overview','Kesihatan kewangan','healthScoreCard','Skor kesihatan'],['Overview','Perkembangan kekayaan','wealthChart','Graf kekayaan'],['Overview','Wealth Allocation','wealthAllocation','Pecahan aset'],
- ['Daily Finance','Tunai & tabungan','savings','Tabungan'],['Daily Finance','Pendapatan dan perbelanjaan','income','Aliran transaksi'],['Daily Finance','Bajet bulanan','budgetViewPage','Smart Budget Planner'],['Daily Finance','Kalendar perbelanjaan','calendarSection','Kalendar'],['Daily Finance','Aktiviti kewangan','transactionsSection','Rekod transaksi'],['Daily Finance','Analisis perbelanjaan','insights','Kategori belanja'],
- ['Savings','Savings Forecast','savingsForecast','Unjuran simpanan'],['Savings','Emergency Fund Planner','emergencyFundPlanner','Dana kecemasan'],['Savings','Financial Goals Tracker','goalsTracker','Matlamat kewangan'],['Savings','Savings Goal Priority Planner','savingsGoalPriorityPlanner','Keutamaan matlamat'],
- ['Investment','Investment Performance','investmentPerformance','Prestasi pelaburan'],['Investment','Portfolio Breakdown','portfolioBreakdown','Pecahan portfolio'],['Investment','Portfolio emas','goldValue','Emas 999'],['Investment','Dividend Tracker','dividendList','Dividen'],['Investment','Investment Alerts','investmentAlerts','Amaran pelaburan'],
- ['Wealth Planning','Wealth Projection','wealthProjection','Unjuran kekayaan'],['Wealth Planning','Financial Independence FIRE','fireCalculator','Kebebasan kewangan'],['Wealth Planning','Net Worth Milestones','netWorthMilestones','Pencapaian kekayaan'],
- ['Intelligence','Smart Financial Intelligence','smartIntelligence','Analisis pintar'],['Intelligence','Advanced Financial Insights','advancedInsights','Nisbah kewangan'],['Intelligence','Smart Financial Insights','smartInsights','Corak kewangan'],['Intelligence','Smart Financial Action Plan','actionPlan','Pelan tindakan'],['Intelligence','Financial Stress Test','financialStressTest','Ujian tekanan'],['Intelligence','Smart Cash Flow Forecast','cashFlowF
+</body></html>
