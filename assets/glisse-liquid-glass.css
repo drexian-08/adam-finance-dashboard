@@ -435,3 +435,59 @@ body{
 .ef-metrics strong{font-size:11px;line-height:1.35}
 }
 @media(max-width:360px){.ef-metrics{grid-template-columns:1fr}.ef-metrics>div{min-height:0;padding:10px}.ef-metrics span{font-size:10px}.ef-metrics strong{font-size:13px}}
+
+
+/* Phase 20 — Net Worth Milestone Tracker */
+#netWorthMilestones{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:27px 3px 12px;padding:0 2px}
+#netWorthMilestones .nwm-section-copy{display:grid;gap:5px;min-width:0}
+#netWorthMilestones h2{margin:0;font-size:19px;line-height:1.25;font-weight:820;letter-spacing:-.035em;color:#26351d}
+#netWorthMilestones p{margin:0;font-size:11px;line-height:1.5;color:#74816a}
+.nwm-section-icon{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:13px;background:rgba(224,243,204,.8);font-size:21px}
+.nwm-card{display:grid;gap:16px;padding:19px!important;border:1px solid rgba(137,165,102,.22)!important;border-radius:21px!important}
+.nwm-current{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:12px;padding:17px 18px;border:1px solid rgba(145,175,105,.22);border-radius:17px;background:linear-gradient(120deg,rgba(225,243,207,.82),rgba(255,255,255,.78))}
+.nwm-current>div{display:grid;gap:7px;min-width:0}
+.nwm-kicker{font-size:10px;line-height:1.4;font-weight:800;letter-spacing:.075em;text-transform:uppercase;color:#748461}
+.nwm-current strong{font-size:clamp(25px,4vw,33px);line-height:1.12;letter-spacing:-.045em;font-weight:850;color:#456b2c;overflow-wrap:anywhere}
+.nwm-caption{font-size:11px;line-height:1.5;color:#74816a}
+.nwm-current-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.78);font-size:24px}
+.nwm-target-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:end;gap:13px}
+.nwm-target-row label{display:grid;gap:7px;min-width:0;font-size:12px;line-height:1.4;font-weight:750;color:#435238}
+.nwm-target-row .field{box-sizing:border-box;width:100%;height:45px;min-height:45px;margin:0;padding:0 12px;border:1px solid rgba(137,165,102,.28);border-radius:11px;background:rgba(255,255,255,.92);color:#26351d;font-size:13px;font-weight:650}
+.nwm-gap{display:grid;gap:7px;min-width:0;padding:0 2px 5px}
+.nwm-gap strong{font-size:17px;line-height:1.25;color:#456b2c;overflow-wrap:anywhere}
+.nwm-progress-area{display:grid;gap:10px;padding:14px;border:1px solid rgba(145,175,105,.2);border-radius:15px;background:rgba(248,251,244,.72)}
+.nwm-progress-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px;font-weight:750;color:#657458}
+.nwm-progress-head strong{font-size:15px;color:#527b31}
+.nwm-progress{height:9px;margin:0;border-radius:20px;overflow:hidden;background:rgba(92,112,62,.12)}
+.nwm-progress i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#a7d64d,#6fae2b);transition:width .25s ease}
+.nwm-progress-note{margin:0;font-size:11px;line-height:1.5;color:#718066}
+.nwm-milestone-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.nwm-milestone-heading strong{font-size:13px;font-weight:800;color:#34442d}
+.nwm-milestone-heading span{font-size:10px;color:#87927c}
+.nwm-milestone-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.nwm-milestone{display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:3px 8px;min-width:0;padding:10px 11px;border:1px solid rgba(145,175,105,.17);border-radius:12px;background:rgba(255,255,255,.75)}
+.nwm-milestone-status{grid-row:span 2;width:21px;height:21px;display:grid;place-items:center;border-radius:50%;background:#f0f3eb;color:#87927c;font-size:11px;font-weight:850}
+.nwm-milestone.is-reached .nwm-milestone-status{background:#e3f2d4;color:#56832d}
+.nwm-milestone.is-active{border-color:rgba(128,170,75,.48);background:rgba(237,247,225,.7)}
+.nwm-milestone-main{display:flex;align-items:baseline;justify-content:space-between;gap:5px;min-width:0}
+.nwm-milestone-main strong{font-size:11px;line-height:1.3;color:#405b2c}
+.nwm-milestone-main span{font-size:9px;line-height:1.3;color:#77836d;text-align:right}
+.nwm-mini-track{grid-column:2;height:4px;overflow:hidden;border-radius:9px;background:rgba(92,112,62,.1)}
+.nwm-mini-track i{display:block;height:100%;border-radius:9px;background:#a4cd65}
+.nwm-milestone.is-reached .nwm-mini-track i{background:#6fae2b}
+.nwm-note{margin:0;padding:11px 12px;border-radius:11px;background:rgba(244,248,237,.72);font-size:10px;line-height:1.6;color:#737f69}
+@media(max-width:600px){
+#netWorthMilestones{margin:23px 2px 12px;align-items:flex-start}
+#netWorthMilestones h2{font-size:17px}
+#netWorthMilestones p{max-width:290px;font-size:10px}
+.nwm-section-icon{width:36px;height:36px;flex-basis:36px;font-size:19px}
+.nwm-card{gap:14px;padding:14px!important}
+.nwm-current{padding:14px;grid-template-columns:minmax(0,1fr) 40px}
+.nwm-current-icon{width:40px;height:40px;font-size:22px}
+.nwm-target-row{grid-template-columns:minmax(0,1fr);gap:12px}
+.nwm-gap{padding:9px 11px;border-radius:11px;background:rgba(237,247,225,.7)}
+.nwm-gap strong{font-size:15px}
+.nwm-progress-area{padding:12px;gap:9px}
+.nwm-milestone-list{grid-template-columns:1fr;gap:7px}
+.nwm-milestone{padding:10px}
+}
