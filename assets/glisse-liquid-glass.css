@@ -655,3 +655,21 @@ body{
   .adam-icon{width:1.32em;height:1.32em}
   .card h3 .adam-icon,.section h2 .adam-icon{width:1.36em;height:1.36em}
 }
+
+
+/* Compact floating quick jump — appears only after scrolling */
+.adam-quick-jump{position:fixed;right:15px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:7;display:flex;flex-direction:column;align-items:flex-end;gap:9px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.adam-quick-jump.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.aqj-trigger{display:flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:0 14px;border:1px solid rgba(255,255,255,.92);border-radius:999px;background:rgba(239,248,222,.94);color:#506d34;box-shadow:0 7px 22px rgba(55,75,34,.17),inset 0 1px 0 #fff;font:750 11px inherit;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);cursor:pointer}
+.aqj-trigger svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.aqj-menu{width:min(248px,calc(100vw - 30px));padding:11px;border:1px solid rgba(255,255,255,.94);border-radius:19px;background:rgba(250,253,245,.96);box-shadow:0 14px 38px rgba(43,61,27,.19),inset 0 1px 0 #fff;-webkit-backdrop-filter:blur(18px) saturate(1.35);backdrop-filter:blur(18px) saturate(1.35);transform-origin:bottom right;animation:aqjPop .16s ease}
+.aqj-menu[hidden]{display:none}
+.aqj-menu-head{display:flex;align-items:center;justify-content:space-between;margin:0 1px 8px 3px;color:#82936f;font-size:9px;font-weight:850;letter-spacing:.12em}
+.aqj-menu-head button{width:25px;height:25px;border:0;border-radius:50%;background:rgba(116,144,83,.1);color:#687c53;font-size:18px;line-height:1;cursor:pointer}
+.aqj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.aqj-grid button{display:grid;justify-items:center;align-content:center;gap:6px;min-height:67px;padding:8px 3px;border:1px solid rgba(139,166,106,.12);border-radius:12px;background:rgba(255,255,255,.74);color:#526b3c;font:700 10px inherit;cursor:pointer}
+.aqj-grid button:active{background:#eaf4dc;transform:scale(.97)}
+.aqj-grid svg{width:20px;height:20px;fill:none;stroke:#779b50;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes aqjPop{from{opacity:0;transform:translateY(7px) scale(.97)}to{opacity:1;transform:none}}
+@media(min-width:700px){.adam-quick-jump{right:max(22px,calc((100vw - 980px)/2));bottom:88px}}
+@media(prefers-reduced-motion:reduce){.adam-quick-jump,.aqj-menu{transition:none;animation:none}}
