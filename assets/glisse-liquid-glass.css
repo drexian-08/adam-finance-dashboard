@@ -610,3 +610,17 @@ body{
 .sgp-goal-title{flex:1}
 .sgp-allocation{font-size:11px}
 }
+
+
+/* Unified SVG icon language — crisp icons with semantic accent colours. */
+.adam-icon{display:inline-flex;align-items:center;justify-content:center;vertical-align:-.17em;width:1.28em;height:1.28em;padding:.12em;margin-inline:.10em;border-radius:.38em;flex:0 0 auto;line-height:1;color:currentColor;background:color-mix(in srgb,currentColor 10%,transparent);isolation:isolate}
+.adam-icon svg{display:block;width:100%;height:100%;overflow:visible}
+.adam-icon--green{color:#56852b;background:rgba(139,190,78,.14)}
+.adam-icon--gold{color:#ad842d;background:rgba(224,183,87,.17)}
+.adam-icon--red{color:#bd6257;background:rgba(214,91,85,.13)}
+.adam-icon--blue{color:#4c83a7;background:rgba(91,153,194,.13)}
+.adam-icon--violet{color:#8170a9;background:rgba(143,119,190,.13)}
+.adam-icon--neutral{color:#71806a;background:rgba(113,128,106,.12)}
+.card h3 .adam-icon,.section h2 .adam-icon,.row h3 .adam-icon{width:1.34em;height:1.34em}
+.tabs .adam-icon{width:1.15em;height:1.15em;padding:.08em;margin-inline:0 .18em;vertical-align:-.2em}
+@media(max-width:600px){.adam-icon{width:1.22em;height:1.22em}.card h3 .adam-icon,.section h2 .adam-icon{width:1.28em;height:1.28em}}
