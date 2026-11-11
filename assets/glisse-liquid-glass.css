@@ -329,3 +329,56 @@ body{
 .fire-card>.hint{display:block;margin:0;padding:12px 13px;border-radius:12px;background:rgba(244,248,237,.72);font-size:11px;line-height:1.6;color:#74816a}
 @media(max-width:600px){#fireCalculator{margin-top:22px;gap:5px 9px}#fireCalculator h2{font-size:17px}.fire-card{gap:13px;padding:14px!important;border-radius:17px!important}.fire-intro{grid-template-columns:minmax(0,1fr) 42px;padding:14px;border-radius:14px}.fire-symbol{width:42px;height:42px;font-size:22px}.fire-fields{grid-template-columns:1fr;gap:11px}.fire-fields .field{min-height:43px}.fire-card>.actions{width:100%}#fireCalculate{width:100%;justify-content:center}.fire-result{gap:10px;padding:12px;border-radius:14px}.fire-metrics{gap:7px}.fire-metrics>div{min-height:74px;padding:10px 8px}.fire-metrics strong{font-size:11px}.fire-metrics .small{font-size:9px}.fire-card>.hint{font-size:10px;padding:10px 11px}}
 @media(max-width:360px){.fire-metrics{grid-template-columns:1fr}.fire-metrics>div{min-height:0}.fire-metrics strong{font-size:13px}}
+
+
+/* Phase 18.2 — rebuild FIRE typography hierarchy */
+#fireCalculator{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin:28px 3px 13px!important;padding:0 2px!important}
+#fireCalculator .fire-section-copy{display:grid;gap:5px;min-width:0}
+#fireCalculator h2{margin:0!important;font-size:19px!important;line-height:1.25!important;font-weight:820!important;letter-spacing:-.035em!important;color:#26351d!important}
+#fireCalculator .fire-section-copy p{margin:0!important;font-size:11px!important;line-height:1.5!important;color:#74816a!important}
+#fireCalculator .fire-section-icon{flex:0 0 40px;width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:rgba(224,243,204,.8);font-size:21px}
+.fire-card{gap:17px!important;padding:19px!important}
+.fire-card .small{display:block;margin:0!important;line-height:1.45}
+.fire-intro{grid-template-columns:minmax(0,1fr) 44px!important;gap:12px!important;padding:17px 18px!important}
+.fire-intro>div:first-child{display:grid;gap:7px!important}
+.fire-intro>div:first-child>.small:first-child{font-size:10px!important;line-height:1.4!important;font-weight:800!important;letter-spacing:.075em!important;text-transform:uppercase!important;color:#748461!important}
+.fire-intro strong{font-size:clamp(25px,4vw,33px)!important;line-height:1.12!important;letter-spacing:-.045em!important}
+.fire-intro #fireTargetCaption{font-size:11px!important;line-height:1.5!important;color:#74816a!important}
+.fire-fields{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px 16px!important}
+.fire-fields label{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:7px!important;min-width:0!important;margin:0!important;font-size:12px!important;line-height:1.4!important;font-weight:750!important;color:#435238!important}
+.fire-fields .fire-label-text{display:block!important;min-height:17px;font-size:12px!important;line-height:1.4!important;letter-spacing:0!important}
+.fire-fields .field{display:block!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;height:45px!important;min-height:45px!important;margin:0!important;padding:0 12px!important;border:1px solid rgba(137,165,102,.28)!important;border-radius:11px!important;background:rgba(255,255,255,.92)!important;color:#26351d!important;font-size:13px!important;font-weight:650!important;line-height:normal!important}
+.fire-fields .field::placeholder{color:#9aa58e!important;font-size:11px!important;font-weight:450!important;opacity:1}
+.fire-card>.actions{margin:0!important;padding-top:1px}
+#fireCalculate{min-height:44px!important;padding:0 19px!important;font-size:12px!important;font-weight:800!important;letter-spacing:.01em}
+.fire-result{gap:13px!important;padding:15px!important}
+.fire-result .empty{margin:0!important;line-height:1.6}
+.fire-progress-head{align-items:center!important}
+.fire-progress-head .small{font-size:11px!important;font-weight:750!important;color:#657458!important}
+.fire-progress-head strong{font-size:15px!important;line-height:1.2!important}
+.fire-metrics{gap:9px!important}
+.fire-metrics>div{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:7px!important;padding:12px!important;min-height:84px!important}
+.fire-metrics .small{font-size:10px!important;line-height:1.4!important;color:#77836d!important}
+.fire-metrics strong{display:block!important;font-size:clamp(12px,1.7vw,15px)!important;line-height:1.35!important;font-weight:820!important;color:#405b2c!important}
+.fire-finish{font-size:11px!important;line-height:1.55!important}
+.fire-assumption{font-size:10px!important;line-height:1.55!important}
+.fire-card>.hint{margin:0!important;padding:12px 13px!important;font-size:10px!important;line-height:1.65!important;color:#737f69!important}
+@media(max-width:600px){
+#fireCalculator{margin:23px 2px 12px!important;align-items:flex-start!important}
+#fireCalculator h2{font-size:17px!important}
+#fireCalculator .fire-section-copy p{max-width:290px;font-size:10px!important}
+#fireCalculator .fire-section-icon{width:36px;height:36px;flex-basis:36px;font-size:19px}
+.fire-card{gap:14px!important;padding:14px!important}
+.fire-intro{padding:14px!important;grid-template-columns:minmax(0,1fr) 40px!important}
+.fire-fields{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+.fire-fields .fire-label-text{min-height:0;font-size:12px!important}
+.fire-fields .field{height:44px!important;min-height:44px!important}
+.fire-card>.actions{display:block!important}
+#fireCalculate{width:100%!important;min-height:44px!important}
+.fire-result{padding:12px!important;gap:11px!important}
+.fire-metrics{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+.fire-metrics>div{min-height:78px!important;padding:10px 7px!important;gap:6px!important}
+.fire-metrics .small{font-size:9px!important;line-height:1.35!important}
+.fire-metrics strong{font-size:11px!important;line-height:1.35!important}
+}
+@media(max-width:360px){.fire-metrics{grid-template-columns:1fr!important}.fire-metrics>div{min-height:0!important;padding:10px!important}.fire-metrics .small{font-size:10px!important}.fire-metrics strong{font-size:13px!important}}
