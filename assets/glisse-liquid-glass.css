@@ -675,6 +675,6 @@ body{
 @media(prefers-reduced-motion:reduce){.adam-quick-jump,.aqj-menu{transition:none;animation:none}}
 
 
-/* Keep quick jump fully above the larger floating Add Record button */
-.adam-quick-jump{bottom:calc(190px + env(safe-area-inset-bottom))}
-@media(min-width:900px){.adam-quick-jump{bottom:112px}}
+/* Pin quick jump to the top-right so it never overlaps Add Record */
+.adam-quick-jump{top:calc(16px + env(safe-area-inset-top));bottom:auto}
+@media(min-width:900px){.adam-quick-jump{top:24px;bottom:auto}}
