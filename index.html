@@ -315,7 +315,7 @@ const monthly=bills.reduce((sum,b)=>sum+(Math.max(0,Number(b.amount)||0)/(b.freq
 const due=bills.filter(b=>{const d=recurringDateValue(b.nextDue);return d&&Math.round((d-today)/86400000)<=7;}).length;
 $('recurringMonthlyTotal').textContent=money(monthly);$('recurringActiveCount').textContent=String(bills.length);$('recurringDueCount').textContent=String(due);
 if(!bills.length){host.innerHTML='<div class="empty">Belum ada bil atau langganan aktif. Tambah komitmen pertama di atas.</div>';return;}
-host.innerHTML=bills.map((b)=>{const d=recurringDateValue(b.nextDue),days=d?Math.round((d-today)/86400000):null,when=!d?'Tarikh tidak sah':days<0?'Lewat '+Math.abs(days)+' hari':days===0?'Perlu dibayar hari ini':days<=7+' hari lagi';const status=!d?'':days<0?'is-overdue':days<=7?'is-soon':'';
+host.innerHTML=bills.map((b)=>{const d=recurringDateValue(b.nextDue),days=d?Math.round((d-today)/86400000):null,when=!d?'Tarikh tidak sah':days<0?'Lewat '+Math.abs(days)+' hari':days===0?'Perlu dibayar hari ini':days<=7?days+' hari lagi':'Akan datang';const status=!d?'':days<0?'is-overdue':days<=7?'is-soon':'';
 return '<div class="recurring-item '+status+'"><div class="recurring-main"><strong>'+escapeHtml(b.name||'Bil')+'</strong><span class="small">'+(b.frequency==='yearly'?'Tahunan':'Bulanan')+' • '+money(b.amount)+'</span></div><div class="recurring-due"><strong>'+(d?d.toLocaleDateString('ms-MY',{day:'numeric',month:'short',year:'numeric'}):'—')+'</strong><span class="small">'+when+'</span></div><div class="recurring-actions"><button class="btn" type="button" data-recurring-paid="'+b.id+'">Dibayar</button><button class="btn" type="button" data-recurring-delete="'+b.id+'">Padam</button></div></div>';}).join('');
 }
 function initRecurringBills(){
