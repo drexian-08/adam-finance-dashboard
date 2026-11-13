@@ -171,7 +171,7 @@ body{
 @keyframes adamViewIn{from{opacity:.72;transform:translateY(4px)}to{opacity:1;transform:none}}
 .section{position:relative;align-items:center;min-height:30px}
 .section h2{font-weight:780;letter-spacing:-.45px;color:#252a21!important}
-.section h2:before{content:"";display:inline-block;width:5px;height:17px;border-radius:8px;background:linear-gradient(180deg,#d8f58a,#91c91f);margin-right:9px;vertical-align:-3px}
+.section h2:before{content:"";display:inline-block;width:5px;height:17px;border-radius:8px;background:var(--accent,#65D6B0)!important;background-image:none!important;margin-right:9px;vertical-align:-3px}
 .section .btn{padding:8px 11px}
 #investmentPerformance,#wealthAllocation,#calendarSection,#transactionsSection,#insights,#savingsForecast,#smartInsights,#tools{scroll-margin-top:18px}
 #investmentPerformance .card,#wealthAllocation .card,#calendarSection .card,#transactionsSection .card,#insights .card,#savingsForecast .card,#smartInsights .card,#tools .card{
