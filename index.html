@@ -54,7 +54,7 @@ body{background-image:none!important;background-color:#fff!important}
 
 </head>
 <body><main class="wrap">
-<header class="top" id="home"><div class="brand">ADAM / PRIVATE FINANCE</div><div class="date" id="today"></div></header>
+<header class="top" id="home"><div class="brand">ADAM / PRIVATE FINANCE</div><div style="display:flex;align-items:center;gap:12px"><button class="btn" id="personalisationOpenTop" type="button">⚙ Personalisation</button><div class="date" id="today"></div></div></header>
 <section class="hero"><div class="brand">YOUR MONEY, YOUR PACE</div><div class="hello">Hi Mr. <span id="accountDisplayName">ADAM.</span></div><div class="sub">Sikit demi sedikit, lama-lama jadi bukit.</div><div class="balance-label">Jumlah kekayaan bersih</div><div class="balance" id="netWorth">RM 0.00</div><div class="hero-foot"><span>↑ Aset <b id="assetsMini">RM 0.00</b></span><span>↓ Hutang <b id="debtMini">RM 0.00</b></span></div></section>
 <section class="section"><h2>Kesihatan kewangan</h2><span class="small">Skor anggaran / 100</span></section>
 <article class="card" id="healthScoreCard">
@@ -197,7 +197,7 @@ body{background-image:none!important;background-color:#fff!important}
 <div class="progress"><i id="reportExpenseBar"></i></div><div class="cashflow-head"><strong>Aliran tunai · 6 bulan</strong><span class="small">Pendapatan berbanding perbelanjaan</span></div><div id="cashflowTrend" class="cashflow-chart"><div class="empty">Graf akan dipaparkan apabila ada transaksi.</div></div><div class="cashflow-legend"><span><i class="income-dot"></i> Pendapatan</span><span><i class="expense-dot"></i> Perbelanjaan</span></div><div class="cashflow-head"><strong>Pecahan perbelanjaan</strong><span class="small">Mengikut kategori</span></div><div id="reportCategoryBreakdown" class="report-category-breakdown"><div class="empty">Belum ada perbelanjaan.</div></div><div class="small" id="reportSummary">Belum ada transaksi untuk bulan ini.</div></article>
 <section class="section"><h2>Laporan kewangan tahunan</h2><span class="small">Prestasi setahun</span></section>
 <article class="card" id="annualReport"><div class="row"><h3>Ringkasan tahunan</h3><input class="field" id="reportYear" type="number" min="2000" max="2100" step="1" style="width:110px" aria-label="Tahun laporan"><button class="btn" type="button" onclick="exportAnnualReport()">Export Sheet</button></div><div class="grid annual-metrics"><div><div class="small">Jumlah pendapatan</div><div class="metric mint" id="annualIncome">RM 0.00</div></div><div><div class="small">Jumlah perbelanjaan</div><div class="metric red" id="annualExpense">RM 0.00</div></div><div><div class="small">Baki bersih tahunan</div><div class="metric" id="annualNet">RM 0.00</div></div><div><div class="small">Bilangan transaksi</div><div class="metric" id="annualCount">0</div></div></div><div class="cashflow-head"><strong>Trend bulanan · 12 bulan</strong><span class="small">Pendapatan dan perbelanjaan</span></div><div id="annualTrend" class="cashflow-chart"><div class="empty">Belum ada transaksi untuk tahun ini.</div></div><div class="cashflow-legend"><span><i class="income-dot"></i> Pendapatan</span><span><i class="expense-dot"></i> Perbelanjaan</span></div></article>
-<section class="section" id="tools"><h2>Tools kewangan</h2></section><div class="grid">
+<section class="section" id="tools"><h2>Tools kewangan</h2><button class="btn" id="personalisationOpenTools" type="button">⚙ Personalisation Centre</button></section><div class="grid">
 <article class="card"><h3>🧮 Simpanan sasaran</h3><div class="metric" id="goalProgress">0%</div><div class="small" id="goalText">Tetapkan sasaran simpanan</div><div class="actions"><button class="btn" onclick="setGoal()">Tetapkan sasaran</button></div></article>
 <article class="card"><h3>📤 Data & privasi</h3><div class="small">Simpan salinan data atau pulihkan data pada peranti lain.</div><div id="dataHealth" class="data-health" aria-live="polite">Menyemak data peranti…</div><div class="actions"><button class="btn" onclick="exportData()">Export</button><button class="btn" onclick="document.getElementById('importFile').click()">Import</button><button class="btn" id="cloudRecoveryExport" onclick="exportCloudRecovery()" hidden>Muat turun pemulihan</button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></article>
 </div>
@@ -330,7 +330,19 @@ body{background-image:none!important;background-color:#fff!important}
 </div>
 <button class="quick-add" id="quickAdd" type="button" aria-label="Tambah transaksi">＋ <span>Rekod</span></button>
 <nav class="tabs" aria-label="Navigasi utama"><button class="active" data-tab="home" aria-current="location">⌂ Utama</button><button data-tab="calendarSection">▦ Kalendar</button><button data-tab="transactionsSection">▤ Rekod</button><button data-tab="budgetViewPage">◷ Bajet</button><button data-tab="insights">⌁ Analisis</button><button data-tab="tools">⚙ Tools</button></nav>
-<div id="adamToast" class="adam-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<div class="personalisation-overlay" id="personalisationOverlay" hidden>
+ <section class="personalisation-dialog" role="dialog" aria-modal="true" aria-labelledby="personalisationTitle">
+  <header class="personalisation-head"><div><div class="small">ADAM / SETTINGS</div><h2 id="personalisationTitle">Personalisation Centre</h2><p class="small">Sesuaikan dashboard mengikut citarasa anda.</p></div><button class="btn" id="personalisationClose" type="button" aria-label="Tutup">✕</button></header>
+  <div class="personalisation-sections">
+   <article class="personalisation-section"><h3>Appearance</h3><p class="small">Tema, warna aksen dan gaya paparan.</p><span class="small">Akan dibangunkan dalam Phase 51.2–51.3</span></article>
+   <article class="personalisation-section"><h3>Dashboard Layout</h3><p class="small">Susun, paparkan atau sembunyikan widget.</p><span class="small">Akan dibangunkan dalam Phase 51.4</span></article>
+   <article class="personalisation-section"><h3>Display & Privacy</h3><p class="small">Animasi, kepadatan kad dan paparan nilai kewangan.</p><span class="small">Akan dibangunkan dalam Phase 51.5–51.6</span></article>
+   <article class="personalisation-section"><h3>Personal Preferences</h3><p class="small">Mata wang, format tarikh dan nombor.</p><span class="small">Akan dibangunkan dalam Phase 51.7</span></article>
+  </div>
+  <footer class="personalisation-foot"><span class="small">Tetapan disimpan berasingan daripada data kewangan.</span><button class="btn" id="personalisationDone" type="button">Selesai</button></footer>
+ </section>
+</div>\n<div id="adamToast" class="adam-toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Tambah rekod</h2><form id="modalForm" class="formgrid"></form><div class="dialog-actions"><button class="btn" type="button" onclick="closeModal()">Batal</button><button class="btn primary" type="button" id="saveModal">Simpan</button></div></div></div>
 <script>
 
@@ -1080,6 +1092,16 @@ window.persist=function(){recordWealthSnapshot();localStorage.setItem(KEY,JSON.s
  document.addEventListener('click',e=>{if(!root.contains(e.target))closeMenu();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
  window.addEventListener('scroll',onScroll,{passive:true});updateVisibility();
+})();
+</script>
+<script>
+(()=>{const overlay=document.getElementById('personalisationOverlay');if(!overlay)return;
+const open=()=>{overlay.hidden=false;document.body.classList.add('personalisation-open');document.getElementById('personalisationClose').focus()};
+const close=()=>{overlay.hidden=true;document.body.classList.remove('personalisation-open')};
+['personalisationOpenTop','personalisationOpenTools'].forEach(id=>document.getElementById(id)?.addEventListener('click',open));
+['personalisationClose','personalisationDone'].forEach(id=>document.getElementById(id)?.addEventListener('click',close));
+overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)close()});
 })();
 </script>
 </body></html>
