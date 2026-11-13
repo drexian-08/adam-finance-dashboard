@@ -335,3 +335,12 @@ html{scroll-behavior:smooth}
 .quick-add:active{transform:scale(.96)}
 @media(min-width:900px){.tabs{justify-content:center}.quick-add{right:28px;bottom:28px}}
 @media(prefers-reduced-motion:reduce){.quick-add{transition:none}}
+
+
+/* Phase 51.3.6 — selected accent for the actual section marker */
+html[data-accent] .wrap .section h2::before,
+html[data-accent] .section h2:before{
+  background:var(--accent)!important;
+  background-image:none!important;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 20%,transparent)!important;
+}
