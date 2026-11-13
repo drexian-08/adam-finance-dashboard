@@ -831,3 +831,192 @@ html[data-theme="dark-glass"] .theme-option.is-selected{border-color:#a8dc72!imp
 .theme-current{margin:12px 0 0}
 @media(max-width:420px){.theme-options{grid-template-columns:1fr}.theme-option{padding:10px}}
 @media(prefers-reduced-motion:reduce){.theme-option{transition:none!important}}
+
+
+/* Phase 51.2.1 — complete dark palette and readable component surfaces */
+html[data-theme="dark-premium"],html[data-theme="dark-glass"]{
+ color-scheme:dark;
+ --bg:#101720;--panel:#202b38;--line:rgba(211,226,242,.15);
+ --muted:#aab8c8;--text:#edf3f9;--mint:#a9df78;--gold:#e8c477;--red:#ff8982;
+ --card-bg:rgba(29,40,53,.96);--border:rgba(211,226,242,.16);
+}
+html[data-theme="dark-premium"] body,
+html[data-theme="dark-glass"] body{
+ color:var(--text)!important;background-color:#101720!important;
+}
+html[data-theme="dark-premium"] .wrap,
+html[data-theme="dark-glass"] .wrap{color:var(--text)!important}
+html[data-theme="dark-premium"] .hero,
+html[data-theme="dark-premium"] .card,
+html[data-theme="dark-premium"] .card[id],
+html[data-theme="dark-premium"] .sync-card,
+html[data-theme="dark-premium"] .calendar-card,
+html[data-theme="dark-premium"] .item,
+html[data-theme="dark-premium"] .allocation-legend-row,
+html[data-theme="dark-premium"] .data-health,
+html[data-theme="dark-premium"] .chart-switch,
+html[data-theme="dark-premium"] .dialog,
+html[data-theme="dark-premium"] .personalisation-dialog{
+ color:#edf3f9!important;background:#202b38!important;
+ border:1px solid rgba(211,226,242,.14)!important;
+ box-shadow:0 14px 38px rgba(0,0,0,.25)!important;
+}
+html[data-theme="dark-glass"] .hero,
+html[data-theme="dark-glass"] .card,
+html[data-theme="dark-glass"] .card[id],
+html[data-theme="dark-glass"] .sync-card,
+html[data-theme="dark-glass"] .calendar-card,
+html[data-theme="dark-glass"] .item,
+html[data-theme="dark-glass"] .allocation-legend-row,
+html[data-theme="dark-glass"] .data-health,
+html[data-theme="dark-glass"] .chart-switch,
+html[data-theme="dark-glass"] .dialog,
+html[data-theme="dark-glass"] .personalisation-dialog{
+ color:#f0f6fa!important;
+ background:linear-gradient(145deg,rgba(43,61,72,.92),rgba(25,39,53,.94))!important;
+ border:1px solid rgba(204,231,238,.2)!important;
+ box-shadow:0 16px 42px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.055)!important;
+ -webkit-backdrop-filter:blur(18px) saturate(1.2)!important;
+ backdrop-filter:blur(18px) saturate(1.2)!important;
+}
+html[data-theme="dark-premium"] .hero,
+html[data-theme="dark-glass"] .hero{
+ background-image:linear-gradient(120deg,rgba(255,255,255,.055),rgba(255,255,255,.012))!important;
+}
+html[data-theme="dark-premium"] .gold-panel,
+html[data-theme="dark-glass"] .gold-panel{
+ background:linear-gradient(120deg,rgba(190,151,67,.13),rgba(255,255,255,.035))!important;
+}
+html[data-theme="dark-premium"] .tabs,
+html[data-theme="dark-glass"] .tabs{
+ background:rgba(17,25,35,.97)!important;
+ border-top:1px solid rgba(211,226,242,.16)!important;
+ box-shadow:0 -8px 30px rgba(0,0,0,.18)!important;
+}
+html[data-theme="dark-premium"] .tabs button,
+html[data-theme="dark-glass"] .tabs button{color:#c2cedb!important}
+html[data-theme="dark-premium"] .tabs button.active,
+html[data-theme="dark-glass"] .tabs button.active{background:rgba(169,223,120,.19)!important;color:#d8f5b7!important}
+html[data-theme="dark-premium"] .section h2,
+html[data-theme="dark-glass"] .section h2,
+html[data-theme="dark-premium"] .calendar-month,
+html[data-theme="dark-glass"] .calendar-month,
+html[data-theme="dark-premium"] .calendar-detail h3,
+html[data-theme="dark-glass"] .calendar-detail h3,
+html[data-theme="dark-premium"] .card h3,
+html[data-theme="dark-glass"] .card h3,
+html[data-theme="dark-premium"] .item strong,
+html[data-theme="dark-glass"] .item strong,
+html[data-theme="dark-premium"] .dialog h2,
+html[data-theme="dark-glass"] .dialog h2,
+html[data-theme="dark-premium"] .personalisation-head h2,
+html[data-theme="dark-glass"] .personalisation-head h2,
+html[data-theme="dark-premium"] .personalisation-section h3,
+html[data-theme="dark-glass"] .personalisation-section h3{
+ color:#f1f5fa!important;
+}
+html[data-theme="dark-premium"] .hello,
+html[data-theme="dark-glass"] .hello,
+html[data-theme="dark-premium"] .metric,
+html[data-theme="dark-glass"] .metric,
+html[data-theme="dark-premium"] .balance,
+html[data-theme="dark-glass"] .balance,
+html[data-theme="dark-premium"] .row,
+html[data-theme="dark-glass"] .row{color:#f0f5fa}
+html[data-theme="dark-premium"] .brand,
+html[data-theme="dark-glass"] .brand,
+html[data-theme="dark-premium"] .date,
+html[data-theme="dark-glass"] .date,
+html[data-theme="dark-premium"] .sub,
+html[data-theme="dark-glass"] .sub,
+html[data-theme="dark-premium"] .balance-label,
+html[data-theme="dark-glass"] .balance-label,
+html[data-theme="dark-premium"] .hero-foot,
+html[data-theme="dark-glass"] .hero-foot,
+html[data-theme="dark-premium"] .small,
+html[data-theme="dark-glass"] .small,
+html[data-theme="dark-premium"] .hint,
+html[data-theme="dark-glass"] .hint,
+html[data-theme="dark-premium"] .empty,
+html[data-theme="dark-glass"] .empty,
+html[data-theme="dark-premium"] .footer,
+html[data-theme="dark-glass"] .footer,
+html[data-theme="dark-premium"] .calendar-summary span,
+html[data-theme="dark-glass"] .calendar-summary span,
+html[data-theme="dark-premium"] .item small,
+html[data-theme="dark-glass"] .item small{
+ color:#b2bfce!important;
+}
+html[data-theme="dark-premium"] .formgrid label,
+html[data-theme="dark-glass"] .formgrid label,
+html[data-theme="dark-premium"] label,
+html[data-theme="dark-glass"] label{color:#d4deea!important}
+html[data-theme="dark-premium"] .field,
+html[data-theme="dark-glass"] .field,
+html[data-theme="dark-premium"] input,
+html[data-theme="dark-glass"] input,
+html[data-theme="dark-premium"] select,
+html[data-theme="dark-glass"] select,
+html[data-theme="dark-premium"] textarea,
+html[data-theme="dark-glass"] textarea{
+ color:#f1f5fa!important;background:#141e29!important;
+ border:1px solid rgba(202,220,238,.22)!important;
+ caret-color:#b7e889!important;
+}
+html[data-theme="dark-premium"] .field::placeholder,
+html[data-theme="dark-glass"] .field::placeholder,
+html[data-theme="dark-premium"] input::placeholder,
+html[data-theme="dark-glass"] input::placeholder,
+html[data-theme="dark-premium"] textarea::placeholder,
+html[data-theme="dark-glass"] textarea::placeholder{color:#8796a8!important;opacity:1}
+html[data-theme="dark-premium"] option,
+html[data-theme="dark-glass"] option{background:#182330!important;color:#edf3f9!important}
+html[data-theme="dark-premium"] .btn:not(.primary),
+html[data-theme="dark-glass"] .btn:not(.primary){
+ color:#eaf1f8!important;background:rgba(222,235,247,.085)!important;
+ border:1px solid rgba(211,226,242,.2)!important;
+}
+html[data-theme="dark-premium"] .btn.primary,
+html[data-theme="dark-glass"] .btn.primary{
+ color:#142017!important;background:linear-gradient(120deg,#c0ed91,#83c99e)!important;
+ border:0!important;
+}
+html[data-theme="dark-premium"] .calendar-day,
+html[data-theme="dark-glass"] .calendar-day,
+html[data-theme="dark-premium"] .category-track,
+html[data-theme="dark-glass"] .category-track,
+html[data-theme="dark-premium"] .progress,
+html[data-theme="dark-glass"] .progress{
+ color:#eaf1f8!important;background:rgba(230,240,250,.09)!important;
+ border-color:rgba(211,226,242,.14)!important;
+}
+html[data-theme="dark-premium"] .calendar-day.selected,
+html[data-theme="dark-glass"] .calendar-day.selected{background:rgba(169,223,120,.18)!important;border-color:#a9df78!important}
+html[data-theme="dark-premium"] .calendar-day.today,
+html[data-theme="dark-glass"] .calendar-day.today{box-shadow:inset 0 0 0 1px rgba(169,223,120,.6)!important}
+html[data-theme="dark-premium"] .calendar-detail,
+html[data-theme="dark-glass"] .calendar-detail,
+html[data-theme="dark-premium"] .calendar-tx,
+html[data-theme="dark-glass"] .calendar-tx,
+html[data-theme="dark-premium"] .personalisation-foot,
+html[data-theme="dark-glass"] .personalisation-foot{border-color:rgba(211,226,242,.14)!important}
+html[data-theme="dark-premium"] .personalisation-section,
+html[data-theme="dark-glass"] .personalisation-section{
+ color:#eaf1f8!important;background:rgba(226,239,250,.055)!important;border-color:rgba(211,226,242,.15)!important;
+}
+html[data-theme="dark-premium"] .privacy-menu-toggle,
+html[data-theme="dark-glass"] .privacy-menu-toggle{background:rgba(225,238,250,.07)!important;color:#edf3f9!important}
+html[data-theme="dark-premium"] .modal,
+html[data-theme="dark-glass"] .modal{background:rgba(3,8,14,.78)!important}
+html[data-theme="dark-premium"] canvas,
+html[data-theme="dark-glass"] canvas{color-scheme:dark}
+html[data-theme="dark-premium"] .chartjs-render-monitor,
+html[data-theme="dark-glass"] .chartjs-render-monitor{color:#dce6f0}
+html[data-theme="dark-premium"] a,
+html[data-theme="dark-glass"] a{color:#b9e68d}
+html[data-theme="dark-premium"] hr,
+html[data-theme="dark-glass"] hr{border-color:rgba(211,226,242,.15)}
+html[data-theme="dark-premium"] .theme-option,
+html[data-theme="dark-glass"] .theme-option{color:#edf3f9!important;background:rgba(226,239,250,.07)!important;border-color:rgba(211,226,242,.18)!important}
+html[data-theme="dark-premium"] .theme-option small,
+html[data-theme="dark-glass"] .theme-option small{color:#b2bfce!important}
