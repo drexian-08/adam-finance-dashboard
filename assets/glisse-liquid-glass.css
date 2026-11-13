@@ -1329,3 +1329,34 @@ html[data-theme="dark-premium"] .wrap [style*="color:#263"],
 html[data-theme="dark-premium"] .wrap [style*="color: #263"],
 html[data-theme="dark-glass"] .wrap [style*="color:#263"],
 html[data-theme="dark-glass"] .wrap [style*="color: #263"]{color:#edf3fb!important}
+
+
+/* Mobile viewport edge fix: keep the root canvas painted in the active dark theme */
+html[data-theme="dark-premium"]{
+ background-color:#0b1220!important;
+ min-height:100%;
+}
+html[data-theme="dark-glass"]{
+ background-color:#0b1720!important;
+ min-height:100%;
+}
+html[data-theme="dark-premium"] body,
+html[data-theme="dark-glass"] body{
+ width:100%;
+ min-width:100%;
+ min-height:100vh;
+ background-color:transparent!important;
+}
+@media(max-width:700px){
+ html[data-theme="dark-premium"],html[data-theme="dark-glass"]{
+  background-attachment:scroll!important;
+ }
+ html[data-theme="dark-premium"] body{
+  background:linear-gradient(145deg,#0b1220 0%,#111d2b 56%,#0b1220 100%)!important;
+  background-attachment:scroll!important;
+ }
+ html[data-theme="dark-glass"] body{
+  background:radial-gradient(ellipse at 10% 0%,rgba(83,139,125,.17),transparent 38%),linear-gradient(145deg,#0b1720 0%,#172a34 58%,#0b1720 100%)!important;
+  background-attachment:scroll!important;
+ }
+}
