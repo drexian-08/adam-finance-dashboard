@@ -700,3 +700,48 @@ body{
 @media(prefers-reduced-motion:reduce){
   .reveal,.reveal.is-visible{opacity:1!important;transform:none!important;transition:none!important}
 }
+
+
+/* Phase 46 — keep desktop privacy panel fully inside its sidebar column */
+@media(min-width:1100px){
+  #desktopPrivacySidebar{
+    box-sizing:border-box!important;
+    width:min(258px,calc(100vw - 40px))!important;
+    max-width:calc(100vw - 40px)!important;
+    left:20px!important;
+    right:auto!important;
+    padding:14px!important;
+    overflow-x:hidden!important;
+  }
+  #desktopPrivacySidebar *,
+  #desktopPrivacySidebar *::before,
+  #desktopPrivacySidebar *::after{box-sizing:border-box}
+  #desktopPrivacySidebar #desktopPrivacySlot,
+  #desktopPrivacySidebar .privacy-menu,
+  #desktopPrivacySidebar .privacy-menu-options,
+  #desktopPrivacySidebar .privacy-menu-actions,
+  #desktopPrivacySidebar .privacy-menu .formgrid{width:100%;max-width:100%;min-width:0}
+  #desktopPrivacySidebar .privacy-menu-toggle{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:8px;
+    width:100%!important;
+    min-width:0;
+    padding:10px!important;
+    white-space:normal;
+    text-align:left;
+  }
+  #desktopPrivacySidebar .privacy-menu-toggle span{min-width:0;overflow-wrap:anywhere}
+  #desktopPrivacySidebar .privacy-menu-actions>.btn,
+  #desktopPrivacySidebar .privacy-menu .sync-actions>.btn{
+    box-sizing:border-box;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    justify-content:flex-start;
+  }
+  #desktopPrivacySidebar .privacy-menu .field{box-sizing:border-box;width:100%;min-width:0;max-width:100%}
+}
