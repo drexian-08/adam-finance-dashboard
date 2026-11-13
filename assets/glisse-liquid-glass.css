@@ -685,3 +685,28 @@ body{
 .adam-quick-jump.is-visible{transform:translate(-50%,0)}
 .aqj-menu{transform-origin:top center}
 @media(min-width:700px){.adam-quick-jump{top:18px;bottom:auto;left:50%;right:auto}}
+
+
+/* Phase 28 — Scroll reveal: smooth fade-up on mobile and desktop.
+   The observer is initialized by setupMotion() in index.html. */
+.reveal{
+  opacity:0;
+  transform:translate3d(0,22px,0) scale(.99);
+  transition:opacity .62s cubic-bezier(.22,.68,0,1),
+             transform .72s cubic-bezier(.22,.68,0,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1);
+}
+.grid>.card:nth-child(2){--reveal-delay:65ms}
+.grid>.card:nth-child(3){--reveal-delay:130ms}
+.grid>.card:nth-child(4){--reveal-delay:195ms}
+@media(max-width:700px){
+  .reveal{transform:translate3d(0,18px,0);transition-duration:.56s,.64s;will-change:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.is-visible{opacity:1!important;transform:none!important;transition:none!important;will-change:auto}
+}
