@@ -90,8 +90,17 @@ html[data-accent] .mint,html[data-accent] .hero .hello span{color:var(--accent)!
 html[data-accent] .calendar-day.selected{border-color:var(--accent)!important;background:var(--accent-soft)!important}
 html[data-accent="custom"] .accent-option[data-accent].is-selected{border-color:var(--accent)!important}
 @media(max-width:430px){.accent-presets{gap:5px}.accent-option{padding:9px 2px}.accent-option small{font-size:9px}}
+
+/* Phase 51.3 refinement: route legacy lime accents through the selected accent token */
+:root{--mint:var(--accent,#B9E477);--gold:var(--accent,#B9E477);--accent-contrast:#172315}
+html[data-accent] .hello span,html[data-accent] .hero-foot b,html[data-accent] .mint,html[data-accent] .gold{color:var(--accent)!important}
+html[data-accent] .btn.primary,html[data-accent] .quick-add{background:var(--accent)!important;background-image:none!important;color:var(--accent-contrast)!important;border-color:var(--accent)!important}
+html[data-accent] .tabs button.active,html[data-accent] .theme-option.is-selected,html[data-accent] .chart-switch button.active{background:color-mix(in srgb,var(--accent) 22%,transparent)!important;color:var(--accent)!important;border-color:color-mix(in srgb,var(--accent) 65%,transparent)!important}
+html[data-accent] .progress>i,html[data-accent] .category-track i,html[data-accent] .bar-fill,html[data-accent] .progress-fill{background:var(--accent)!important;background-image:none!important}
+html[data-accent] input:focus,html[data-accent] select:focus,html[data-accent] textarea:focus,html[data-accent] .field:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)!important}
+html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--accent) 12%,transparent)!important}
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=32">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=33">
 
 </head>
 <body><main class="wrap">
