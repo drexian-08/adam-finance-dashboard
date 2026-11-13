@@ -50,7 +50,7 @@ body{background-image:none!important;background-color:#fff!important}
  .sync-card .privacy-menu .formgrid label{min-width:0}
 }
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=21">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=22">
 
 </head>
 <body><main class="wrap">
@@ -335,7 +335,14 @@ body{background-image:none!important;background-color:#fff!important}
  <section class="personalisation-dialog" role="dialog" aria-modal="true" aria-labelledby="personalisationTitle">
   <header class="personalisation-head"><div><div class="small">ADAM / SETTINGS</div><h2 id="personalisationTitle">Personalisation Centre</h2><p class="small">Sesuaikan dashboard mengikut citarasa anda.</p></div><button class="btn" id="personalisationClose" type="button" aria-label="Tutup">✕</button></header>
   <div class="personalisation-sections">
-   <article class="personalisation-section"><h3>Appearance</h3><p class="small">Tema, warna aksen dan gaya paparan.</p><span class="small">Akan dibangunkan dalam Phase 51.2–51.3</span></article>
+   <article class="personalisation-section personalisation-appearance"><h3>Appearance</h3><p class="small">Pilih tema dashboard. Perubahan dipaparkan serta-merta.</p>
+    <div class="theme-options" role="group" aria-label="Pilihan tema">
+     <button class="theme-option" type="button" data-theme-choice="light" aria-pressed="false"><span class="theme-swatch theme-swatch-light"></span><strong>Light</strong><small>Cerah & bersih</small></button>
+     <button class="theme-option" type="button" data-theme-choice="dark-premium" aria-pressed="false"><span class="theme-swatch theme-swatch-premium"></span><strong>Dark Premium</strong><small>Gelap elegan</small></button>
+     <button class="theme-option" type="button" data-theme-choice="dark-glass" aria-pressed="false"><span class="theme-swatch theme-swatch-glass"></span><strong>Dark Glass</strong><small>Liquid Glass gelap</small></button>
+     <button class="theme-option" type="button" data-theme-choice="auto" aria-pressed="false"><span class="theme-swatch theme-swatch-auto"></span><strong>Auto</strong><small>Ikut sistem peranti</small></button>
+    </div><p class="theme-current small" id="themeCurrent" aria-live="polite">Tema semasa: Light</p>
+   </article>
    <article class="personalisation-section"><h3>Dashboard Layout</h3><p class="small">Susun, paparkan atau sembunyikan widget.</p><span class="small">Akan dibangunkan dalam Phase 51.4</span></article>
    <article class="personalisation-section"><h3>Display & Privacy</h3><p class="small">Animasi, kepadatan kad dan paparan nilai kewangan.</p><span class="small">Akan dibangunkan dalam Phase 51.5–51.6</span></article>
    <article class="personalisation-section"><h3>Personal Preferences</h3><p class="small">Mata wang, format tarikh dan nombor.</p><span class="small">Akan dibangunkan dalam Phase 51.7</span></article>
@@ -1102,6 +1109,35 @@ const close=()=>{overlay.hidden=true;document.body.classList.remove('personalisa
 ['personalisationClose','personalisationDone'].forEach(id=>document.getElementById(id)?.addEventListener('click',close));
 overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)close()});
+})();
+</script>
+<script>
+(()=> {
+ const key='adam-personalisation-theme-v1';
+ const choices=['light','dark-premium','dark-glass','auto'];
+ const labels={light:'Light', 'dark-premium':'Dark Premium','dark-glass':'Dark Liquid Glass',auto:'Auto'};
+ const root=document.documentElement;
+ const buttons=[...document.querySelectorAll('[data-theme-choice]')];
+ const systemDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)');
+ let selected='light';
+ try{const saved=localStorage.getItem(key);if(choices.includes(saved))selected=saved;}catch(e){}
+ const apply=()=>{
+  const effective=selected==='auto'?(systemDark&&systemDark.matches?'dark-glass':'light'):selected;
+  root.dataset.theme=effective;
+  root.dataset.themeMode=selected;
+  buttons.forEach(btn=>{const active=btn.dataset.themeChoice===selected;btn.setAttribute('aria-pressed',String(active));btn.classList.toggle('is-selected',active);});
+  const status=document.getElementById('themeCurrent');
+  if(status)status.textContent='Tema dipilih: '+labels[selected]+(selected==='auto'?' · '+(effective==='light'?'Light (sistem)':'Dark Glass (sistem)'):'');
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.content=effective==='light'?'#eef0e8':'#111820';
+ };
+ buttons.forEach(btn=>btn.addEventListener('click',()=>{
+  const next=btn.dataset.themeChoice;if(!choices.includes(next))return;
+  selected=next;try{localStorage.setItem(key,selected);}catch(e){}
+  apply();
+ }));
+ if(systemDark){const onSystemChange=()=>{if(selected==='auto')apply();};if(systemDark.addEventListener)systemDark.addEventListener('change',onSystemChange);else if(systemDark.addListener)systemDark.addListener(onSystemChange);}
+ apply();
 })();
 </script>
 </body></html>
