@@ -1020,3 +1020,118 @@ html[data-theme="dark-premium"] .theme-option,
 html[data-theme="dark-glass"] .theme-option{color:#edf3f9!important;background:rgba(226,239,250,.07)!important;border-color:rgba(211,226,242,.18)!important}
 html[data-theme="dark-premium"] .theme-option small,
 html[data-theme="dark-glass"] .theme-option small{color:#b2bfce!important}
+
+
+/* Phase 51.2.2 — bring legacy feature modules into both dark palettes */
+html[data-theme="dark-premium"] :is(
+ .fire-intro,.fire-result,.fire-metrics>div,.fire-finish,.fire-card>.hint,
+ .ef-target-banner,.ef-result,.ef-metrics>div,.ef-finish,.ef-note,
+ .nwm-current,.nwm-progress-area,.nwm-milestone,.nwm-gap,.nwm-note,
+ .fst-current,.fst-baseline>div,.fst-result,.fst-metrics>div,.fst-status,
+ .fst-note,.fire-fields,.ef-input-grid,.nwm-target-row,.fst-input-grid,
+ .sgp-card,.sgp-result,.sgp-metrics>div,
+ .cashflow-forecast-main,.cashflow-forecast-grid>div,
+ .debt-planner-principal,.debt-plan-metrics>div,
+ .recurring-summary,.recurring-item,.action-plan-item,
+ .chart-card,.chart-switch,.allocation-legend-row,
+ #monthlyReport>.grid>div,#monthlyReport .cashflow-chart,
+ #monthlyReport .report-category-breakdown,#monthlyReport #reportSummary
+),
+html[data-theme="dark-glass"] :is(
+ .fire-intro,.fire-result,.fire-metrics>div,.fire-finish,.fire-card>.hint,
+ .ef-target-banner,.ef-result,.ef-metrics>div,.ef-finish,.ef-note,
+ .nwm-current,.nwm-progress-area,.nwm-milestone,.nwm-gap,.nwm-note,
+ .fst-current,.fst-baseline>div,.fst-result,.fst-metrics>div,.fst-status,
+ .fst-note,.fire-fields,.ef-input-grid,.nwm-target-row,.fst-input-grid,
+ .sgp-card,.sgp-result,.sgp-metrics>div,
+ .cashflow-forecast-main,.cashflow-forecast-grid>div,
+ .debt-planner-principal,.debt-plan-metrics>div,
+ .recurring-summary,.recurring-item,.action-plan-item,
+ .chart-card,.chart-switch,.allocation-legend-row,
+ #monthlyReport>.grid>div,#monthlyReport .cashflow-chart,
+ #monthlyReport .report-category-breakdown,#monthlyReport #reportSummary
+){
+ color:#edf3f9!important;background:rgba(220,235,248,.065)!important;
+ border-color:rgba(211,226,242,.15)!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+html[data-theme="dark-glass"] :is(
+ .fire-intro,.fire-result,.fire-metrics>div,.fire-finish,.fire-card>.hint,
+ .ef-target-banner,.ef-result,.ef-metrics>div,.ef-finish,.ef-note,
+ .nwm-current,.nwm-progress-area,.nwm-milestone,.nwm-gap,.nwm-note,
+ .fst-current,.fst-baseline>div,.fst-result,.fst-metrics>div,
+ .fst-note,.sgp-card,.sgp-result,.sgp-metrics>div,
+ .cashflow-forecast-main,.cashflow-forecast-grid>div,
+ .debt-planner-principal,.debt-plan-metrics>div,
+ .recurring-summary,.recurring-item,.action-plan-item,
+ .chart-card,#monthlyReport>.grid>div,#monthlyReport .cashflow-chart,
+ #monthlyReport .report-category-breakdown
+){
+ background:linear-gradient(145deg,rgba(63,86,94,.62),rgba(31,49,64,.68))!important;
+}
+html[data-theme="dark-premium"] :is(
+ #fireCalculator h2,#emergencyFundPlanner h2,#netWorthMilestones h2,
+ #financialStressTest h2,.fire-intro strong,.ef-target-banner strong,
+ .nwm-current strong,.fst-current strong,.ef-metrics strong,
+ .nwm-milestone-main strong,.fst-metrics strong,.debt-plan-metrics strong,
+ .cashflow-forecast-grid strong,.cashflow-forecast-main .metric,
+ #monthlyReport .cashflow-head strong,#monthlyReport .report-category-meta strong
+),
+html[data-theme="dark-glass"] :is(
+ #fireCalculator h2,#emergencyFundPlanner h2,#netWorthMilestones h2,
+ #financialStressTest h2,.fire-intro strong,.ef-target-banner strong,
+ .nwm-current strong,.fst-current strong,.ef-metrics strong,
+ .nwm-milestone-main strong,.fst-metrics strong,.debt-plan-metrics strong,
+ .cashflow-forecast-grid strong,.cashflow-forecast-main .metric,
+ #monthlyReport .cashflow-head strong,#monthlyReport .report-category-meta strong
+){color:#f1f6fb!important}
+html[data-theme="dark-premium"] :is(
+ #fireCalculator p,#emergencyFundPlanner p,#netWorthMilestones p,#financialStressTest p,
+ .fire-intro .small,.fire-intro #fireTargetCaption,.fire-fields label,
+ .fire-metrics .small,.fire-card>.hint,.ef-kicker,.ef-caption,.ef-input-grid label,
+ .ef-metrics span,.ef-note,.nwm-kicker,.nwm-caption,.nwm-progress-head,
+ .nwm-progress-note,.nwm-milestone-main span,.nwm-note,.fst-kicker,.fst-caption,
+ .fst-baseline span,.fst-input-grid label,.fst-metrics span,.fst-explain,.fst-note,
+ #monthlyReport .small,#monthlyReport .cashflow-head .small,
+ #monthlyReport .cashflow-legend,#monthlyReport .report-category-meta span
+),
+html[data-theme="dark-glass"] :is(
+ #fireCalculator p,#emergencyFundPlanner p,#netWorthMilestones p,#financialStressTest p,
+ .fire-intro .small,.fire-intro #fireTargetCaption,.fire-fields label,
+ .fire-metrics .small,.fire-card>.hint,.ef-kicker,.ef-caption,.ef-input-grid label,
+ .ef-metrics span,.ef-note,.nwm-kicker,.nwm-caption,.nwm-progress-head,
+ .nwm-progress-note,.nwm-milestone-main span,.nwm-note,.fst-kicker,.fst-caption,
+ .fst-baseline span,.fst-input-grid label,.fst-metrics span,.fst-explain,.fst-note,
+ #monthlyReport .small,#monthlyReport .cashflow-head .small,
+ #monthlyReport .cashflow-legend,#monthlyReport .report-category-meta span
+){color:#b5c3d1!important}
+html[data-theme="dark-premium"] :is(.fire-fields .field,.ef-input-grid .field,.nwm-target-row .field,.fst-input-grid .field),
+html[data-theme="dark-glass"] :is(.fire-fields .field,.ef-input-grid .field,.nwm-target-row .field,.fst-input-grid .field){
+ color:#f1f6fb!important;background:#141f2b!important;border-color:rgba(205,225,240,.22)!important;
+}
+html[data-theme="dark-premium"] .fire-finish,
+html[data-theme="dark-premium"] .ef-finish,
+html[data-theme="dark-premium"] .fst-status.is-stable,
+html[data-theme="dark-premium"] .fst-status.is-caution,
+html[data-theme="dark-premium"] .fst-status.is-risk,
+html[data-theme="dark-glass"] .fire-finish,
+html[data-theme="dark-glass"] .ef-finish,
+html[data-theme="dark-glass"] .fst-status.is-stable,
+html[data-theme="dark-glass"] .fst-status.is-caution,
+html[data-theme="dark-glass"] .fst-status.is-risk{
+ color:#eaf2f8!important;
+}
+html[data-theme="dark-premium"] .fire-metrics strong,
+html[data-theme="dark-premium"] .ef-metrics strong,
+html[data-theme="dark-premium"] .nwm-milestone-main strong,
+html[data-theme="dark-premium"] .fst-metrics strong,
+html[data-theme="dark-glass"] .fire-metrics strong,
+html[data-theme="dark-glass"] .ef-metrics strong,
+html[data-theme="dark-glass"] .nwm-milestone-main strong,
+html[data-theme="dark-glass"] .fst-metrics strong{color:#dcefae!important}
+html[data-theme="dark-premium"] .fire-metrics .small,
+html[data-theme="dark-premium"] .ef-metrics span,
+html[data-theme="dark-premium"] .fst-metrics span,
+html[data-theme="dark-glass"] .fire-metrics .small,
+html[data-theme="dark-glass"] .ef-metrics span,
+html[data-theme="dark-glass"] .fst-metrics span{color:#b7c4d1!important}
