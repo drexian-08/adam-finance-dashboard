@@ -1211,3 +1211,121 @@ html[data-theme="dark-glass"] #investmentHistoryChart{
 }
 html[data-theme="dark-premium"] #investmentCard [style*="border-top"],
 html[data-theme="dark-glass"] #investmentCard [style*="border-top"]{border-color:rgba(190,211,230,.18)!important}
+
+
+/* Phase 51.2.4 — full dark-mode consistency pass */
+html[data-theme="dark-premium"],html[data-theme="dark-glass"]{
+ color-scheme:dark;
+ --bg:#0b1220;--panel:#152235;--line:rgba(170,190,215,.17);
+ --muted:#a8b6c8;--text:#edf3fb;--mint:#b9e477;--gold:#edc875;--red:#ff8f86;
+}
+html[data-theme="dark-premium"] .tabs,
+html[data-theme="dark-glass"] .tabs{
+ background:rgba(13,22,35,.96)!important;
+ color:#edf3fb!important;border:1px solid rgba(175,198,220,.16)!important;
+ box-shadow:0 -10px 30px rgba(0,0,0,.25)!important;
+}
+html[data-theme="dark-premium"] .tabs button,
+html[data-theme="dark-glass"] .tabs button{color:#bdc9d7!important}
+html[data-theme="dark-premium"] .tabs button.active,
+html[data-theme="dark-glass"] .tabs button.active{background:rgba(185,228,119,.2)!important;color:#d9f3ae!important}
+html[data-theme="dark-premium"] .dialog,
+html[data-theme="dark-glass"] .dialog,
+html[data-theme="dark-premium"] .personalisation-dialog,
+html[data-theme="dark-glass"] .personalisation-dialog{
+ background:#172638!important;color:#edf3fb!important;border-color:#34485e!important;
+}
+html[data-theme="dark-premium"] .dialog h2,
+html[data-theme="dark-glass"] .dialog h2,
+html[data-theme="dark-premium"] .formgrid label,
+html[data-theme="dark-glass"] .formgrid label{color:#edf3fb!important}
+html[data-theme="dark-premium"] .wrap :is(
+ .action-plan-item,.recurring-item,.cashflow-forecast-grid>div,.debt-plan-metrics>div,
+ .fire-symbol,.fire-intro,.fire-result,.fire-metrics>div,.fire-finish,
+ .ef-banner-icon,.ef-target-banner,.ef-result,.ef-metrics>div,.ef-finish,
+ .nwm-current-icon,.nwm-current,.nwm-progress-area,.nwm-milestone,.nwm-gap,
+ .fst-current-icon,.fst-current,.fst-baseline>div,.fst-result,.fst-metrics>div,.fst-status,
+ .sgp-card,.sgp-summary,.sgp-goal,.sgp-result,.sgp-metrics>div,
+ .aqj-grid button,.theme-option,.chart-card,.chart-wrap,.chart-meta,
+ .annual-metrics>div,.category-bars,.cashflow-forecast-main,.debt-planner-principal,
+ .debt-planner-result,.recurring-summary,.recurring-form,.recurring-list,
+ .privacy-menu-options,.calendar-detail,.calendar-summary,.calendar-tx
+),
+html[data-theme="dark-glass"] .wrap :is(
+ .action-plan-item,.recurring-item,.cashflow-forecast-grid>div,.debt-plan-metrics>div,
+ .fire-symbol,.fire-intro,.fire-result,.fire-metrics>div,.fire-finish,
+ .ef-banner-icon,.ef-target-banner,.ef-result,.ef-metrics>div,.ef-finish,
+ .nwm-current-icon,.nwm-current,.nwm-progress-area,.nwm-milestone,.nwm-gap,
+ .fst-current-icon,.fst-current,.fst-baseline>div,.fst-result,.fst-metrics>div,.fst-status,
+ .sgp-card,.sgp-summary,.sgp-goal,.sgp-result,.sgp-metrics>div,
+ .aqj-grid button,.theme-option,.chart-card,.chart-wrap,.chart-meta,
+ .annual-metrics>div,.category-bars,.cashflow-forecast-main,.debt-planner-principal,
+ .debt-planner-result,.recurring-summary,.recurring-form,.recurring-list,
+ .privacy-menu-options,.calendar-detail,.calendar-summary,.calendar-tx
+){
+ background:#1b2a3b!important;color:#edf3fb!important;border-color:#35495f!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+html[data-theme="dark-glass"] .wrap :is(
+ .action-plan-item,.recurring-item,.cashflow-forecast-grid>div,.debt-plan-metrics>div,
+ .fire-metrics>div,.ef-metrics>div,.nwm-milestone,.fst-baseline>div,.fst-metrics>div,
+ .sgp-goal,.chart-card,.chart-wrap,.annual-metrics>div,.calendar-detail,.calendar-tx
+){background:linear-gradient(145deg,rgba(43,67,77,.78),rgba(25,43,59,.88))!important}
+html[data-theme="dark-premium"] .wrap :is(
+ .fire-fields .field,.ef-input-grid .field,.nwm-target-row .field,.fst-input-grid .field,
+ .sgp-budget-row .field,.recurring-form .field,.aqj-grid input,.aqj-grid select
+),
+html[data-theme="dark-glass"] .wrap :is(
+ .fire-fields .field,.ef-input-grid .field,.nwm-target-row .field,.fst-input-grid .field,
+ .sgp-budget-row .field,.recurring-form .field,.aqj-grid input,.aqj-grid select
+){
+ background:#101b2a!important;color:#f1f5fa!important;border-color:#40566d!important;
+}
+html[data-theme="dark-premium"] .wrap :is(
+ .fire-fields .field,.ef-input-grid .field,.nwm-target-row .field,.fst-input-grid .field,
+ .sgp-budget-row .field,.recurring-form .field
+)::placeholder,
+html[data-theme="dark-glass"] .wrap :is(
+ .fire-fields .field,.ef-input-grid .field,.nwm-target-row .field,.fst-input-grid .field,
+ .sgp-budget-row .field,.recurring-form .field
+)::placeholder{color:#91a3b8!important;opacity:1}
+html[data-theme="dark-premium"] .wrap :is(
+ .fire-intro .small,.ef-caption,.ef-note,.nwm-caption,.nwm-note,.fst-caption,.fst-note,
+ .sgp-note,.action-plan-item small,.recurring-item small,.cashflow-legend,
+ .chart-meta small,.calendar-summary span,.calendar-weekday
+),
+html[data-theme="dark-glass"] .wrap :is(
+ .fire-intro .small,.ef-caption,.ef-note,.nwm-caption,.nwm-note,.fst-caption,.fst-note,
+ .sgp-note,.action-plan-item small,.recurring-item small,.cashflow-legend,
+ .chart-meta small,.calendar-summary span,.calendar-weekday
+){color:#afbdce!important}
+html[data-theme="dark-premium"] .wrap :is(
+ .fire-metrics strong,.ef-metrics strong,.nwm-milestone strong,.fst-metrics strong,
+ .sgp-metrics strong,.debt-plan-metrics strong,.cashflow-forecast-grid strong
+),
+html[data-theme="dark-glass"] .wrap :is(
+ .fire-metrics strong,.ef-metrics strong,.nwm-milestone strong,.fst-metrics strong,
+ .sgp-metrics strong,.debt-plan-metrics strong,.cashflow-forecast-grid strong
+){color:#d9efa9!important}
+html[data-theme="dark-premium"] .wrap :is(.chart-switch button,.aqj-grid button,.theme-option),
+html[data-theme="dark-glass"] .wrap :is(.chart-switch button,.aqj-grid button,.theme-option){
+ color:#eaf1f8!important;background:#26384d!important;border-color:#40566d!important;
+}
+html[data-theme="dark-premium"] .wrap .chart-switch button.active,
+html[data-theme="dark-glass"] .wrap .chart-switch button.active{background:#b9e477!important;color:#172315!important}
+html[data-theme="dark-premium"] .wrap :is(.progress,.category-track),
+html[data-theme="dark-glass"] .wrap :is(.progress,.category-track){background:#34465a!important}
+html[data-theme="dark-premium"] .wrap :is(hr,.calendar-detail,.calendar-tx),
+html[data-theme="dark-glass"] .wrap :is(hr,.calendar-detail,.calendar-tx){border-color:rgba(190,211,230,.16)!important}
+html[data-theme="dark-premium"] .wrap :is(.empty,.footer),
+html[data-theme="dark-glass"] .wrap :is(.empty,.footer){color:#aebed0!important}
+html[data-theme="dark-premium"] .wrap [style*="background:rgba(255,255,255"],
+html[data-theme="dark-premium"] .wrap [style*="background: rgba(255,255,255"],
+html[data-theme="dark-glass"] .wrap [style*="background:rgba(255,255,255"],
+html[data-theme="dark-glass"] .wrap [style*="background: rgba(255,255,255"]{
+ background:#1b2a3b!important;color:#edf3fb!important;border-color:#35495f!important;
+}
+html[data-theme="dark-premium"] .wrap [style*="color:#263"],
+html[data-theme="dark-premium"] .wrap [style*="color: #263"],
+html[data-theme="dark-glass"] .wrap [style*="color:#263"],
+html[data-theme="dark-glass"] .wrap [style*="color: #263"]{color:#edf3fb!important}
