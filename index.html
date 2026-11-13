@@ -74,8 +74,24 @@ html[data-theme="dark-glass"] body{
  .sync-card .privacy-menu .formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .sync-card .privacy-menu .formgrid label{min-width:0}
 }
+
+/* Phase 51.3 — Accent Colour Studio */
+.accent-presets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:14px 0}
+.accent-option{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px 5px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.45);color:var(--text);cursor:pointer}
+.accent-option span{display:block;width:25px;height:25px;border-radius:50%;background:var(--swatch);box-shadow:0 0 0 3px rgba(127,140,150,.12),inset 0 1px 2px rgba(255,255,255,.55)}
+.accent-option small{font-size:10px}.accent-option.is-selected{border-color:var(--accent)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 28%,transparent)!important}
+.accent-custom-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--line)}
+.accent-custom-row label{font-size:12px;font-weight:650}.accent-custom-row input[type=color]{width:44px;height:36px;padding:3px;border:1px solid var(--line);border-radius:9px;background:transparent;cursor:pointer}
+:root{--accent:#8fc91c;--accent-soft:rgba(143,201,28,.18)}
+html[data-accent] .btn.primary,html[data-accent] .quick-add{background:var(--accent)!important;border-color:var(--accent)!important;color:#172315!important}
+html[data-accent] .tabs button.active,html[data-accent] .chart-switch button.active{background:var(--accent-soft)!important;color:var(--accent)!important;border-color:var(--accent)!important}
+html[data-accent] .progress>i,html[data-accent] .category-track i{background:var(--accent)!important}
+html[data-accent] .mint,html[data-accent] .hero .hello span{color:var(--accent)!important}
+html[data-accent] .calendar-day.selected{border-color:var(--accent)!important;background:var(--accent-soft)!important}
+html[data-accent="custom"] .accent-option[data-accent].is-selected{border-color:var(--accent)!important}
+@media(max-width:430px){.accent-presets{gap:5px}.accent-option{padding:9px 2px}.accent-option small{font-size:9px}}
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=31">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=32">
 
 </head>
 <body><main class="wrap">
@@ -367,6 +383,16 @@ html[data-theme="dark-glass"] body{
      <button class="theme-option" type="button" data-theme-choice="dark-glass" aria-pressed="false"><span class="theme-swatch theme-swatch-glass"></span><strong>Dark Glass</strong><small>Liquid Glass gelap</small></button>
      <button class="theme-option" type="button" data-theme-choice="auto" aria-pressed="false"><span class="theme-swatch theme-swatch-auto"></span><strong>Auto</strong><small>Ikut sistem peranti</small></button>
     </div><p class="theme-current small" id="themeCurrent" aria-live="polite">Tema semasa: Light</p>
+   </article>
+   <article class="personalisation-section personalisation-accent"><h3>Accent Colour Studio</h3><p class="small">Pilih warna aksen untuk butang utama, penanda aktif, graf dan elemen penting dashboard.</p>
+    <div class="accent-presets" role="group" aria-label="Warna aksen preset">
+     <button type="button" class="accent-option" data-accent="#B9E477" aria-label="Lime" aria-pressed="false"><span style="--swatch:#B9E477"></span><small>Lime</small></button>
+     <button type="button" class="accent-option" data-accent="#65D6B0" aria-label="Mint" aria-pressed="false"><span style="--swatch:#65D6B0"></span><small>Mint</small></button>
+     <button type="button" class="accent-option" data-accent="#6EA8FE" aria-label="Blue" aria-pressed="false"><span style="--swatch:#6EA8FE"></span><small>Blue</small></button>
+     <button type="button" class="accent-option" data-accent="#B69CFF" aria-label="Purple" aria-pressed="false"><span style="--swatch:#B69CFF"></span><small>Purple</small></button>
+     <button type="button" class="accent-option" data-accent="#FFAA70" aria-label="Orange" aria-pressed="false"><span style="--swatch:#FFAA70"></span><small>Orange</small></button>
+    </div>
+    <div class="accent-custom-row"><label for="accentCustom">Warna tersuai</label><input id="accentCustom" type="color" value="#B9E477" aria-label="Pilih warna aksen tersuai"><span class="small" id="accentCurrent" aria-live="polite">#B9E477 · Lime</span></div>
    </article>
    <article class="personalisation-section"><h3>Dashboard Layout</h3><p class="small">Susun, paparkan atau sembunyikan widget.</p><span class="small">Akan dibangunkan dalam Phase 51.4</span></article>
    <article class="personalisation-section"><h3>Display & Privacy</h3><p class="small">Animasi, kepadatan kad dan paparan nilai kewangan.</p><span class="small">Akan dibangunkan dalam Phase 51.5–51.6</span></article>
@@ -1163,6 +1189,31 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
  }));
  if(systemDark){const onSystemChange=()=>{if(selected==='auto')apply();};if(systemDark.addEventListener)systemDark.addEventListener('change',onSystemChange);else if(systemDark.addListener)systemDark.addListener(onSystemChange);}
  apply();
+})();
+</script>
+
+<script>
+(()=>{
+ const root=document.documentElement,key='adam-personalisation-accent-v1';
+ const presets=[['#B9E477','Lime'],['#65D6B0','Mint'],['#6EA8FE','Blue'],['#B69CFF','Purple'],['#FFAA70','Orange']];
+ const buttons=[...document.querySelectorAll('[data-accent]')],picker=document.getElementById('accentCustom'),status=document.getElementById('accentCurrent');
+ const valid=value=>/^#[0-9a-fA-F]{6}$/.test(value||'');
+ const apply=(value)=>{
+  if(!valid(value))value=presets[0][0];
+  const normalized=value.toUpperCase(),match=presets.find(([hex])=>hex===normalized);
+  root.style.setProperty('--accent',normalized);
+  root.style.setProperty('--mint',normalized);
+  root.style.setProperty('--accent-soft',normalized+'30');
+  root.dataset.accent=match?'preset':'custom';
+  buttons.forEach(btn=>{const active=btn.dataset.accent.toUpperCase()===normalized;btn.classList.toggle('is-selected',active);btn.setAttribute('aria-pressed',String(active));});
+  if(picker)picker.value=normalized;
+  if(status)status.textContent=normalized+(match?' · '+match[1]:' · Custom');
+  try{localStorage.setItem(key,normalized);}catch(e){}
+ };
+ let initial=presets[0][0];try{const saved=localStorage.getItem(key);if(valid(saved))initial=saved;}catch(e){}
+ buttons.forEach(btn=>btn.addEventListener('click',()=>apply(btn.dataset.accent)));
+ picker?.addEventListener('input',()=>apply(picker.value));
+ apply(initial);
 })();
 </script>
 </body></html>
