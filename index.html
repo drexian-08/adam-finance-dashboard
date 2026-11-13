@@ -15,6 +15,29 @@
 body{background-image:none!important;background-color:#fff!important}
 html[data-theme="dark-premium"] body{background-image:radial-gradient(ellipse at 12% 0%,rgba(52,75,103,.25),transparent 38%),linear-gradient(145deg,#0d1118,#151d28 58%,#10151d)!important;background-color:#10151d!important}
 html[data-theme="dark-glass"] body{background-image:radial-gradient(ellipse at 8% 2%,rgba(83,139,125,.2),transparent 36%),radial-gradient(ellipse at 94% 18%,rgba(83,103,166,.22),transparent 38%),linear-gradient(145deg,#101820,#17232d 55%,#111923)!important;background-color:#101820!important}
+
+/* Authoritative mobile viewport canvas: keep html and body painted edge-to-edge */
+html[data-theme="dark-premium"]{
+ background:#0b1220!important;
+ background-image:linear-gradient(145deg,#0b1220 0%,#111d2b 58%,#0b1220 100%)!important;
+ width:100%!important;min-width:100%!important;overflow-x:hidden!important;
+}
+html[data-theme="dark-glass"]{
+ background:#0b1720!important;
+ background-image:radial-gradient(ellipse at 10% 0%,rgba(83,139,125,.16),transparent 38%),linear-gradient(145deg,#0b1720 0%,#172a34 58%,#0b1720 100%)!important;
+ width:100%!important;min-width:100%!important;overflow-x:hidden!important;
+}
+html[data-theme="dark-premium"] body{
+ width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;
+ background:#0b1220!important;
+ background-image:linear-gradient(145deg,#0b1220 0%,#111d2b 58%,#0b1220 100%)!important;
+}
+html[data-theme="dark-glass"] body{
+ width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;
+ background:#0b1720!important;
+ background-image:radial-gradient(ellipse at 10% 0%,rgba(83,139,125,.16),transparent 38%),linear-gradient(145deg,#0b1720 0%,#172a34 58%,#0b1720 100%)!important;
+}
+
 .tabs{background:rgba(255,255,255,.94)!important}
 
 :root{--bg:#fff;--panel:rgba(255,255,255,.72);--line:rgba(34,38,31,.10);--muted:#777c72;--text:#20231f;--mint:#8fc91c;--gold:#a5b83a;--red:#d65b55}
@@ -52,7 +75,7 @@ html[data-theme="dark-glass"] body{background-image:radial-gradient(ellipse at 8
  .sync-card .privacy-menu .formgrid label{min-width:0}
 }
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=30">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=31">
 
 </head>
 <body><main class="wrap">
