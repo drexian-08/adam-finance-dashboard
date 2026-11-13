@@ -1153,3 +1153,61 @@ html[data-theme="dark-premium"] .wrap .btn.primary,html[data-theme="dark-glass"]
 html[data-theme="dark-premium"] .wrap [style*="background:#fff"],html[data-theme="dark-glass"] .wrap [style*="background:#fff"]{background:#1b2a3b!important;color:#edf3fb!important}
 html[data-theme="dark-premium"] .wrap .mint,html[data-theme="dark-glass"] .wrap .mint{color:#b9e477!important}
 html[data-theme="dark-premium"] .wrap .red,html[data-theme="dark-glass"] .wrap .red{color:#ff9188!important}
+
+
+/* Targeted fix: legacy ID-level light surfaces must respect dark themes */
+html[data-theme="dark-premium"] #healthScoreCard,
+html[data-theme="dark-premium"] #investmentCard,
+html[data-theme="dark-premium"] #wealthAllocationCard,
+html[data-theme="dark-glass"] #healthScoreCard,
+html[data-theme="dark-glass"] #investmentCard,
+html[data-theme="dark-glass"] #wealthAllocationCard{
+ background:#172638!important;
+ color:#edf3fb!important;
+ border:1px solid rgba(181,204,225,.19)!important;
+ box-shadow:0 14px 34px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+html[data-theme="dark-glass"] #healthScoreCard,
+html[data-theme="dark-glass"] #investmentCard,
+html[data-theme="dark-glass"] #wealthAllocationCard{
+ background:linear-gradient(145deg,rgba(34,57,69,.97),rgba(22,39,54,.98))!important;
+ border-color:rgba(179,218,218,.22)!important;
+}
+html[data-theme="dark-premium"] #wealthAllocationCard h3,
+html[data-theme="dark-premium"] #investmentCard h3,
+html[data-theme="dark-premium"] #healthScoreCard h3,
+html[data-theme="dark-glass"] #wealthAllocationCard h3,
+html[data-theme="dark-glass"] #investmentCard h3,
+html[data-theme="dark-glass"] #healthScoreCard h3{color:#f1f5fa!important}
+html[data-theme="dark-premium"] #wealthAllocationCard .small,
+html[data-theme="dark-premium"] #investmentCard .small,
+html[data-theme="dark-premium"] #healthScoreCard .small,
+html[data-theme="dark-glass"] #wealthAllocationCard .small,
+html[data-theme="dark-glass"] #investmentCard .small,
+html[data-theme="dark-glass"] #healthScoreCard .small{color:#b3c1d1!important}
+html[data-theme="dark-premium"] #wealthAllocationCard .field,
+html[data-theme="dark-premium"] #investmentCard .field,
+html[data-theme="dark-glass"] #wealthAllocationCard .field,
+html[data-theme="dark-glass"] #investmentCard .field{
+ background:#0d1927!important;color:#f1f5fa!important;border-color:#435970!important;
+}
+html[data-theme="dark-premium"] #wealthAllocationCard .field::placeholder,
+html[data-theme="dark-premium"] #investmentCard .field::placeholder,
+html[data-theme="dark-glass"] #wealthAllocationCard .field::placeholder,
+html[data-theme="dark-glass"] #investmentCard .field::placeholder{color:#8fa2b7!important;opacity:1}
+html[data-theme="dark-premium"] #investmentCard .item,
+html[data-theme="dark-premium"] #wealthAllocationCard .allocation-legend-row,
+html[data-theme="dark-glass"] #investmentCard .item,
+html[data-theme="dark-glass"] #wealthAllocationCard .allocation-legend-row{
+ background:rgba(224,238,250,.07)!important;color:#edf3fb!important;border-color:rgba(190,211,230,.17)!important;
+}
+html[data-theme="dark-premium"] #investmentCard .empty,
+html[data-theme="dark-premium"] #wealthAllocationCard .empty,
+html[data-theme="dark-glass"] #investmentCard .empty,
+html[data-theme="dark-glass"] #wealthAllocationCard .empty{color:#aebed0!important}
+html[data-theme="dark-premium"] #investmentHistoryChart,
+html[data-theme="dark-glass"] #investmentHistoryChart{
+ background:linear-gradient(180deg,rgba(153,190,128,.10),rgba(17,29,43,.02))!important;
+}
+html[data-theme="dark-premium"] #investmentCard [style*="border-top"],
+html[data-theme="dark-glass"] #investmentCard [style*="border-top"]{border-color:rgba(190,211,230,.18)!important}
