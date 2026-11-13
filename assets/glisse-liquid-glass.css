@@ -1428,3 +1428,24 @@ html[data-accent] svg [stroke="#9bcf32"],html[data-accent] svg [stroke="#9BCF32"
 html[data-accent] svg [stop-color="#9bcf32"],html[data-accent] svg [stop-color="#9BCF32"],html[data-accent] svg [stop-color="#a9dc45"],html[data-accent] svg [stop-color="#A9DC45"],html[data-accent] svg [stop-color="#b8e75b"],html[data-accent] svg [stop-color="#B8E75B"],html[data-accent] svg [stop-color="#79b51d"],html[data-accent] svg [stop-color="#79B51D"]{stop-color:var(--accent)!important}
 html[data-accent] .tabs button.active,html[data-accent] .tabs button[aria-current="location"],html[data-accent] .tabs button[aria-current="page"]{background:color-mix(in srgb,var(--accent) 20%,transparent)!important;color:var(--accent)!important;border-color:var(--accent)!important}
 html[data-accent] .tabs button.active svg{color:var(--accent)!important;stroke:var(--accent)!important}
+
+
+/* Phase 51.3.5 — section heading markers and active navigation accents */
+html[data-accent] .wrap .section::before,
+html[data-accent] .wrap .section::after,
+html[data-accent] .wrap .section h2::before,
+html[data-accent] .wrap .section h2::after,
+html[data-accent] .wrap h2::before,
+html[data-accent] .wrap h2::after,
+html[data-accent] .wrap h3::before,
+html[data-accent] .wrap h3::after{background-color:var(--accent)!important;border-color:var(--accent)!important;color:var(--accent)!important;box-shadow:none!important}
+html[data-accent] .wrap .section h2,
+html[data-accent] .wrap .section h2 span{--section-accent:var(--accent)}
+html[data-accent] .wrap .section{--section-accent:var(--accent)}
+html[data-accent] .tabs button.active::before,
+html[data-accent] .tabs button.active::after,
+html[data-accent] .tabs button[aria-current="location"]::before,
+html[data-accent] .tabs button[aria-current="location"]::after{background-color:var(--accent)!important;border-color:var(--accent)!important}
+html[data-accent] .wrap .adam-icon--green,
+html[data-accent] .wrap .adam-icon--green svg,
+html[data-accent] .wrap .adam-icon--green svg *{color:var(--accent)!important;fill:var(--accent)!important;stroke:var(--accent)!important}
