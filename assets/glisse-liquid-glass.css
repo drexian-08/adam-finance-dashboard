@@ -1386,3 +1386,14 @@ html[data-theme="dark-glass"] body{
  html[data-theme="dark-premium"] body{background:#0b1220!important}
  html[data-theme="dark-glass"] body{background:#0b1720!important}
 }
+
+
+/* Phase 51.3.2 — selected accent must override legacy theme constants */
+html[data-accent] .wrap .mint,html[data-accent] .wrap .gold,html[data-accent] .wrap .hello span,html[data-accent] .wrap .hero-foot b{color:var(--accent)!important}
+html[data-accent] .wrap .btn.primary,html[data-accent] .wrap .quick-add{background:var(--accent)!important;background-image:none!important;color:#172315!important;border-color:var(--accent)!important}
+html[data-accent] .wrap .tabs button.active,html[data-accent] .wrap .chart-switch button.active{background:color-mix(in srgb,var(--accent) 24%,transparent)!important;color:var(--accent)!important;border-color:var(--accent)!important}
+html[data-accent] .wrap :is(.progress>i,.category-track i,.bar-fill,.progress-fill){background:var(--accent)!important;background-image:none!important}
+html[data-accent] .wrap svg [fill="#9bcf32"],html[data-accent] .wrap svg [fill="#9BCF32"],html[data-accent] .wrap svg [fill="#a9dc45"],html[data-accent] .wrap svg [fill="#A9DC45"],html[data-accent] .wrap svg [fill="#b8e75b"],html[data-accent] .wrap svg [fill="#B8E75B"],html[data-accent] .wrap svg [fill="#79b51d"],html[data-accent] .wrap svg [fill="#79B51D"],html[data-accent] .wrap svg [fill="#b9e477"],html[data-accent] .wrap svg [fill="#B9E477"]{fill:var(--accent)!important}
+html[data-accent] .wrap svg [stroke="#9bcf32"],html[data-accent] .wrap svg [stroke="#9BCF32"],html[data-accent] .wrap svg [stroke="#a9dc45"],html[data-accent] .wrap svg [stroke="#A9DC45"],html[data-accent] .wrap svg [stroke="#b8e75b"],html[data-accent] .wrap svg [stroke="#B8E75B"],html[data-accent] .wrap svg [stroke="#79b51d"],html[data-accent] .wrap svg [stroke="#79B51D"],html[data-accent] .wrap svg [stroke="#b9e477"],html[data-accent] .wrap svg [stroke="#B9E477"]{stroke:var(--accent)!important}
+html[data-accent] .wrap svg [stop-color="#a9dc45"],html[data-accent] .wrap svg [stop-color="#A9DC45"],html[data-accent] .wrap svg [stop-color="#b8e75b"],html[data-accent] .wrap svg [stop-color="#B8E75B"],html[data-accent] .wrap svg [stop-color="#79b51d"],html[data-accent] .wrap svg [stop-color="#79B51D"]{stop-color:var(--accent)!important}
+html[data-accent] .wrap :is(input,select,textarea,.field):focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)!important}
