@@ -745,3 +745,61 @@ body{
   }
   #desktopPrivacySidebar .privacy-menu .field{box-sizing:border-box;width:100%;min-width:0;max-width:100%}
 }
+
+
+/* Phase 47 — hard constrain the privacy toggle to the sidebar content box */
+@media(min-width:1100px){
+  #desktopPrivacySidebar{
+    box-sizing:border-box!important;
+    width:250px!important;
+    min-width:0!important;
+    max-width:250px!important;
+    padding:14px!important;
+    overflow-x:clip!important;
+  }
+  #desktopPrivacySidebar #desktopPrivacySlot{
+    display:block!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+  }
+  #desktopPrivacySidebar #cloudPrivacyMenu{
+    display:block!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+  #desktopPrivacySidebar #cloudPrivacyToggle{
+    display:flex!important;
+    flex-flow:row nowrap!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:6px!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    padding:10px 8px!important;
+    white-space:normal!important;
+    overflow:hidden!important;
+  }
+  #desktopPrivacySidebar #cloudPrivacyToggle span{
+    display:block!important;
+    flex:1 1 0!important;
+    width:0!important;
+    min-width:0!important;
+    max-width:100%!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+    word-break:normal!important;
+    line-height:1.35!important;
+  }
+  #desktopPrivacySidebar #cloudPrivacyToggle svg{
+    display:block!important;
+    flex:0 0 18px!important;
+    width:18px!important;
+    min-width:18px!important;
+  }
+}
