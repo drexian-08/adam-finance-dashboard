@@ -1397,3 +1397,19 @@ html[data-accent] .wrap svg [fill="#9bcf32"],html[data-accent] .wrap svg [fill="
 html[data-accent] .wrap svg [stroke="#9bcf32"],html[data-accent] .wrap svg [stroke="#9BCF32"],html[data-accent] .wrap svg [stroke="#a9dc45"],html[data-accent] .wrap svg [stroke="#A9DC45"],html[data-accent] .wrap svg [stroke="#b8e75b"],html[data-accent] .wrap svg [stroke="#B8E75B"],html[data-accent] .wrap svg [stroke="#79b51d"],html[data-accent] .wrap svg [stroke="#79B51D"],html[data-accent] .wrap svg [stroke="#b9e477"],html[data-accent] .wrap svg [stroke="#B9E477"]{stroke:var(--accent)!important}
 html[data-accent] .wrap svg [stop-color="#a9dc45"],html[data-accent] .wrap svg [stop-color="#A9DC45"],html[data-accent] .wrap svg [stop-color="#b8e75b"],html[data-accent] .wrap svg [stop-color="#B8E75B"],html[data-accent] .wrap svg [stop-color="#79b51d"],html[data-accent] .wrap svg [stop-color="#79B51D"]{stop-color:var(--accent)!important}
 html[data-accent] .wrap :is(input,select,textarea,.field):focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)!important}
+
+
+/* Phase 51.3.3 — apply chosen accent to remaining lime UI surfaces */
+html[data-accent] .wrap :is(h2,h3,h4,.section-heading,.sub-heading,.section-title,.sub-title,.card-title)::before,
+html[data-accent] .wrap :is(h2,h3,h4,.section-heading,.sub-heading,.section-title,.sub-title,.card-title)::after{border-color:var(--accent)!important;background-color:var(--accent)!important;color:var(--accent)!important}
+html[data-accent] .wrap :is(.progress>i,.progress .fill,.progress .bar,.progress-fill,.nwm-progress,.ef-progress,.fire-progress,.category-track i,.category-track .fill,.bar-fill){background:var(--accent)!important;background-image:none!important;border-color:var(--accent)!important}
+html[data-accent] .wrap .calendar-day.selected{background:color-mix(in srgb,var(--accent) 22%,transparent)!important;border-color:var(--accent)!important;color:var(--accent)!important;box-shadow:inset 0 0 0 1px var(--accent)!important}
+html[data-accent] .wrap .calendar-day.today{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 75%,transparent)!important;border-color:var(--accent)!important}
+html[data-accent] .wrap .calendar-day.selected::before,html[data-accent] .wrap .calendar-day.selected::after{background:var(--accent)!important;border-color:var(--accent)!important}
+html[data-accent] .tabs button.active,html[data-accent] .tabs button[aria-current="location"],html[data-accent] .tabs button[aria-current="page"]{background:color-mix(in srgb,var(--accent) 20%,transparent)!important;color:var(--accent)!important;border-color:var(--accent)!important}
+html[data-accent] .tabs button.active svg,html[data-accent] .tabs button.active span{color:var(--accent)!important;stroke:var(--accent)!important}
+html[data-accent] .wrap :is(.sidebar,.side-nav,.sidenav,.side-menu,.desktop-nav,.nav-sidebar) :is(a,button,.active,[aria-current="page"]){--nav-accent:var(--accent);}
+html[data-accent] .wrap :is(.sidebar,.side-nav,.sidenav,.side-menu,.desktop-nav,.nav-sidebar) :is(.active,[aria-current="page"]){color:var(--accent)!important;border-color:var(--accent)!important;background:color-mix(in srgb,var(--accent) 16%,transparent)!important}
+html[data-accent] .wrap :is(.sidebar,.side-nav,.sidenav,.side-menu,.desktop-nav,.nav-sidebar) :is(a,button):hover{color:var(--accent)!important;border-color:color-mix(in srgb,var(--accent) 55%,transparent)!important}
+html[data-accent] .wrap :is(.sidebar,.side-nav,.sidenav,.side-menu,.desktop-nav,.nav-sidebar) :is(svg,[class*="icon"]){color:var(--accent)!important;stroke:currentColor!important}
+html[data-accent] .wrap :is(hr,.section-divider,.subheader-divider){border-color:color-mix(in srgb,var(--accent) 55%,transparent)!important}
