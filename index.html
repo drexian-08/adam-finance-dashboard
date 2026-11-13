@@ -38,25 +38,19 @@ body{background-image:none!important;background-color:#fff!important}
 .sync-card .privacy-menu [hidden]{display:none!important}
 @media(max-width:380px){.sync-card .sync-actions{grid-template-columns:1fr}.sync-card .privacy-menu-actions{grid-template-columns:1fr}}
 
-/* Laptop: place the account privacy menu in its own left sidebar */
-.desktop-privacy-sidebar{display:none}
+/* Desktop: keep account privacy controls neatly inside Cloud Sync */
 @media(min-width:1100px){
- body{padding-left:290px;padding-right:32px}
+ body{padding-left:32px;padding-right:32px}
  .wrap{max-width:1100px}
- .desktop-privacy-sidebar{display:block;position:fixed;left:24px;top:50%;transform:translateY(-50%);width:238px;max-height:calc(100vh - 48px);overflow-y:auto;padding:16px;border:1px solid rgba(90,110,65,.13);border-radius:22px;background:rgba(255,255,255,.88);box-shadow:0 14px 40px rgba(40,55,25,.09);z-index:30}
- .desktop-privacy-title{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#929b85;margin:2px 4px 12px}
- .desktop-privacy-sidebar .privacy-menu{display:block!important;width:100%;margin:0!important}
- .desktop-privacy-sidebar .privacy-menu-toggle{min-height:48px;padding:10px 11px;font-size:13px}
- .desktop-privacy-sidebar .privacy-menu-actions{display:grid;grid-template-columns:1fr;gap:8px}
- .desktop-privacy-sidebar .privacy-menu-actions>.btn{width:100%;justify-content:flex-start;text-align:left}
- .desktop-privacy-sidebar .privacy-menu-options{padding-top:10px}
- .desktop-privacy-sidebar .privacy-menu .formgrid{grid-template-columns:1fr}
- .desktop-privacy-sidebar .privacy-menu .formgrid label{min-width:0}
- .desktop-privacy-sidebar .privacy-menu .sync-actions{display:grid;grid-template-columns:1fr}
- .desktop-privacy-sidebar .privacy-menu .sync-actions>.btn{width:100%}
+ .sync-card .privacy-menu{margin-top:14px!important;padding-top:12px;border-top:1px solid rgba(90,110,65,.12)}
+ .sync-card .privacy-menu-toggle{width:100%;min-height:48px;padding:11px 14px;box-sizing:border-box}
+ .sync-card .privacy-menu-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+ .sync-card .privacy-menu-actions>.btn{width:100%;min-width:0;white-space:normal;line-height:1.3;text-align:center;justify-content:center}
+ .sync-card .privacy-menu .formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .sync-card .privacy-menu .formgrid label{min-width:0}
 }
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=20">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=21">
 
 </head>
 <body><main class="wrap">
@@ -335,13 +329,10 @@ body{background-image:none!important;background-color:#fff!important}
   </button>
 </div>
 <button class="quick-add" id="quickAdd" type="button" aria-label="Tambah transaksi">＋ <span>Rekod</span></button>
-<nav class="tabs" aria-label="Navigasi utama"><button class="active" data-tab="home" aria-current="location">⌂ Utama</button><button data-tab="calendarSection">▦ Kalendar</button><button data-tab="transactionsSection">▤ Rekod</button><button data-tab="budgetViewPage">◷ Bajet</button><button data-tab="insights">⌁ Analisis</button><button data-tab="tools">⚙ Tools</button></nav><aside class="desktop-privacy-sidebar" id="desktopPrivacySidebar" aria-label="Privasi dan keselamatan"><div class="desktop-privacy-title">AKAUN</div><div id="desktopPrivacySlot"></div></aside>
+<nav class="tabs" aria-label="Navigasi utama"><button class="active" data-tab="home" aria-current="location">⌂ Utama</button><button data-tab="calendarSection">▦ Kalendar</button><button data-tab="transactionsSection">▤ Rekod</button><button data-tab="budgetViewPage">◷ Bajet</button><button data-tab="insights">⌁ Analisis</button><button data-tab="tools">⚙ Tools</button></nav>
 <div id="adamToast" class="adam-toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Tambah rekod</h2><form id="modalForm" class="formgrid"></form><div class="dialog-actions"><button class="btn" type="button" onclick="closeModal()">Batal</button><button class="btn primary" type="button" id="saveModal">Simpan</button></div></div></div>
 <script>
-
-/* Move the existing privacy menu into a laptop sidebar; restore it in the mobile Cloud Sync card. */
-(()=>{const menu=document.getElementById('cloudPrivacyMenu'),home=document.getElementById('cloudPrivacyHome'),slot=document.getElementById('desktopPrivacySlot'),sidebar=document.getElementById('desktopPrivacySidebar');if(!menu||!home||!slot||!sidebar)return;const mq=window.matchMedia('(min-width:1100px)');const place=()=>{if(mq.matches){slot.appendChild(menu);}else{home.parentNode.insertBefore(menu,home.nextSibling);}};place();if(mq.addEventListener)mq.addEventListener('change',place);else mq.addListener(place);const observer=new MutationObserver(()=>{sidebar.hidden=menu.hidden;});observer.observe(menu,{attributes:true,attributeFilter:['hidden']});sidebar.hidden=menu.hidden;})();
 
 /* ADAM SVG icon system: replaces decorative emoji in initial and dynamically rendered UI. */
 const ADAM_ICON_MAP={
