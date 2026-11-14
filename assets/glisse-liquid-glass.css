@@ -1721,3 +1721,57 @@ html[data-dashboard-density="spacious"] .grid{gap:18px;margin-top:19px}
 html[data-dashboard-density="spacious"] .grid>.card{padding:22px;border-radius:24px}
 html[data-dashboard-density="spacious"] .grid>.card h3{margin-bottom:16px}
 html.adam-motion-reduced *,html.adam-motion-reduced *::before,html.adam-motion-reduced *::after{scroll-behavior:auto!important;animation:none!important;transition:none!important;scroll-snap-type:none!important}
+
+
+/* Phase 51.6 refinement — make dashboard density changes clearly visible.
+   Scope is limited to the dashboard's top-level cards and widget grids. */
+html[data-dashboard-density="compact"] .wrap>.grid{
+  gap:8px!important;
+  margin-top:10px!important;
+}
+html[data-dashboard-density="compact"] .wrap>.grid>.card,
+html[data-dashboard-density="compact"] .wrap>.card{
+  padding:12px!important;
+  border-radius:16px!important;
+}
+html[data-dashboard-density="compact"] .wrap>.grid>.card h3,
+html[data-dashboard-density="compact"] .wrap>.card h3{
+  margin-bottom:7px!important;
+}
+
+html[data-dashboard-density="comfortable"] .wrap>.grid{
+  gap:16px!important;
+}
+html[data-dashboard-density="comfortable"] .wrap>.grid>.card,
+html[data-dashboard-density="comfortable"] .wrap>.card{
+  padding:19px!important;
+  border-radius:21px!important;
+}
+html[data-dashboard-density="comfortable"] .wrap>.grid>.card h3,
+html[data-dashboard-density="comfortable"] .wrap>.card h3{
+  margin-bottom:11px!important;
+}
+
+html[data-dashboard-density="spacious"] .wrap>.grid{
+  gap:25px!important;
+  margin-top:22px!important;
+}
+html[data-dashboard-density="spacious"] .wrap>.grid>.card,
+html[data-dashboard-density="spacious"] .wrap>.card{
+  padding:27px!important;
+  border-radius:27px!important;
+}
+html[data-dashboard-density="spacious"] .wrap>.grid>.card h3,
+html[data-dashboard-density="spacious"] .wrap>.card h3{
+  margin-bottom:17px!important;
+}
+
+.privacy-section .density-options button{
+  min-height:44px;
+  font-weight:600;
+  transition:background-color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.privacy-section .density-options button.active{
+  box-shadow:inset 0 0 0 1px var(--accent),0 3px 10px color-mix(in srgb,var(--accent) 18%,transparent);
+  transform:translateY(-1px);
+}
