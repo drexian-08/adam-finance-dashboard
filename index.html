@@ -1444,7 +1444,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
  date.addEventListener('change',()=>{selected.dateLocale=date.value;save();render();});
  number.addEventListener('change',()=>{selected.numberFormat=number.value;save();render();});
  refresh?.addEventListener('click',fetchRate);
- render();
  if(selected.currency==='MYR')fetchRate();else fetchRate();
 })();
 </script>
