@@ -1,5 +1,5 @@
-const CACHE='adam-finance-v73';
-const FILES=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass.css?v=17','./assets/glisse-liquid-glass.css?v=40'];
+const CACHE='adam-finance-v74';
+const FILES=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass.css?v=17','./assets/glisse-liquid-glass.css?v=41'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('adam-finance-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
