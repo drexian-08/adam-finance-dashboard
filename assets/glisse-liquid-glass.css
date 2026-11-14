@@ -1662,3 +1662,17 @@ html[data-accent] .adam-quick-jump .aqj-trigger{
   color:var(--accent-contrast,#172315)!important;background:var(--accent)!important;
   border-color:var(--accent)!important;
 }
+
+
+/* Phase 51.4 — Personalisation Centre dashboard layout */
+.personalisation-layout .layout-widget-list{display:grid;gap:9px;margin-top:14px}
+.personalisation-layout .layout-widget-row{display:flex;align-items:center;gap:11px;padding:11px 13px;border:1px solid var(--line,rgba(128,140,150,.2));border-radius:13px;background:var(--surface,rgba(128,140,150,.07));color:var(--text,inherit);transition:border-color .18s,background .18s,transform .18s}
+.personalisation-layout .layout-widget-row.is-dragging{opacity:.45}
+.personalisation-layout .layout-widget-row.is-drop-target{border-color:var(--accent);background:var(--accent-soft)}
+.personalisation-layout .layout-drag{font-size:21px;line-height:1;cursor:grab;color:var(--muted,inherit);user-select:none}
+.personalisation-layout .layout-widget-name{flex:1;min-width:0;font-weight:600}
+.personalisation-layout .layout-widget-toggle{display:flex;align-items:center;gap:7px;white-space:nowrap;cursor:pointer}
+.personalisation-layout .layout-widget-toggle input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.personalisation-layout .layout-widget-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px}
+[data-layout-widget][hidden]{display:none!important}
+@media(max-width:560px){.personalisation-layout .layout-widget-row{padding:10px}.personalisation-layout .layout-widget-actions{align-items:flex-start;flex-direction:column}}
