@@ -1536,3 +1536,52 @@ html[data-accent] .wrap .sgp-priority.low{
   background:color-mix(in srgb,var(--accent) 13%,transparent)!important;
   color:var(--accent)!important;
 }
+
+
+/* Phase 51.3 — Quick Jump menu theme + accent integration */
+html[data-accent] .adam-quick-jump .aqj-menu{
+  background:color-mix(in srgb,var(--panel,#fff) 91%,var(--accent) 9%)!important;
+  color:var(--text,#26351d)!important;
+  border-color:color-mix(in srgb,var(--accent) 34%,var(--line,transparent))!important;
+  box-shadow:0 14px 38px rgba(0,0,0,.18),inset 0 1px 0 color-mix(in srgb,var(--text,#fff) 12%,transparent)!important;
+}
+html[data-accent] .adam-quick-jump .aqj-menu-head{color:var(--text,#26351d)!important}
+html[data-accent] .adam-quick-jump .aqj-menu-head button{
+  background:color-mix(in srgb,var(--accent) 18%,var(--panel,#fff))!important;
+  color:var(--accent)!important;border:1px solid color-mix(in srgb,var(--accent) 32%,transparent)!important;
+}
+html[data-accent] .adam-quick-jump .aqj-grid button{
+  background:color-mix(in srgb,var(--panel,#fff) 84%,var(--accent) 16%)!important;
+  color:var(--text,#26351d)!important;
+  border-color:color-mix(in srgb,var(--accent) 24%,var(--line,transparent))!important;
+}
+html[data-accent] .adam-quick-jump .aqj-grid button:active,
+html[data-accent] .adam-quick-jump .aqj-grid button:focus-visible{
+  background:color-mix(in srgb,var(--accent) 24%,var(--panel,#fff))!important;
+  color:var(--accent)!important;outline-color:var(--accent)!important;
+}
+html[data-accent] .adam-quick-jump .aqj-grid svg{stroke:var(--accent)!important}
+html[data-theme="dark-premium"][data-accent] .adam-quick-jump .aqj-menu,
+html[data-theme="dark-glass"][data-accent] .adam-quick-jump .aqj-menu{
+  background:color-mix(in srgb,#152235 88%,var(--accent) 12%)!important;
+  color:#edf3fb!important;border-color:color-mix(in srgb,var(--accent) 42%,#40536a)!important;
+  box-shadow:0 16px 42px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+html[data-theme="dark-premium"][data-accent] .adam-quick-jump .aqj-menu-head,
+html[data-theme="dark-glass"][data-accent] .adam-quick-jump .aqj-menu-head{color:#edf3fb!important}
+html[data-theme="dark-premium"][data-accent] .adam-quick-jump .aqj-menu-head button,
+html[data-theme="dark-glass"][data-accent] .adam-quick-jump .aqj-menu-head button{
+  background:color-mix(in srgb,var(--accent) 20%,#152235)!important;color:var(--accent)!important;
+  border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)!important;
+}
+html[data-theme="dark-premium"][data-accent] .adam-quick-jump .aqj-grid button,
+html[data-theme="dark-glass"][data-accent] .adam-quick-jump .aqj-grid button{
+  background:color-mix(in srgb,#202f42 86%,var(--accent) 14%)!important;
+  color:#edf3fb!important;border-color:color-mix(in srgb,var(--accent) 25%,#40536a)!important;
+}
+html[data-theme="dark-premium"][data-accent] .adam-quick-jump .aqj-grid button:active,
+html[data-theme="dark-glass"][data-accent] .adam-quick-jump .aqj-grid button:active{
+  background:color-mix(in srgb,var(--accent) 25%,#152235)!important;color:var(--accent)!important;
+}
+html[data-theme="dark-premium"][data-accent] .adam-quick-jump .aqj-grid svg,
+html[data-theme="dark-glass"][data-accent] .adam-quick-jump .aqj-grid svg{stroke:var(--accent)!important}
