@@ -1676,3 +1676,32 @@ html[data-accent] .adam-quick-jump .aqj-trigger{
 .personalisation-layout .layout-widget-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px}
 [data-layout-widget][hidden]{display:none!important}
 @media(max-width:560px){.personalisation-layout .layout-widget-row{padding:10px}.personalisation-layout .layout-widget-actions{align-items:flex-start;flex-direction:column}}
+
+/* Phase 51.5 — financial value privacy */
+.privacy-section .privacy-master-toggle{display:flex;align-items:center;gap:12px;padding:13px 14px;margin-top:14px;border:1px solid var(--line,rgba(128,140,150,.22));border-radius:14px;background:var(--surface,rgba(128,140,150,.07));cursor:pointer}
+.privacy-section .privacy-master-toggle input,.privacy-widget-list input{width:18px;height:18px;accent-color:var(--accent);flex:0 0 auto}
+.privacy-section .privacy-master-toggle span{display:flex;flex-direction:column;gap:3px}
+.privacy-widget-list{display:grid;gap:9px;margin-top:16px}
+.privacy-widget-list h4{margin:0 0 2px;font-size:13px;color:var(--muted,inherit)}
+.privacy-widget-list label{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line,rgba(128,140,150,.18));border-radius:11px;cursor:pointer}
+.adam-hide-financial-values :is(.metric,.balance,.donut-value,[data-financial-value]),
+[data-layout-widget].adam-hide-widget-value .metric{
+ color:transparent!important;
+ -webkit-text-fill-color:transparent!important;
+ text-shadow:none!important;
+ position:relative!important;
+}
+.adam-hide-financial-values :is(.metric,.balance,.donut-value,[data-financial-value])::after,
+[data-layout-widget].adam-hide-widget-value .metric::after{
+ content:"••••••";
+ position:absolute;
+ inset:0;
+ display:flex;
+ align-items:center;
+ color:var(--text,var(--ink,currentColor))!important;
+ -webkit-text-fill-color:var(--text,var(--ink,currentColor))!important;
+ text-shadow:none!important;
+ pointer-events:none;
+ letter-spacing:.12em;
+ font-size:.78em;
+}
