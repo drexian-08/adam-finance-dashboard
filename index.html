@@ -865,7 +865,7 @@ if(historyList)historyList.innerHTML=points.slice().reverse().map(p=>'<div class
 }
 function renderWealthAllocation(){
 const cash=Math.max(0,Number(data.cash)||0),gold=Math.max(0,Number(data.goldGrams)||0)*Math.max(0,Number(data.goldPrice)||0),investments=Array.isArray(data.investments)?data.investments.reduce((a,x)=>a+Math.max(0,Number(x.current)||0),0):0,other=Math.max(0,Number(data.otherAssets)||0),total=cash+gold+investments+other;
-const rows=[{name:'Tunai & simpanan',value:cash,color:'var(--accent)'},{name:'Emas',value:gold,color:'#e4bd55'},{name:'Pelaburan',value:investments,color:'#83a9ee'},{name:data.otherAssetsName||'Aset lain',value:other,color:'#b994df'}];
+const rows=[{name:'Tunai & simpanan',value:cash,color:(getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#91c52e')},{name:'Emas',value:gold,color:'#e4bd55'},{name:'Pelaburan',value:investments,color:'#83a9ee'},{name:data.otherAssetsName||'Aset lain',value:other,color:'#b994df'}];
 const totalEl=$('allocationTotal'),visual=$('allocationVisual'),legend=$('allocationLegend');if(!totalEl||!visual||!legend)return;
 totalEl.textContent=money(total);
 if(total<=0){visual.innerHTML='<div class="allocation-empty">—<small>Tiada aset direkodkan</small></div>';legend.innerHTML='<div class="empty">Masukkan nilai aset untuk melihat pecahan kekayaan.</div>';return;}
