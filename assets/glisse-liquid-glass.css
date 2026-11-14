@@ -1482,3 +1482,57 @@ html[data-accent] .wrap :is(
 html[data-accent] .wrap :is(.progress>i,.category-track i,.bar-fill,.progress-fill){
   background:var(--accent)!important;background-image:none!important;
 }
+
+
+/* Phase 51.3 — targeted accent audit: Quick Jump + Savings Goal Priority Planner */
+html[data-accent] .adam-quick-jump .aqj-trigger{
+  background:var(--accent)!important;background-image:none!important;
+  color:var(--accent-contrast,#172315)!important;
+  border-color:color-mix(in srgb,var(--accent) 65%,white)!important;
+  box-shadow:0 7px 22px color-mix(in srgb,var(--accent) 25%,transparent),inset 0 1px 0 rgba(255,255,255,.32)!important;
+}
+html[data-accent] .adam-quick-jump .aqj-menu{
+  border-color:color-mix(in srgb,var(--accent) 35%,var(--line,transparent))!important;
+}
+html[data-accent] .adam-quick-jump .aqj-menu-head,
+html[data-accent] .adam-quick-jump .aqj-grid button{
+  color:var(--text,var(--ink,#26351d))!important;
+}
+html[data-accent] .adam-quick-jump .aqj-menu-head button,
+html[data-accent] .adam-quick-jump .aqj-grid button:active{
+  background:color-mix(in srgb,var(--accent) 18%,transparent)!important;
+  color:var(--accent)!important;
+}
+html[data-accent] .adam-quick-jump .aqj-grid svg{
+  stroke:var(--accent)!important;
+}
+html[data-accent] .wrap #savingsGoalPriorityPlanner h2,
+html[data-accent] .wrap #savingsGoalPriorityPlanner .sgp-section-icon,
+html[data-accent] .wrap .sgp-summary strong,
+html[data-accent] .wrap .sgp-total-line strong,
+html[data-accent] .wrap .sgp-allocation{
+  color:var(--accent)!important;
+}
+html[data-accent] .wrap .sgp-section-icon,
+html[data-accent] .wrap .sgp-total-line{
+  background:color-mix(in srgb,var(--accent) 13%,var(--panel,white))!important;
+}
+html[data-accent] .wrap .sgp-card,
+html[data-accent] .wrap .sgp-summary>div,
+html[data-accent] .wrap .sgp-goal{
+  border-color:color-mix(in srgb,var(--accent) 20%,var(--line,transparent))!important;
+}
+html[data-accent] .wrap .sgp-summary>div,
+html[data-accent] .wrap .sgp-goal{
+  background:color-mix(in srgb,var(--panel,white) 92%,var(--accent) 8%)!important;
+}
+html[data-accent] .wrap .sgp-budget-row .field{
+  border-color:color-mix(in srgb,var(--accent) 35%,var(--line,transparent))!important;
+}
+html[data-accent] .wrap .sgp-track i{
+  background:var(--accent)!important;background-image:none!important;
+}
+html[data-accent] .wrap .sgp-priority.low{
+  background:color-mix(in srgb,var(--accent) 13%,transparent)!important;
+  color:var(--accent)!important;
+}
