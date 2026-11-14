@@ -1449,3 +1449,36 @@ html[data-accent] .tabs button[aria-current="location"]::after{background-color:
 html[data-accent] .wrap .adam-icon--green,
 html[data-accent] .wrap .adam-icon--green svg,
 html[data-accent] .wrap .adam-icon--green svg *{color:var(--accent)!important;fill:var(--accent)!important;stroke:var(--accent)!important}
+
+
+/* Phase 51.3 audit — remove remaining theme-level lime overrides */
+html[data-accent] .wrap .btn.primary,
+html[data-accent] .wrap .quick-add{
+  background:var(--accent)!important;background-image:none!important;
+  border-color:var(--accent)!important;color:var(--accent-contrast,#172315)!important;
+}
+html[data-accent] .tabs button.active,
+html[data-accent] .tabs button[aria-current="location"],
+html[data-accent] .tabs button[aria-current="page"]{
+  background:color-mix(in srgb,var(--accent) 20%,transparent)!important;
+  color:var(--accent)!important;border-color:color-mix(in srgb,var(--accent) 65%,transparent)!important;
+}
+html[data-accent] .wrap .calendar-day.selected{
+  background:color-mix(in srgb,var(--accent) 20%,transparent)!important;
+  border-color:var(--accent)!important;color:var(--accent)!important;
+}
+html[data-accent] .wrap .calendar-day.today{
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 75%,transparent)!important;
+  border-color:var(--accent)!important;
+}
+html[data-accent] .wrap .chart-switch button.active{
+  background:color-mix(in srgb,var(--accent) 22%,transparent)!important;
+  color:var(--accent)!important;border-color:var(--accent)!important;
+}
+html[data-accent] .wrap :is(
+ .fire-metrics strong,.ef-metrics strong,.nwm-milestone strong,.fst-metrics strong,
+ .sgp-metrics strong,.debt-plan-metrics strong,.cashflow-forecast-grid strong
+){color:var(--accent)!important}
+html[data-accent] .wrap :is(.progress>i,.category-track i,.bar-fill,.progress-fill){
+  background:var(--accent)!important;background-image:none!important;
+}
