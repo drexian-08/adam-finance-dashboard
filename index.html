@@ -120,11 +120,11 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 <section class="section"><h2>Perkembangan kekayaan</h2><span class="small">Rekod harian</span></section>
 <article class="card chart-card reveal"><div class="row"><div><h3>📊 Nilai kekayaan bersih</h3><div class="metric mint" id="chartCurrent">RM 0.00</div><div class="small" id="chartChange">Sejarah sedang dikumpulkan</div></div><div class="chart-switch"><button class="active" data-range="7">7H</button><button data-range="30">30H</button><button data-range="90">90H</button></div></div><div class="chart-wrap" id="wealthChart"><div class="chart-empty">Graf akan terbina apabila rekod kewangan dikumpulkan.</div></div><div class="chart-meta"><span id="chartStart">Belum ada sejarah</span><span id="chartEnd">Hari ini</span></div><p class="hint">Sejarah bermula apabila ciri ini diaktifkan. Data lama yang belum direkod tidak dapat dipulihkan.</p></article>
 <div class="grid">
-<article class="card"><h3>💰 Jumlah tabungan</h3><div class="metric mint" id="savings">RM 0.00</div><div class="small">Tunai + akaun simpanan</div></article>
-<article class="card"><h3>📈 Pendapatan bulan ini</h3><div class="metric" id="income">RM 0.00</div><div class="small">Rekod transaksi masuk</div></article>
-<article class="card"><h3>🧾 Perbelanjaan bulan ini</h3><div class="metric red" id="expense">RM 0.00</div><div class="small">Rekod transaksi keluar</div></article>
-<article class="card"><h3>🎯 Bajet bulanan</h3><div class="metric" id="budgetView">RM 200.00</div><div class="small" id="budgetHint">Tetapkan had perbelanjaan</div></article>
-<article class="card"><h3>🗓️ Had belanja harian</h3><div class="metric mint" id="dailyAllowance">RM 0.00</div><div class="small" id="dailyAllowanceHint">Baki bajet ÷ hari yang tinggal</div></article>
+<article class="card" data-layout-widget="savings"><h3>💰 Jumlah tabungan</h3><div class="metric mint" id="savings">RM 0.00</div><div class="small">Tunai + akaun simpanan</div></article>
+<article class="card" data-layout-widget="income"><h3>📈 Pendapatan bulan ini</h3><div class="metric" id="income">RM 0.00</div><div class="small">Rekod transaksi masuk</div></article>
+<article class="card" data-layout-widget="expense"><h3>🧾 Perbelanjaan bulan ini</h3><div class="metric red" id="expense">RM 0.00</div><div class="small">Rekod transaksi keluar</div></article>
+<article class="card" data-layout-widget="budget"><h3>🎯 Bajet bulanan</h3><div class="metric" id="budgetView">RM 200.00</div><div class="small" id="budgetHint">Tetapkan had perbelanjaan</div></article>
+<article class="card" data-layout-widget="allowance"><h3>🗓️ Had belanja harian</h3><div class="metric mint" id="dailyAllowance">RM 0.00</div><div class="small" id="dailyAllowanceHint">Baki bajet ÷ hari yang tinggal</div></article>
 </div>
 <section class="section" id="smartIntelligence"><h2>🧠 Smart Financial Intelligence</h2><span class="small">Analisis automatik</span></section>
 <article class="card" id="smartIntelligenceCard">
@@ -403,7 +403,13 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
     </div>
     <div class="accent-custom-row"><label for="accentCustom">Warna tersuai</label><input id="accentCustom" type="color" value="#B9E477" aria-label="Pilih warna aksen tersuai"><span class="small" id="accentCurrent" aria-live="polite">#B9E477 · Lime</span></div>
    </article>
-   <article class="personalisation-section"><h3>Dashboard Layout</h3><p class="small">Susun, paparkan atau sembunyikan widget.</p><span class="small">Akan dibangunkan dalam Phase 51.4</span></article>
+   <article class="personalisation-section personalisation-layout"><h3>Dashboard Layout</h3><p class="small">Susun widget utama dan pilih kad yang mahu dipaparkan. Seret untuk ubah susunan.</p><div class="layout-widget-list" id="layoutWidgetList" aria-label="Susunan widget dashboard">
+    <div class="layout-widget-row" draggable="true" data-layout-key="savings"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Jumlah tabungan</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="savings"><span class="small">Papar</span></label></div>
+    <div class="layout-widget-row" draggable="true" data-layout-key="income"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Pendapatan bulan ini</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="income"><span class="small">Papar</span></label></div>
+    <div class="layout-widget-row" draggable="true" data-layout-key="expense"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Perbelanjaan bulan ini</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="expense"><span class="small">Papar</span></label></div>
+    <div class="layout-widget-row" draggable="true" data-layout-key="budget"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Bajet bulanan</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="budget"><span class="small">Papar</span></label></div>
+    <div class="layout-widget-row" draggable="true" data-layout-key="allowance"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Had belanja harian</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="allowance"><span class="small">Papar</span></label></div>
+   </div><div class="layout-widget-actions"><button class="btn" id="layoutReset" type="button">Pulihkan susunan asal</button><span class="small" id="layoutSaveStatus" aria-live="polite">Disimpan pada peranti ini</span></div></article>
    <article class="personalisation-section"><h3>Display & Privacy</h3><p class="small">Animasi, kepadatan kad dan paparan nilai kewangan.</p><span class="small">Akan dibangunkan dalam Phase 51.5–51.6</span></article>
    <article class="personalisation-section"><h3>Personal Preferences</h3><p class="small">Mata wang, format tarikh dan nombor.</p><span class="small">Akan dibangunkan dalam Phase 51.7</span></article>
   </div>
@@ -1225,4 +1231,31 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
  apply(initial);
 })();
 </script>
+
+<script>
+(()=> {
+ const key='adam-personalisation-layout-v1';
+ const defaults=['savings','income','expense','budget','allowance'];
+ const list=document.getElementById('layoutWidgetList');
+ if(!list)return;
+ const labels={savings:'Jumlah tabungan',income:'Pendapatan bulan ini',expense:'Perbelanjaan bulan ini',budget:'Bajet bulanan',allowance:'Had belanja harian'};
+ const grid=document.querySelector('[data-layout-widget]')?.parentElement;
+ if(!grid)return;
+ let state={order:defaults.slice(),hidden:[]};
+ try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(saved&&Array.isArray(saved.order)){state.order=defaults.filter(k=>saved.order.includes(k)).concat(defaults.filter(k=>!saved.order.includes(k)));state.hidden=Array.isArray(saved.hidden)?saved.hidden.filter(k=>defaults.includes(k)):[];}}catch(e){}
+ const cards=()=>Object.fromEntries(defaults.map(k=>[k,grid.querySelector('[data-layout-widget="'+k+'"]')]));
+ const save=()=>{try{localStorage.setItem(key,JSON.stringify(state));const status=document.getElementById('layoutSaveStatus');if(status)status.textContent='Disimpan pada peranti ini';}catch(e){const status=document.getElementById('layoutSaveStatus');if(status)status.textContent='Tidak dapat menyimpan tetapan';}};
+ const apply=()=>{const map=cards();state.order.forEach(k=>{const card=map[k];if(card)grid.appendChild(card);});defaults.forEach(k=>{const card=map[k];if(card)card.hidden=state.hidden.includes(k);});[...list.querySelectorAll('[data-layout-key]')].forEach(row=>{const k=row.dataset.layoutKey;const toggle=row.querySelector('[data-layout-toggle]');if(toggle)toggle.checked=!state.hidden.includes(k);});};
+ const renderList=()=>{list.innerHTML='';state.order.forEach(k=>{const row=document.createElement('div');row.className='layout-widget-row';row.draggable=true;row.dataset.layoutKey=k;const grip=document.createElement('span');grip.className='layout-drag';grip.textContent='⠿';grip.setAttribute('aria-hidden','true');const name=document.createElement('span');name.className='layout-widget-name';name.textContent=labels[k];const label=document.createElement('label');label.className='layout-widget-toggle';const input=document.createElement('input');input.type='checkbox';input.checked=!state.hidden.includes(k);input.dataset.layoutToggle=k;const caption=document.createElement('span');caption.className='small';caption.textContent='Papar';label.append(input,caption);row.append(grip,name,label);list.appendChild(row);});};
+ let dragging=null;
+ list.addEventListener('dragstart',e=>{const row=e.target.closest('[data-layout-key]');if(!row)return;dragging=row.dataset.layoutKey;row.classList.add('is-dragging');e.dataTransfer.effectAllowed='move';try{e.dataTransfer.setData('text/plain',dragging);}catch(err){}});
+ list.addEventListener('dragend',()=>{list.querySelectorAll('.is-dragging,.is-drop-target').forEach(el=>el.classList.remove('is-dragging','is-drop-target'));dragging=null;});
+ list.addEventListener('dragover',e=>{const row=e.target.closest('[data-layout-key]');if(!row||!dragging||row.dataset.layoutKey===dragging)return;e.preventDefault();list.querySelectorAll('.is-drop-target').forEach(el=>el.classList.remove('is-drop-target'));row.classList.add('is-drop-target');});
+ list.addEventListener('drop',e=>{const row=e.target.closest('[data-layout-key]');if(!row||!dragging)return;e.preventDefault();const from=state.order.indexOf(dragging),to=state.order.indexOf(row.dataset.layoutKey);if(from<0||to<0)return;state.order.splice(from,1);state.order.splice(to,0,dragging);renderList();apply();save();});
+ list.addEventListener('change',e=>{const input=e.target.closest('[data-layout-toggle]');if(!input)return;const k=input.dataset.layoutToggle;state.hidden=input.checked?state.hidden.filter(x=>x!==k):[...new Set([...state.hidden,k])];apply();save();});
+ document.getElementById('layoutReset')?.addEventListener('click',()=>{state={order:defaults.slice(),hidden:[]};renderList();apply();save();const status=document.getElementById('layoutSaveStatus');if(status)status.textContent='Susunan asal dipulihkan';});
+ renderList();apply();
+})();
+</script>
+
 </body></html>
