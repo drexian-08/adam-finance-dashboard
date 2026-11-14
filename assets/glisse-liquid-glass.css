@@ -1624,10 +1624,10 @@ html[data-accent] .wrap :is(.btn.primary,.quick-add,.aqj-trigger){
   background:var(--accent)!important;background-image:none!important;
   border-color:var(--accent)!important;
 }
-html[data-accent] .wrap :is(.mint,.gold,.adam-icon--green,.nwm-milestone.is-reached .nwm-milestone-status,.nwm-milestone.is-reached .nwm-milestone-main strong,.nwm-current strong,.nwm-gap strong,.nwm-progress-head strong,.fire-intro strong,.fire-progress-head strong,.ef-target-banner strong,.ef-progress-head strong,.fst-current strong,.fst-metrics strong.fst-positive,.sgp-summary strong,.sgp-allocation,.sgp-total-line strong){
+html[data-accent] .wrap :is(.mint,.gold,.nwm-milestone.is-reached .nwm-milestone-status,.nwm-milestone.is-reached .nwm-milestone-main strong,.nwm-current strong,.nwm-gap strong,.nwm-progress-head strong,.fire-intro strong,.fire-progress-head strong,.ef-target-banner strong,.ef-progress-head strong,.fst-current strong,.fst-metrics strong.fst-positive,.sgp-summary strong,.sgp-allocation,.sgp-total-line strong){
   color:var(--accent)!important;
 }
-html[data-accent] .wrap :is(.progress>i,.progress .fill,.progress .bar,.progress-fill,.bar-fill,.category-track i,.action-plan-track i,.fire-progress i,.ef-progress i,.nwm-progress i,.nwm-mini-track i,.sgp-track i,.adam-icon--green){
+html[data-accent] .wrap :is(.progress>i,.progress .fill,.progress .bar,.progress-fill,.bar-fill,.category-track i,.action-plan-track i,.fire-progress i,.ef-progress i,.nwm-progress i,.nwm-mini-track i,.sgp-track i){
   background-color:var(--accent)!important;background-image:none!important;
 }
 html[data-accent] .wrap .adam-icon--green{
@@ -1647,4 +1647,23 @@ html[data-accent] .wrap :is(.section h2:before,.section h2:after){background:var
 html[data-accent] .adam-quick-jump .aqj-trigger{
   color:var(--accent-contrast,#172315)!important;background:var(--accent)!important;
   border-color:var(--accent)!important;
+}
+
+
+/* Logo/icon recovery: keep semantic SVG marks legible; accent applies to their badge, not stroke */
+html[data-accent] .wrap .adam-icon--green{
+  color:color-mix(in srgb,var(--accent) 52%,#24301f)!important;
+  background:color-mix(in srgb,var(--accent) 13%,transparent)!important;
+  background-color:color-mix(in srgb,var(--accent) 13%,transparent)!important;
+}
+html[data-accent] .wrap .adam-icon--green svg{
+  stroke:currentColor!important;
+  fill:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+html[data-accent] .wrap img,
+html[data-accent] .wrap .logo,
+html[data-accent] .wrap [class*="logo"] img{
+  opacity:1!important;visibility:visible!important;filter:none!important;
 }
