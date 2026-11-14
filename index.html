@@ -419,7 +419,15 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
      <label><input type="checkbox" data-privacy-widget="budget"><span>Bajet bulanan</span></label>
      <label><input type="checkbox" data-privacy-widget="allowance"><span>Had belanja harian</span></label>
     </div><p class="small" id="privacySaveStatus" aria-live="polite">Tetapan privasi disimpan berasingan daripada data kewangan.</p>
-   </article>
+   
+    <div class="display-experience-controls">
+     <h4>Pengalaman paparan</h4>
+     <label class="privacy-master-toggle"><input type="checkbox" id="displayMotionToggle"><span><strong>Kurangkan animasi</strong><small class="small">Matikan gerakan dan transisi hiasan untuk paparan lebih tenang</small></span></label>
+     <div class="density-control"><span><strong>Kepadatan kad</strong><small class="small">Pilih ruang antara kandungan dashboard</small></span><div class="density-options" role="group" aria-label="Kepadatan kad">
+      <button type="button" data-display-density="compact">Padat</button><button type="button" data-display-density="comfortable">Selesa</button><button type="button" data-display-density="spacious">Lapang</button>
+     </div></div>
+    </div>
+</article>
    <article class="personalisation-section"><h3>Personal Preferences</h3><p class="small">Mata wang, format tarikh dan nombor.</p><span class="small">Akan dibangunkan dalam Phase 51.7</span></article>
   </div>
   <footer class="personalisation-foot"><span class="small">Tetapan disimpan berasingan daripada data kewangan.</span><button class="btn" id="personalisationDone" type="button">Selesai</button></footer>
@@ -1356,6 +1364,30 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
  };
  master.addEventListener('change',()=>{state.all=master.checked;apply();save();});
  checks.forEach(input=>input.addEventListener('change',()=>{const k=input.dataset.privacyWidget;state.widgets=input.checked?[...new Set([...state.widgets,k])]:state.widgets.filter(x=>x!==k);apply();save();}));
+ apply();
+})();
+</script>
+
+<script>
+(()=> {
+ const KEY='adam-personalisation-display-v1';
+ const motion=document.getElementById('displayMotionToggle');
+ const densityButtons=[...document.querySelectorAll('[data-display-density]')];
+ if(!motion||!densityButtons.length)return;
+ let state={reduceMotion:false,density:'comfortable'};
+ try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved){state.reduceMotion=saved.reduceMotion===true;if(['compact','comfortable','spacious'].includes(saved.density))state.density=saved.density;}}catch(e){}
+ const apply=()=>{
+  document.documentElement.classList.toggle('adam-motion-reduced',state.reduceMotion);
+  document.documentElement.dataset.dashboardDensity=state.density;
+  motion.checked=state.reduceMotion;
+  densityButtons.forEach(b=>{const active=b.dataset.displayDensity===state.density;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+ };
+ const save=()=>{
+  try{localStorage.setItem(KEY,JSON.stringify({...state,updatedAt:Date.now()}));const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(!saved||saved.reduceMotion!==state.reduceMotion||saved.density!==state.density)throw new Error('verify');}
+  catch(e){const status=document.getElementById('privacySaveStatus');if(status)status.textContent='Tetapan paparan gagal disimpan — storan pelayar disekat';}
+ };
+ motion.addEventListener('change',()=>{state.reduceMotion=motion.checked;apply();save();});
+ densityButtons.forEach(b=>b.addEventListener('click',()=>{state.density=b.dataset.displayDensity;apply();save();}));
  apply();
 })();
 </script>
