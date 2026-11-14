@@ -1446,9 +1446,23 @@ html[data-accent] .tabs button.active::before,
 html[data-accent] .tabs button.active::after,
 html[data-accent] .tabs button[aria-current="location"]::before,
 html[data-accent] .tabs button[aria-current="location"]::after{background-color:var(--accent)!important;border-color:var(--accent)!important}
-html[data-accent] .wrap .adam-icon--green,
-html[data-accent] .wrap .adam-icon--green svg,
-html[data-accent] .wrap .adam-icon--green svg *{color:var(--accent)!important;fill:var(--accent)!important;stroke:var(--accent)!important}
+/* Keep icon silhouettes as outlined strokes; never flood-fill the SVG paths. */
+html[data-accent] .wrap .adam-icon--green{color:var(--accent)!important}
+html[data-accent] .wrap .adam-icon svg{
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:2.15!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  vector-effect:non-scaling-stroke;
+}
+html[data-accent] .wrap .adam-icon svg *{
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:2.15!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
 
 
 /* Phase 51.3 audit — remove remaining theme-level lime overrides */
