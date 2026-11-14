@@ -411,6 +411,14 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
     <div class="layout-widget-row" draggable="true" data-layout-key="allowance"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Had belanja harian</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="allowance"><span class="small">Papar</span></label></div>
    </div><div class="layout-widget-actions"><button class="btn" id="layoutReset" type="button">Pulihkan susunan asal</button><span class="small" id="layoutSaveStatus" aria-live="polite">Disimpan pada peranti ini</span></div></article>
    <article class="personalisation-section privacy-section"><h3>Display & Privacy</h3><p class="small">Kawal paparan nilai kewangan pada dashboard. Pengiraan dan data asal tidak berubah.</p>
+    <div class="display-experience-controls">
+     <h4>Pengalaman paparan</h4>
+     <label class="privacy-master-toggle"><input type="checkbox" id="displayMotionToggle"><span><strong>Kurangkan animasi</strong><small class="small">Matikan gerakan dan transisi hiasan untuk paparan lebih tenang</small></span></label>
+     <div class="density-control"><span><strong>Kepadatan kad</strong><small class="small">Pilih ruang antara kandungan dashboard</small></span><div class="density-options" role="group" aria-label="Kepadatan kad">
+      <button type="button" data-display-density="compact">Padat</button><button type="button" data-display-density="comfortable">Selesa</button><button type="button" data-display-density="spacious">Lapang</button>
+     </div></div>
+    </div>
+
     <label class="privacy-master-toggle"><input type="checkbox" id="privacyHideAll"><span><strong>Sembunyikan semua nilai kewangan</strong><small class="small">Gantikan angka dengan •••••• di seluruh dashboard</small></span></label>
     <div class="privacy-widget-list"><h4>Sembunyi ikut widget</h4>
      <label><input type="checkbox" data-privacy-widget="savings"><span>Jumlah tabungan</span></label>
@@ -420,13 +428,6 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
      <label><input type="checkbox" data-privacy-widget="allowance"><span>Had belanja harian</span></label>
     </div><p class="small" id="privacySaveStatus" aria-live="polite">Tetapan privasi disimpan berasingan daripada data kewangan.</p>
    
-    <div class="display-experience-controls">
-     <h4>Pengalaman paparan</h4>
-     <label class="privacy-master-toggle"><input type="checkbox" id="displayMotionToggle"><span><strong>Kurangkan animasi</strong><small class="small">Matikan gerakan dan transisi hiasan untuk paparan lebih tenang</small></span></label>
-     <div class="density-control"><span><strong>Kepadatan kad</strong><small class="small">Pilih ruang antara kandungan dashboard</small></span><div class="density-options" role="group" aria-label="Kepadatan kad">
-      <button type="button" data-display-density="compact">Padat</button><button type="button" data-display-density="comfortable">Selesa</button><button type="button" data-display-density="spacious">Lapang</button>
-     </div></div>
-    </div>
 </article>
    <article class="personalisation-section"><h3>Personal Preferences</h3><p class="small">Mata wang, format tarikh dan nombor.</p><span class="small">Akan dibangunkan dalam Phase 51.7</span></article>
   </div>
