@@ -410,7 +410,16 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
     <div class="layout-widget-row" draggable="true" data-layout-key="budget"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Bajet bulanan</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="budget"><span class="small">Papar</span></label></div>
     <div class="layout-widget-row" draggable="true" data-layout-key="allowance"><span class="layout-drag" aria-hidden="true">⠿</span><span class="layout-widget-name">Had belanja harian</span><label class="layout-widget-toggle"><input type="checkbox" checked data-layout-toggle="allowance"><span class="small">Papar</span></label></div>
    </div><div class="layout-widget-actions"><button class="btn" id="layoutReset" type="button">Pulihkan susunan asal</button><span class="small" id="layoutSaveStatus" aria-live="polite">Disimpan pada peranti ini</span></div></article>
-   <article class="personalisation-section"><h3>Display & Privacy</h3><p class="small">Animasi, kepadatan kad dan paparan nilai kewangan.</p><span class="small">Akan dibangunkan dalam Phase 51.5–51.6</span></article>
+   <article class="personalisation-section privacy-section"><h3>Display & Privacy</h3><p class="small">Kawal paparan nilai kewangan pada dashboard. Pengiraan dan data asal tidak berubah.</p>
+    <label class="privacy-master-toggle"><input type="checkbox" id="privacyHideAll"><span><strong>Sembunyikan semua nilai kewangan</strong><small class="small">Gantikan angka dengan •••••• di seluruh dashboard</small></span></label>
+    <div class="privacy-widget-list"><h4>Sembunyi ikut widget</h4>
+     <label><input type="checkbox" data-privacy-widget="savings"><span>Jumlah tabungan</span></label>
+     <label><input type="checkbox" data-privacy-widget="income"><span>Pendapatan bulan ini</span></label>
+     <label><input type="checkbox" data-privacy-widget="expense"><span>Perbelanjaan bulan ini</span></label>
+     <label><input type="checkbox" data-privacy-widget="budget"><span>Bajet bulanan</span></label>
+     <label><input type="checkbox" data-privacy-widget="allowance"><span>Had belanja harian</span></label>
+    </div><p class="small" id="privacySaveStatus" aria-live="polite">Tetapan privasi disimpan berasingan daripada data kewangan.</p>
+   </article>
    <article class="personalisation-section"><h3>Personal Preferences</h3><p class="small">Mata wang, format tarikh dan nombor.</p><span class="small">Akan dibangunkan dalam Phase 51.7</span></article>
   </div>
   <footer class="personalisation-foot"><span class="small">Tetapan disimpan berasingan daripada data kewangan.</span><button class="btn" id="personalisationDone" type="button">Selesai</button></footer>
@@ -1325,4 +1334,29 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
 })();
 </script>
 
+
+<script>
+(()=>{
+ const KEY='adam-personalisation-privacy-v1';
+ const master=document.getElementById('privacyHideAll');
+ const checks=[...document.querySelectorAll('[data-privacy-widget]')];
+ const status=document.getElementById('privacySaveStatus');
+ if(!master)return;
+ const valid=['savings','income','expense','budget','allowance'];
+ let state={all:false,widgets:[]};
+ try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved){state.all=saved.all===true;state.widgets=Array.isArray(saved.widgets)?saved.widgets.filter(k=>valid.includes(k)):[];}}catch(e){if(status)status.textContent='Tidak dapat membaca tetapan privasi';}
+ const apply=()=>{
+  document.body.classList.toggle('adam-hide-financial-values',state.all);
+  valid.forEach(k=>{const card=document.querySelector('[data-layout-widget="'+k+'"]');if(card)card.classList.toggle('adam-hide-widget-value',state.widgets.includes(k));});
+  master.checked=state.all;checks.forEach(input=>input.checked=state.widgets.includes(input.dataset.privacyWidget));
+ };
+ const save=()=>{
+  try{const value={all:state.all,widgets:state.widgets,updatedAt:Date.now()};localStorage.setItem(KEY,JSON.stringify(value));const check=JSON.parse(localStorage.getItem(KEY)||'null');if(!check||check.all!==state.all||JSON.stringify(check.widgets)!==JSON.stringify(state.widgets))throw new Error('verify');if(status)status.textContent='Tetapan privasi berjaya disimpan pada peranti ini';}
+  catch(e){if(status)status.textContent='Gagal menyimpan tetapan privasi — storan pelayar disekat';}
+ };
+ master.addEventListener('change',()=>{state.all=master.checked;apply();save();});
+ checks.forEach(input=>input.addEventListener('change',()=>{const k=input.dataset.privacyWidget;state.widgets=input.checked?[...new Set([...state.widgets,k])]:state.widgets.filter(x=>x!==k);apply();save();}));
+ apply();
+})();
+</script>
 </body></html>
