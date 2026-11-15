@@ -1925,3 +1925,18 @@ html.adam-motion-reduced .hero,html.adam-motion-reduced .view.active{animation:n
 @keyframes adamDialogEnter{from{opacity:0;transform:translateY(9px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.aqj-menu,.personalisation-dialog,.dialog{animation:none!important}.tabs button:after{transition:none!important}}
 html.adam-motion-reduced .aqj-menu,html.adam-motion-reduced .personalisation-dialog,html.adam-motion-reduced .dialog{animation:none!important}
+
+
+/* Phase 52.5 — consistency audit fixes */
+/* Accent-dependent semantic tokens must follow the active user theme. */
+html[data-theme="dark-premium"],html[data-theme="dark-glass"]{--mint:var(--accent)!important}
+html[data-theme="dark-premium"] .theme-option.is-selected,html[data-theme="dark-glass"] .theme-option.is-selected{border-color:var(--accent)!important;background:color-mix(in srgb,var(--accent) 14%,transparent)!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 45%,transparent),0 8px 20px var(--adam-glow)!important}
+/* Financial report chart labels and grid use theme tokens, not fixed grey/green. */
+.report-category-track{background:var(--chart-grid)!important}
+.report-category-track i{border-radius:99px;transition:width .45s var(--adam-ease),background-color .2s ease}
+#cashflowTrend svg text{fill:var(--muted)!important}
+#cashflowTrend svg line{stroke:var(--chart-grid)!important}
+/* Consistent readable form controls across light and dark appearances. */
+.field,select.field,textarea.field{color:var(--text)!important;background:color-mix(in srgb,var(--surface,white) 88%,transparent)!important;border-color:var(--line)!important}
+.field::placeholder{color:var(--muted)!important;opacity:.82}
+.field:focus-visible{outline:2px solid var(--accent)!important;outline-offset:2px!important;border-color:var(--accent)!important}
