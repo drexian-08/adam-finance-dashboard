@@ -1832,3 +1832,27 @@ html[data-dashboard-density="spacious"] .wrap>.card h3{
  .card,.card[id],.btn,.tabs button,.field,.item,.calendar-day,.chart-switch button{transition:none!important}
 }
 html.adam-motion-reduced .hero,html.adam-motion-reduced .view.active{animation:none!important}
+
+
+/* Phase 52.2 — chart & data-visualisation refinement */
+:root{--chart-expense:color-mix(in srgb,var(--text,var(--ink,#26332c)) 62%,transparent);--chart-grid:color-mix(in srgb,var(--text,var(--ink,#26332c)) 13%,transparent)}
+.chart-card{padding:clamp(17px,2.5vw,25px)!important;background:linear-gradient(145deg,color-mix(in srgb,var(--surface,white) 96%,var(--accent,#65D6B0) 4%),var(--surface,white))!important}
+.chart-card .chart-wrap{position:relative;min-height:190px;margin:17px -3px 4px;padding:7px 0 0;overflow:hidden;border-radius:16px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#65D6B0) 5%,transparent),transparent 72%)}
+.chart-wrap svg,.cashflow-chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-wrap svg path[fill^="url"]{opacity:.9}
+.chart-wrap svg path[stroke^="url"]{filter:drop-shadow(0 3px 5px color-mix(in srgb,var(--accent,#65D6B0) 24%,transparent))}
+.chart-wrap svg line{stroke:var(--chart-grid)!important;stroke-dasharray:3 6}
+.wealth-point{fill:var(--surface,white);stroke:var(--accent,#65D6B0);stroke-width:2.5;cursor:pointer;transition:r .2s ease,stroke-width .2s ease,filter .2s ease}
+.wealth-point:hover,.wealth-point:focus{r:6.5;stroke-width:3.5;filter:drop-shadow(0 0 5px var(--adam-glow));outline:none}
+.chart-meta{display:flex;justify-content:space-between;gap:12px;padding-top:10px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.02em}
+.chart-switch{display:flex;gap:5px;padding:4px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface,white) 78%,transparent)}
+.chart-switch button{min-width:39px;min-height:34px;border-radius:8px;font-size:11px;font-weight:750;letter-spacing:.03em}
+.cashflow-chart{padding:12px 7px 4px;border-radius:15px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#65D6B0) 4%,transparent),transparent)}
+.cashflow-chart svg rect{transition:opacity .2s ease,filter .2s ease}
+.cashflow-chart svg rect:hover{opacity:.82;filter:drop-shadow(0 2px 4px var(--adam-glow))}
+.cashflow-chart svg line{stroke:var(--chart-grid)!important;stroke-dasharray:3 5}
+.cashflow-chart svg text{fill:var(--muted)!important;font-size:10px}
+.cashflow-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--muted)}
+.cashflow-legend .income-dot{background:var(--accent)!important}
+.cashflow-legend .expense-dot{background:var(--chart-expense)!important}
+@media(max-width:560px){.chart-card .row{align-items:flex-start;gap:10px}.chart-card .metric{font-size:clamp(22px,7vw,30px)}.chart-switch{flex-shrink:0}.chart-wrap{min-height:155px!important}}
