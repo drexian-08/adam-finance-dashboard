@@ -1940,3 +1940,35 @@ html[data-theme="dark-premium"] .theme-option.is-selected,html[data-theme="dark-
 .field,select.field,textarea.field{color:var(--text)!important;background:color-mix(in srgb,var(--surface,white) 88%,transparent)!important;border-color:var(--line)!important}
 .field::placeholder{color:var(--muted)!important;opacity:.82}
 .field:focus-visible{outline:2px solid var(--accent)!important;outline-offset:2px!important;border-color:var(--accent)!important}
+
+
+/* Phase 52.6 — canonical theme surfaces for report sub-panels
+   Resolve legacy fixed-white report surfaces through the active theme tokens. */
+:root{
+  --surface:#ffffff;
+  --surface-raised:#f5f8ef;
+  --surface-line:rgba(72,87,48,.12);
+}
+html[data-theme="dark-premium"],html[data-theme="dark-glass"]{
+  --surface:#152235;
+  --surface-raised:#1b2b3d;
+  --surface-line:rgba(190,211,230,.16);
+}
+html[data-theme="dark-premium"] .wrap :is(#monthlyReport>.grid>div,#monthlyReport .cashflow-chart,#monthlyReport .report-category-breakdown,#annualReport .annual-metrics>div,#annualReport .cashflow-chart),
+html[data-theme="dark-glass"] .wrap :is(#monthlyReport>.grid>div,#monthlyReport .cashflow-chart,#monthlyReport .report-category-breakdown,#annualReport .annual-metrics>div,#annualReport .cashflow-chart){
+  background:linear-gradient(145deg,var(--surface-raised),color-mix(in srgb,var(--surface) 88%,transparent))!important;
+  border-color:var(--surface-line)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 5px 16px rgba(0,0,0,.12)!important;
+}
+html[data-theme="dark-premium"] .wrap :is(#monthlyReport .cashflow-head strong,#monthlyReport .report-category-meta strong,#annualReport .cashflow-head strong),
+html[data-theme="dark-glass"] .wrap :is(#monthlyReport .cashflow-head strong,#monthlyReport .report-category-meta strong,#annualReport .cashflow-head strong){
+  color:var(--text)!important;
+}
+html[data-theme="dark-premium"] .wrap :is(#monthlyReport .report-category-meta span,#monthlyReport .cashflow-legend,#annualReport .small),
+html[data-theme="dark-glass"] .wrap :is(#monthlyReport .report-category-meta span,#monthlyReport .cashflow-legend,#annualReport .small){
+  color:var(--muted)!important;
+}
+html[data-theme="dark-premium"] .wrap :is(#monthlyReport>.grid .small,#annualReport .annual-metrics .small),
+html[data-theme="dark-glass"] .wrap :is(#monthlyReport>.grid .small,#annualReport .annual-metrics .small){
+  color:var(--muted)!important;
+}
