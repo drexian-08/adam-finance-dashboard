@@ -1242,9 +1242,17 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
  const presets=[['#B9E477','Lime'],['#65D6B0','Mint'],['#6EA8FE','Blue'],['#B69CFF','Purple'],['#FFAA70','Orange']];
  const buttons=[...document.querySelectorAll('[data-accent]')],picker=document.getElementById('accentCustom'),status=document.getElementById('accentCurrent');
  const valid=value=>/^#[0-9a-fA-F]{6}$/.test(value||'');
+ // Pick the stronger foreground contrast using WCAG relative luminance.
+ const luminance=hex=>{
+  const channels=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4));
+  return .2126*channels[0]+.7152*channels[1]+.0722*channels[2];
+ };
+ const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
  const apply=(value)=>{
   if(!valid(value))value=presets[0][0];
   const normalized=value.toUpperCase(),match=presets.find(([hex])=>hex===normalized);
+  const darkForeground='#172315',lightForeground='#FFFFFF';
+  root.style.setProperty('--accent-contrast',contrast(normalized,lightForeground)>contrast(normalized,darkForeground)?lightForeground:darkForeground);
   root.style.setProperty('--accent',normalized);
   root.style.setProperty('--mint',normalized);
   root.style.setProperty('--accent-soft',normalized+'30');
