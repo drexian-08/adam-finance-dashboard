@@ -1775,3 +1775,60 @@ html[data-dashboard-density="spacious"] .wrap>.card h3{
   box-shadow:inset 0 0 0 1px var(--accent),0 3px 10px color-mix(in srgb,var(--accent) 18%,transparent);
   transform:translateY(-1px);
 }
+
+
+/* Phase 52.1 — Premium fintech identity & motion system
+   Native CSS only: keeps the vanilla app fast, offline-friendly and dependency-light. */
+:root{
+  --adam-ease:cubic-bezier(.2,.75,.25,1);
+  --adam-glow:color-mix(in srgb,var(--accent,#65D6B0) 22%,transparent);
+  --adam-hairline:color-mix(in srgb,var(--accent,#65D6B0) 24%,var(--line,transparent));
+}
+/* Give the opening balance panel a deliberate editorial hierarchy. */
+.hero{
+  animation:adamHeroEnter .72s var(--adam-ease) both!important;
+  border-color:color-mix(in srgb,var(--accent,#65D6B0) 20%,var(--line,transparent))!important;
+  box-shadow:0 20px 48px rgba(18,32,25,.10),0 0 0 1px color-mix(in srgb,var(--accent,#65D6B0) 7%,transparent),inset 0 1px 0 rgba(255,255,255,.78)!important;
+}
+.hero:after{
+  display:block!important;content:"";position:absolute;pointer-events:none;
+  width:310px;height:310px;right:-135px;top:-185px;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent,#65D6B0) 24%,transparent),transparent 68%)!important;
+  filter:blur(3px)!important;opacity:.9;
+}
+.hero:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent,#65D6B0) 48%,white),transparent);opacity:.55;pointer-events:none}
+.hero .brand{font-weight:800;letter-spacing:3.2px}
+.hero .hello{letter-spacing:-1.8px;line-height:1.04}
+.hero .balance{font-variant-numeric:tabular-nums;letter-spacing:-1.9px;text-shadow:0 4px 22px var(--adam-glow)!important}
+/* Cards feel like a composed system, not a stack of identical boxes. */
+.card,.card[id]{position:relative;isolation:isolate;overflow:hidden;transition:transform .32s var(--adam-ease),box-shadow .32s var(--adam-ease),border-color .32s ease,background-color .32s ease!important}
+.card:before,.card[id]:before{content:"";position:absolute;inset:0 12% auto;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent,#65D6B0) 34%,white),transparent);opacity:.55;pointer-events:none;z-index:-1}
+.card h3{letter-spacing:.005em}
+.metric,.balance,.chart-meta,.calendar-summary b{font-variant-numeric:tabular-nums lining-nums}
+@media(hover:hover) and (pointer:fine){
+ .card:hover,.card[id]:hover{transform:translateY(-3px)!important;border-color:var(--adam-hairline)!important;box-shadow:0 18px 42px rgba(25,38,28,.12),0 0 0 1px color-mix(in srgb,var(--accent,#65D6B0) 8%,transparent),inset 0 1px 0 rgba(255,255,255,.72)!important}
+ .btn:hover,.tabs button:hover{transform:translateY(-1px)}
+ .btn.primary:hover,.quick-add:hover{filter:brightness(1.035);box-shadow:0 9px 24px var(--adam-glow)!important}
+}
+/* Clean, responsive transitions and a little feedback for navigation. */
+.tabs button{position:relative;transition:background .26s var(--adam-ease),color .22s ease,transform .22s var(--adam-ease),box-shadow .26s ease!important}
+.tabs button.active{box-shadow:0 5px 16px var(--adam-glow)!important}
+.view.active{animation:adamViewEnter .34s var(--adam-ease) both}
+.btn,.field,.item,.calendar-day,.chart-switch button{transition:transform .22s var(--adam-ease),box-shadow .22s ease,border-color .22s ease,background-color .22s ease!important}
+.btn:focus-visible,.tabs button:focus-visible,.field:focus-visible,.calendar-day:focus-visible{outline:2px solid var(--accent,#65D6B0)!important;outline-offset:3px}
+.progress>i,.category-track i{background-image:linear-gradient(90deg,var(--accent,#65D6B0),color-mix(in srgb,var(--accent,#65D6B0) 58%,white))!important;box-shadow:0 0 12px var(--adam-glow)}
+.chart-wrap svg{overflow:visible;filter:drop-shadow(0 5px 8px color-mix(in srgb,var(--accent,#65D6B0) 10%,transparent))}
+.chart-switch button.active{box-shadow:0 3px 10px var(--adam-glow)!important}
+@keyframes adamHeroEnter{from{opacity:0;transform:translateY(13px) scale(.992);filter:blur(3px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes adamViewEnter{from{opacity:.55;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+ .hero{border-radius:26px!important}
+ .hero .balance{letter-spacing:-1.4px}
+ .card,.card[id]{transition:box-shadow .22s ease,border-color .22s ease!important}
+ .tabs button.active{transform:translateY(-1px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero,.view.active{animation:none!important}
+ .card,.card[id],.btn,.tabs button,.field,.item,.calendar-day,.chart-switch button{transition:none!important}
+}
+html.adam-motion-reduced .hero,html.adam-motion-reduced .view.active{animation:none!important}
