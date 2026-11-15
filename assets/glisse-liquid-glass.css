@@ -1890,3 +1890,38 @@ html.adam-motion-reduced .hero,html.adam-motion-reduced .view.active{animation:n
 @media(min-width:900px){.wrap>.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}.hero{min-height:265px}.wrap>.section{margin-top:36px!important}}
 @media(max-width:650px){.wrap{width:min(100% - 24px,1180px)!important}.top{padding:12px 1px 15px!important;gap:8px!important}.top .brand{font-size:9px!important;letter-spacing:1.6px!important}.top #personalisationOpenTop{padding:8px 10px!important;font-size:10px!important}.hero{min-height:215px;margin-bottom:22px!important}.wrap>.section{margin:24px 1px 10px!important;align-items:center!important}.wrap>.section h2{font-size:15px!important}.wrap>.section>.small{font-size:9px!important}.wrap>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.wrap>.grid>.card{padding:13px!important;border-radius:18px!important}.wrap>.card:not(.chart-card){padding:15px!important}.wrap>.card .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.wrap>.card .row{gap:10px;flex-wrap:wrap}}
 @media(max-width:380px){.wrap>.grid>.card .metric{font-size:18px!important}.hero .balance{font-size:32px!important}.wrap>.section>.small{max-width:42%;}}
+
+
+/* Phase 52.4 — tactile micro-interactions & premium feedback */
+:root{--adam-press:cubic-bezier(.22,.72,.24,1);--adam-ring:color-mix(in srgb,var(--accent) 32%,transparent)}
+/* Consistent tactile feedback across native controls without changing their actions. */
+.btn,.quick-add,.tabs button,.chart-switch button,.aqj-trigger,.aqj-menu button,.privacy-menu button,.theme-option,.layout-widget-toggle,.action-plan-toggle{ -webkit-tap-highlight-color:transparent;touch-action:manipulation }
+.btn:active,.quick-add:active,.tabs button:active,.chart-switch button:active,.aqj-trigger:active,.aqj-menu button:active,.privacy-menu button:active,.theme-option:active,.layout-widget-toggle:active,.action-plan-toggle:active{transform:scale(.975)!important;transition-duration:.08s!important}
+.btn:focus-visible,.quick-add:focus-visible,.tabs button:focus-visible,.chart-switch button:focus-visible,.aqj-trigger:focus-visible,.aqj-menu button:focus-visible,.privacy-menu button:focus-visible,.theme-option:focus-visible,.layout-widget-toggle:focus-visible,.action-plan-toggle:focus-visible{outline:2px solid var(--accent)!important;outline-offset:3px!important;box-shadow:0 0 0 5px var(--adam-ring)!important}
+/* Main navigation: clear active marker and restrained hover response. */
+.tabs{isolation:isolate}
+.tabs button{overflow:hidden;position:relative;min-height:46px}
+.tabs button:after{content:"";position:absolute;left:22%;right:22%;bottom:3px;height:2px;border-radius:4px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .24s var(--adam-press);opacity:.9}
+.tabs button.active:after,.tabs button[aria-current="location"]:after{transform:scaleX(1)}
+.tabs button .tab-icon{display:inline-grid;place-items:center;transition:transform .24s var(--adam-press),color .2s ease}
+.tabs button.active .tab-icon{transform:translateY(-1px) scale(1.07);color:var(--accent)!important}
+@media(hover:hover) and (pointer:fine){.tabs button:not(.active):hover{background:color-mix(in srgb,var(--accent) 8%,transparent)!important}.tabs button:not(.active):hover .tab-icon{transform:translateY(-2px)}}
+/* Quick actions and jump menu receive a subtle lift, not a constant pulse. */
+.quick-add{transition:transform .22s var(--adam-press),box-shadow .22s ease,filter .22s ease!important}
+@media(hover:hover) and (pointer:fine){.quick-add:hover,.aqj-trigger:hover{transform:translateY(-2px)!important;filter:saturate(1.06);box-shadow:0 12px 26px var(--adam-glow)!important}}
+.aqj-menu{transform-origin:bottom center;animation:adamMenuEnter .2s var(--adam-press) both}
+.aqj-menu[hidden]{display:none!important}
+.aqj-menu button{transition:background-color .18s ease,border-color .18s ease,transform .18s var(--adam-press)!important}
+@media(hover:hover) and (pointer:fine){.aqj-menu button:hover{transform:translateY(-2px);border-color:var(--adam-hairline)!important;background:color-mix(in srgb,var(--accent) 9%,var(--surface,white))!important}}
+.aqj-menu button:active{transform:scale(.97)!important}
+/* Dialog surfaces ease into place while hidden states remain truly hidden. */
+.personalisation-overlay[hidden],.modal-overlay[hidden]{display:none!important}
+.personalisation-dialog,.dialog{transform-origin:center;animation:adamDialogEnter .24s var(--adam-press) both}
+.theme-option,.layout-widget-toggle{transition:transform .2s var(--adam-press),border-color .2s ease,box-shadow .2s ease,background-color .2s ease!important}
+.theme-option[aria-pressed="true"],.layout-widget-toggle[aria-pressed="true"]{box-shadow:0 0 0 1px var(--accent),0 7px 18px var(--adam-glow)!important}
+/* Small status changes are visible but remain quiet. */
+.action-plan-toggle[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 13%,var(--surface,white))!important;border-color:var(--accent)!important}
+@keyframes adamMenuEnter{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes adamDialogEnter{from{opacity:0;transform:translateY(9px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.aqj-menu,.personalisation-dialog,.dialog{animation:none!important}.tabs button:after{transition:none!important}}
+html.adam-motion-reduced .aqj-menu,html.adam-motion-reduced .personalisation-dialog,html.adam-motion-reduced .dialog{animation:none!important}
