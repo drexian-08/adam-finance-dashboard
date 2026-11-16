@@ -101,7 +101,7 @@ html[data-accent] input:focus,html[data-accent] select:focus,html[data-accent] t
 html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--accent) 12%,transparent)!important}
 .preference-fields{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0}.preference-fields label{display:grid;gap:7px;font-size:12px;font-weight:650}.preference-fields .field{min-width:0}.fx-rate-panel{padding:13px;border:1px solid var(--line);border-radius:14px;background:rgba(127,145,125,.07);margin-top:12px}.fx-rate-panel .row{align-items:center}.fx-rate-panel .small{line-height:1.5}.fx-rate-panel .hint{margin-bottom:0}@media(min-width:620px){.preference-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.preference-fields label:first-child{grid-column:1/-1}} 
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=70">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=71">
 
 </head>
 <body><main class="wrap">
@@ -135,6 +135,7 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 <div class="item" style="display:block"><div class="small">🧾 Unusual Expense Detection</div><div class="metric" id="smartExpenseFlag">—</div><div class="small" id="smartExpenseNote">Menyemak corak perbelanjaan</div></div>
 <div class="item" style="display:block"><div class="small">💡 Smart Savings Recommendation</div><div class="metric mint" id="smartSavingsSuggestion">—</div><div class="small" id="smartSavingsNote">Mengira ruang simpanan</div></div>
 </div>
+<div class="smart-next-move" id="smartNextMove" aria-live="polite"><div class="smart-next-move-top"><span class="smart-next-move-kicker">✦ NEXT BEST MOVE</span><span class="smart-next-move-state" id="smartNextMoveState">MENGANALISIS</span></div><strong id="smartNextMoveTitle">Mencari langkah paling berguna…</strong><p id="smartNextMoveDetail">Analisis akan dikemas kini berdasarkan rekod kewangan.</p></div>
 <div class="hint" id="smartIntelligenceDisclaimer">Analisis berdasarkan transaksi dan snapshot yang direkodkan dalam dashboard. Semakin lengkap rekod, semakin berguna hasil analisis.</div>
 </article>
 <section class="section" id="advancedInsights"><h2>🧮 Advanced Financial Insights</h2><span class="small">Nisbah & daya tahan kewangan</span></section>
@@ -1031,6 +1032,25 @@ if(valid.length){const avgIncome=valid.reduce((n,x)=>n+x.income,0)/valid.length,
 saving.textContent=recommendation>0?money(recommendation)+'/bulan':'Belum ada lebihan';saving.className='metric '+(recommendation>0?'mint':'red');
 savingNote.textContent=recommendation>0?'Cadangan konservatif: sehingga 50% lebihan purata ('+money(surplus)+') bagi '+valid.length+' bulan direkod':'Semak semula bajet; purata aliran tunai belum menunjukkan lebihan dalam '+valid.length+' bulan direkod';
 }else{saving.textContent='Data belum cukup';saving.className='metric';savingNote.textContent='Rekod pendapatan dan perbelanjaan untuk sekurang-kurangnya satu bulan';}
+}
+
+const nextTitle=$('smartNextMoveTitle'),nextDetail=$('smartNextMoveDetail'),nextState=$('smartNextMoveState');
+if(nextTitle&&nextDetail&&nextState){
+const now=new Date(),monthKey=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+const monthRows=tx.filter(t=>(t.date||'').slice(0,7)===monthKey);
+const monthIncome=monthRows.filter(t=>t.type==='income').reduce((n,t)=>n+(Number(t.amount)||0),0);
+const monthExpense=monthRows.filter(t=>t.type==='expense').reduce((n,t)=>n+(Number(t.amount)||0),0);
+const budget=Math.max(0,Number(data.budget)||0),cash=Math.max(0,Number(data.cash)||0);
+const monthlyExpense={};tx.filter(t=>t.type==='expense'&&t.date).forEach(t=>{const k=t.date.slice(0,7);monthlyExpense[k]=(monthlyExpense[k]||0)+(Number(t.amount)||0)});
+const activeExpenseMonths=Object.values(monthlyExpense),avgExpense=activeExpenseMonths.length?activeExpenseMonths.reduce((a,b)=>a+b,0)/activeExpenseMonths.length:0;
+let insight;
+if(!monthRows.length){insight={state:'MULA DI SINI',title:'Mulakan dengan rekod kewangan bulan ini',detail:'Tambah transaksi pendapatan dan perbelanjaan supaya cadangan seterusnya berpandukan aktiviti sebenar.'};}
+else if(budget>0&&monthExpense>budget){insight={state:'PERLU TINDAKAN',title:'Pulihkan bajet sebelum tambah komitmen',detail:'Perbelanjaan bulan ini melebihi had sebanyak '+money(monthExpense-budget)+'. Semak transaksi pilihan dan tetapkan had untuk baki bulan ini.'};}
+else if(monthIncome>0&&monthExpense>monthIncome){insight={state:'PERLU TINDAKAN',title:'Utamakan aliran tunai positif',detail:'Perbelanjaan bulan ini melebihi pendapatan direkod sebanyak '+money(monthExpense-monthIncome)+'. Tangguhkan pembelian bukan keperluan dan semak kos berulang.'};}
+else if(avgExpense>0&&cash<avgExpense*3){const gap=Math.max(0,avgExpense*3-cash);insight={state:'BINA PERLINDUNGAN',title:'Kuatkan penampan tunai',detail:'Berdasarkan purata bulan aktif yang direkod, sasaran 3 bulan perbelanjaan ialah '+money(avgExpense*3)+'. Anggaran jurang semasa: '+money(gap)+'.'};}
+else if(Array.isArray(data.goals)&&data.goals.some(g=>Number(g.target)>Number(g.saved))){const goal=data.goals.filter(g=>Number(g.target)>Number(g.saved)).sort((a,b)=>(Number(b.priority==='Tinggi')-Number(a.priority==='Tinggi'))||((Number(a.target)||0)-(Number(a.saved)||0))-((Number(b.target)||0)-(Number(b.saved)||0)))[0];insight={state:'TERUSKAN KEMAJUAN',title:'Fokus pada satu matlamat simpanan',detail:'Matlamat “'+String(goal.name||'Simpanan').replace(/[<>]/g,'')+'” masih memerlukan '+money(Math.max(0,(Number(goal.target)||0)-(Number(goal.saved)||0)))+'. Konsistensi kecil lebih mudah dikekalkan.'};}
+else{insight={state:'KEKALKAN RENTAK',title:'Kekalkan disiplin kewangan semasa',detail:'Tiada isu utama dikenal pasti daripada data yang tersedia. Teruskan rekod transaksi dan semak bajet secara berkala.'};}
+nextState.textContent=insight.state;nextTitle.textContent=insight.title;nextDetail.textContent=insight.detail;
 }
 }
 function nowForSmartSavings(){return new Date().toISOString().slice(0,10);}
