@@ -2160,3 +2160,67 @@ html[data-theme="dark-glass"] #smartInsightsCard .hint{
 @media(prefers-reduced-motion:reduce){
   .action-plan-card .action-plan-item{transition:none!important}
 }
+
+
+/* Phase 52.15 — intelligent content rhythm and responsive priority layout. */
+#healthScoreCard{margin-bottom:clamp(22px,3vw,32px)!important}
+#smartIntelligence,#advancedInsights,#actionPlan,#smartInsights{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin-top:clamp(25px,4vw,38px)!important;
+  padding:0 2px 10px!important;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 20%,var(--line));
+}
+#smartIntelligence h2,#advancedInsights h2,#actionPlan h2,#smartInsights h2{
+  margin:0!important;letter-spacing:-.45px;line-height:1.2;
+}
+#smartIntelligence>.small,#advancedInsights>.small,#actionPlan>.small,#smartInsights>.small{
+  max-width:48%;text-align:right;font-size:10px;line-height:1.4;
+}
+#smartIntelligenceCard,#advancedInsightsCard,#smartInsightsCard{
+  margin-top:12px!important;
+}
+#actionPlan+.action-plan-card{
+  margin-top:12px!important;
+  border-color:color-mix(in srgb,var(--accent) 34%,var(--line))!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.055),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+#actionPlan+.action-plan-card .action-plan-head{
+  position:relative;
+}
+#actionPlan+.action-plan-card .action-plan-head:before{
+  content:"NEXT STEPS";display:block;position:absolute;top:-8px;right:12px;
+  padding:2px 7px;border-radius:6px;background:var(--panel);
+  color:var(--muted);font-size:8px;font-weight:800;letter-spacing:.1em;
+}
+#investmentPerformance{
+  margin-top:clamp(28px,4vw,42px)!important;
+}
+#investmentCard{margin-top:12px!important}
+#monthlyReport{margin-top:12px!important}
+#smartInsightsCard .list{gap:9px}
+#smartInsightsCard .list>*{min-width:0}
+@media(min-width:900px){
+  #smartIntelligenceCard .grid,#advancedInsightsCard .grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  #advancedInsightsCard .grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  #smartInsightsCard>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #actionPlan+.action-plan-card{padding:clamp(18px,2vw,24px)!important}
+}
+@media(max-width:600px){
+  #smartIntelligence,#advancedInsights,#actionPlan,#smartInsights{
+    align-items:flex-start;flex-direction:column;gap:5px;
+    margin-top:25px!important;padding-bottom:9px!important;
+  }
+  #smartIntelligence>.small,#advancedInsights>.small,#actionPlan>.small,#smartInsights>.small{
+    max-width:100%;text-align:left;
+  }
+  #smartIntelligenceCard,#advancedInsightsCard,#smartInsightsCard,
+  #actionPlan+.action-plan-card,#investmentCard,#monthlyReport{
+    margin-top:10px!important;
+  }
+  #smartIntelligenceCard .grid,#advancedInsightsCard .grid{gap:8px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #actionPlan+.action-plan-card{scroll-behavior:auto}
+}
