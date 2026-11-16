@@ -259,6 +259,9 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 <article class="card"><h3>🧮 Simpanan sasaran</h3><div class="metric" id="goalProgress">0%</div><div class="small" id="goalText">Tetapkan sasaran simpanan</div><div class="actions"><button class="btn" onclick="setGoal()">Tetapkan sasaran</button></div></article>
 <article class="card"><h3>📤 Data & privasi</h3><div class="small">Simpan salinan data atau pulihkan data pada peranti lain.</div><div id="dataHealth" class="data-health" aria-live="polite">Menyemak data peranti…</div><div class="actions"><button class="btn" onclick="exportData()">Export</button><button class="btn" onclick="document.getElementById('importFile').click()">Import</button><button class="btn" id="cloudRecoveryExport" onclick="exportCloudRecovery()" hidden>Muat turun pemulihan</button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></article>
 </div>
+<details class="dashboard-disclosure planning-disclosure" id="goalsPlanningDisclosure">
+<summary><span class="dashboard-disclosure-icon" aria-hidden="true">◎</span><span class="dashboard-disclosure-copy"><strong>Matlamat & simpanan</strong><small>Jejak sasaran kewangan dan susun agihan simpanan</small></span><span class="dashboard-disclosure-meta">2 modul</span></summary>
+<div class="dashboard-disclosure-content">
 <section class="section"><h2>Financial Goals Tracker</h2><span class="small">Jejak sasaran simpanan jangka pendek dan panjang</span></section>
 <article class="card" id="goalsTracker"><div class="row" style="align-items:center"><div><h3>🎯 Matlamat kewangan</h3><div class="small">Kemajuan berdasarkan jumlah yang diperuntukkan</div></div><button class="btn primary" type="button" onclick="addFinancialGoal()">＋ Tambah matlamat</button></div><div id="financialGoalsList" style="margin-top:14px"><div class="empty">Belum ada matlamat.</div></div></article>
 
@@ -269,7 +272,12 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
  <div id="sgpResults" class="sgp-results" aria-live="polite"><div class="empty">Tambah matlamat dalam Financial Goals Tracker untuk melihat cadangan agihan.</div></div>
  <p class="sgp-note">Cadangan agihan mengambil kira keutamaan dan tarikh sasaran. Ia hanya simulasi perancangan dan tidak mengubah jumlah simpanan setiap matlamat secara automatik.</p>
 </article>
+</div>
+</details>
 
+<details class="dashboard-disclosure planning-disclosure" id="scenarioPlanningDisclosure">
+<summary><span class="dashboard-disclosure-icon" aria-hidden="true">◎</span><span class="dashboard-disclosure-copy"><strong>Simulasi & perancangan</strong><small>Uji ketahanan, rancang dana kecemasan, FIRE, hutang dan komitmen</small></span><span class="dashboard-disclosure-meta">7 modul</span></summary>
+<div class="dashboard-disclosure-content">
 <section class="section" id="financialStressTest"><div class="fst-section-copy"><h2>Financial Stress Test</h2><p>Uji ketahanan kewangan apabila pendapatan atau perbelanjaan berubah.</p></div><span class="fst-section-icon">🧭</span></section>
 <article class="card fst-card" id="financialStressTestCard">
  <div class="fst-current"><div><span class="fst-kicker">Tunai semasa</span><strong id="fstCurrentCash">—</strong><span class="fst-caption">Berdasarkan baki tunai dashboard</span></div><span class="fst-current-icon">🛡️</span></div>
@@ -361,6 +369,8 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 <div id="recurringBillsList" class="recurring-list"><div class="empty">Belum ada bil atau langganan direkodkan.</div></div>
 <p class="hint">Anggaran bulanan menukar komitmen tahunan kepada nilai purata 1/12. Tandakan “Dibayar” untuk gerakkan tarikh ke kitaran seterusnya. Modul ini tidak membuat pembayaran atau menambah transaksi secara automatik.</p>
 </article>
+</div>
+</details>
 
 <article class="card sync-card"><div class="row"><h3>☁️ Cloud Sync</h3><span class="small" id="cloudState">Belum log masuk</span></div>
 <div class="sync-status" id="cloudStatus">Log masuk menggunakan akaun Firebase untuk menyegerakkan data kewangan antara dashboard dan peranti lain.</div>
@@ -1212,6 +1222,7 @@ window.persist=function(){recordWealthSnapshot();localStorage.setItem(KEY,JSON.s
  root.addEventListener('click',e=>{
   const b=e.target.closest('[data-aqj-target]');if(!b)return;
   const target=document.getElementById(b.dataset.aqjTarget);if(!target){closeMenu();return;}
+  const disclosure=target.closest('details.dashboard-disclosure');if(disclosure)disclosure.open=true;
   const view=target.closest('.view');if(view)view.classList.add('active');
   if(target.id==='budgetViewPage')target.style.display='block';
   closeMenu();
