@@ -2387,3 +2387,83 @@ html[data-theme="dark-glass"] .chart-card .chart-meta{
 @media(prefers-reduced-motion:reduce){
   .hero,.hero:after,.hero .hello span{scroll-behavior:auto}
 }
+
+
+/* Phase 52.18 — ADAM signature design language. */
+:root{
+  --adam-signature-line:color-mix(in srgb,var(--accent) 17%,var(--line));
+  --adam-signature-wash:color-mix(in srgb,var(--accent) 5%,var(--panel));
+  --adam-signature-ease:cubic-bezier(.2,.7,.25,1);
+}
+.wrap>.grid>.card,.wrap>.card:not(.chart-card){
+  position:relative;
+  border:1px solid var(--adam-signature-line)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 8px 24px rgba(0,0,0,.045)!important;
+}
+.wrap>.grid>.card:before,.wrap>.card:not(.chart-card):before{
+  content:"";position:absolute;inset:0 14px auto;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 35%,transparent),transparent);
+  opacity:.6;
+}
+.wrap>.section{
+  position:relative;gap:12px!important;
+}
+.wrap>.section h2{
+  font-weight:780!important;letter-spacing:-.45px!important;
+  text-wrap:balance;
+}
+.wrap>.section>.small{
+  font-weight:650;letter-spacing:.025em;
+  color:var(--muted)!important;
+}
+.wrap>.grid>.card .metric,.wrap>.card .metric{
+  font-variant-numeric:tabular-nums lining-nums;
+  letter-spacing:-.65px;
+}
+.wrap>.grid>.card .small,.wrap>.card .small{
+  line-height:1.5;
+}
+.wrap .tabs{
+  padding:4px;border:1px solid var(--adam-signature-line);
+  border-radius:14px;background:var(--adam-signature-wash);
+}
+.wrap .tabs button{
+  border-radius:10px!important;font-weight:750;
+  transition:background .2s var(--adam-signature-ease),color .2s var(--adam-signature-ease),box-shadow .2s var(--adam-signature-ease);
+}
+.wrap .tabs button.active{
+  background:var(--accent)!important;color:var(--accent-contrast,#172315)!important;
+  box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 22%,transparent)!important;
+}
+.wrap .btn:not(.primary){
+  border-color:var(--adam-signature-line);
+  transition:border-color .2s var(--adam-signature-ease),background .2s var(--adam-signature-ease),transform .2s var(--adam-signature-ease);
+}
+.wrap :is(input,select,textarea):focus-visible,
+.wrap button:focus-visible,
+.quick-add:focus-visible{
+  outline:2px solid var(--accent)!important;outline-offset:3px!important;
+}
+html[data-theme="dark-premium"] .wrap>.grid>.card,
+html[data-theme="dark-glass"] .wrap>.grid>.card,
+html[data-theme="dark-premium"] .wrap>.card:not(.chart-card),
+html[data-theme="dark-glass"] .wrap>.card:not(.chart-card){
+  border-color:color-mix(in srgb,var(--accent) 19%,rgba(190,211,230,.14))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 12px 28px rgba(0,0,0,.17)!important;
+}
+html[data-theme="dark-premium"] .wrap>.section>.small,
+html[data-theme="dark-glass"] .wrap>.section>.small{
+  color:var(--muted)!important;
+}
+@media(hover:hover){
+  .wrap>.grid>.card:hover,.wrap>.card:not(.chart-card):hover{
+    border-color:color-mix(in srgb,var(--accent) 32%,var(--line))!important;
+  }
+}
+@media(max-width:600px){
+  .wrap>.grid>.card:before,.wrap>.card:not(.chart-card):before{inset-inline:11px}
+  .wrap>.section{gap:8px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .wrap .tabs button,.wrap .btn:not(.primary){transition:none!important}
+}
