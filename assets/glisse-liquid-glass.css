@@ -1992,3 +1992,10 @@ html[data-accent] .quick-add{
   background-image:none!important;
   border-color:var(--accent)!important;
 }
+
+/* Phase 52.10 — override legacy inline-theme rule on the floating Rekod button.
+   Target both the button and its label so inherited/legacy text colors cannot win. */
+html[data-accent] #quickAdd,
+html[data-accent] #quickAdd span{
+  color:var(--accent-contrast,#172315)!important;
+}
