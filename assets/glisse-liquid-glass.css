@@ -2625,3 +2625,34 @@ html[data-theme="dark-glass"] #goalsTracker .savings-goal-item{
   #goalsTracker .savings-goal-insight{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){#goalsTracker .savings-goal-progress i{transition:none!important}}
+
+
+/* Phase 52.22 — Financial Health Pulse factor breakdown. */
+#healthScoreCard .health-pulse-track{margin:15px 0 17px!important;height:9px!important;border-radius:999px;overflow:hidden}
+#healthScoreCard .health-pulse-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 70%,#fff),var(--accent));transition:width .45s cubic-bezier(.2,.7,.25,1)}
+#healthScoreCard .health-pulse-breakdown{
+  display:grid;gap:11px;margin:0 0 17px;padding:15px;
+  border:1px solid color-mix(in srgb,var(--accent) 17%,var(--line));
+  border-radius:16px;background:color-mix(in srgb,var(--accent) 4%,var(--panel));
+}
+#healthScoreCard .health-pulse-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:2px}
+#healthScoreCard .health-pulse-head strong{font-size:11px;font-weight:850;letter-spacing:.015em}
+#healthScoreCard .health-pulse-head span{font-size:9px;color:var(--muted);text-align:right}
+#healthScoreCard .health-pulse-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(70px,1fr);align-items:center;gap:12px}
+#healthScoreCard .health-pulse-row>span{display:flex;justify-content:space-between;gap:7px;font-size:10px;color:var(--muted)}
+#healthScoreCard .health-pulse-row b{color:var(--text);font-size:9px;font-variant-numeric:tabular-nums;white-space:nowrap}
+#healthScoreCard .health-pulse-bar{height:6px;border-radius:999px;overflow:hidden;background:color-mix(in srgb,var(--muted) 17%,transparent)}
+#healthScoreCard .health-pulse-bar i{display:block;height:100%;width:0;border-radius:inherit;background:var(--accent);transition:width .4s ease}
+html[data-theme="dark-premium"] #healthScoreCard .health-pulse-breakdown,
+html[data-theme="dark-glass"] #healthScoreCard .health-pulse-breakdown{
+  background:linear-gradient(145deg,color-mix(in srgb,#1b2b3d 90%,var(--accent) 10%),#172638);
+  border-color:color-mix(in srgb,var(--accent) 20%,rgba(190,211,230,.15));
+}
+@media(max-width:600px){
+  #healthScoreCard .health-pulse-breakdown{padding:12px;gap:10px}
+  #healthScoreCard .health-pulse-row{grid-template-columns:1fr;gap:5px}
+  #healthScoreCard .health-pulse-row>span{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  #healthScoreCard .health-pulse-track i,#healthScoreCard .health-pulse-bar i{transition:none!important}
+}
