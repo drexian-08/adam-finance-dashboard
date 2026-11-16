@@ -2734,3 +2734,48 @@ html[data-theme="dark-glass"] .dashboard-disclosure{
   .dashboard-disclosure-content{padding:0 10px 10px}
 }
 @media(prefers-reduced-motion:reduce){.dashboard-disclosure>summary:after{transition:none}}
+
+
+/* Phase 52.24 — compact responsive navigation dock and reliable anchor landings. */
+html{scroll-padding-top:22px;scroll-padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+body{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+:where(#home,#calendarSection,#transactionsSection,#budgetViewPage,#insights,#tools,#investmentPerformance,#wealthAllocation,#wealthProjection,#financialStressTest,#goalsTracker,#savingsGoalPriorityPlanner,#fireCalculator,#debtPayoffPlanner,#cashFlowForecast,#recurringBills){scroll-margin-top:22px}
+.tabs{
+ left:50%!important;right:auto!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;
+ transform:translateX(-50%)!important;width:min(660px,calc(100% - 28px))!important;
+ min-height:62px;padding:6px!important;gap:4px!important;justify-content:space-between!important;
+ border:1px solid var(--line)!important;border-radius:20px!important;
+ background:color-mix(in srgb,var(--panel) 88%,transparent)!important;
+ -webkit-backdrop-filter:blur(24px) saturate(1.45)!important;backdrop-filter:blur(24px) saturate(1.45)!important;
+ box-shadow:0 12px 38px rgba(20,32,45,.18),inset 0 1px 0 rgba(255,255,255,.16)!important;
+}
+.tabs button{
+ display:flex!important;flex:1 1 0!important;min-width:0!important;min-height:48px!important;
+ flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ gap:3px!important;padding:5px 3px!important;border:1px solid transparent!important;
+ border-radius:14px!important;background:transparent!important;color:var(--muted)!important;
+ font-size:10px!important;font-weight:750!important;line-height:1.1!important;white-space:nowrap!important;
+}
+.tabs .tab-icon{font-size:17px!important;line-height:1!important}
+.tabs .tab-label{font-size:9px!important;letter-spacing:.01em!important}
+.tabs button.active{
+ color:var(--accent-contrast,#172315)!important;background:var(--accent)!important;
+ border-color:color-mix(in srgb,var(--accent) 78%,white)!important;
+ box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 25%,transparent),inset 0 1px 0 rgba(255,255,255,.28)!important;
+}
+.tabs button:focus-visible{outline:2px solid var(--accent)!important;outline-offset:2px!important}
+.quick-add{bottom:calc(88px + env(safe-area-inset-bottom))!important;right:max(16px,calc((100vw - 660px)/2 + 14px))!important}
+@media(min-width:700px){
+ body{padding-bottom:calc(100px + env(safe-area-inset-bottom))}
+ .tabs{bottom:calc(14px + env(safe-area-inset-bottom))!important}
+ .tabs button{flex-direction:row!important;gap:7px!important;padding:8px 13px!important}
+ .tabs .tab-icon{font-size:15px!important}.tabs .tab-label{font-size:11px!important}
+ .quick-add{bottom:calc(92px + env(safe-area-inset-bottom))!important}
+}
+@media(max-width:380px){
+ .tabs{width:calc(100% - 18px)!important;bottom:calc(7px + env(safe-area-inset-bottom))!important}
+ .tabs button{min-height:45px!important;gap:2px!important}
+ .tabs .tab-icon{font-size:15px!important}.tabs .tab-label{font-size:8px!important}
+ .quick-add{right:12px!important;bottom:calc(79px + env(safe-area-inset-bottom))!important}
+}
+@media(prefers-reduced-motion:reduce){.tabs,.tabs button{transition:none!important;scroll-behavior:auto!important}}
