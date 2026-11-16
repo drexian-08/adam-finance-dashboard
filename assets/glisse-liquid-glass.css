@@ -1972,3 +1972,14 @@ html[data-theme="dark-premium"] .wrap :is(#monthlyReport>.grid .small,#annualRep
 html[data-theme="dark-glass"] .wrap :is(#monthlyReport>.grid .small,#annualReport .annual-metrics .small){
   color:var(--muted)!important;
 }
+
+/* Phase 52.8 — let the adaptive accent foreground win over legacy theme rules.
+   These controls sit directly on a solid accent surface, so their text must use
+   the contrast foreground calculated by the Accent Colour Studio. */
+html[data-accent] .wrap :is(.btn.primary,.quick-add,.aqj-trigger){
+  color:var(--accent-contrast,#172315)!important;
+}
+html[data-accent][data-theme="dark-premium"] .wrap .chart-switch button.active,
+html[data-accent][data-theme="dark-glass"] .wrap .chart-switch button.active{
+  color:var(--accent-contrast,#172315)!important;
+}
