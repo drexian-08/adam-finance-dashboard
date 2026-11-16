@@ -2028,3 +2028,45 @@ html[data-accent] #quickAdd span{
   filter:saturate(.55);
   transform:none!important;
 }
+
+/* Phase 52.12 — refined motion choreography.
+   Use one entrance animation per surface and let modal transitions own the dialog transform. */
+:root{
+  --adam-motion-fast:160ms;
+  --adam-motion-base:240ms;
+  --adam-motion-enter:320ms;
+}
+.view.active.tab-arrive{
+  animation:adamViewEnter var(--adam-motion-enter) var(--adam-ease) both!important;
+}
+.modal .dialog{
+  animation:none!important;
+  opacity:0;
+  transform:translate3d(0,14px,0) scale(.985);
+  transform-origin:center;
+  transition:transform var(--adam-motion-base) var(--adam-press),opacity var(--adam-motion-fast) ease!important;
+  will-change:transform,opacity;
+}
+.modal.show .dialog{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1);
+}
+.modal{
+  transition:opacity var(--adam-motion-base) ease,visibility var(--adam-motion-base) ease!important;
+}
+.personalisation-dialog{
+  animation:adamDialogEnter var(--adam-motion-base) var(--adam-press) both;
+}
+.aqj-menu{
+  animation:adamMenuEnter var(--adam-motion-fast) var(--adam-press) both;
+}
+@media(prefers-reduced-motion:reduce){
+  .view.active.tab-arrive,.modal.show,.personalisation-dialog,.aqj-menu{animation:none!important}
+  .modal,.modal .dialog{transition:none!important;transform:none!important;opacity:1!important}
+}
+html.adam-motion-reduced .view.active.tab-arrive,
+html.adam-motion-reduced .modal.show,
+html.adam-motion-reduced .personalisation-dialog,
+html.adam-motion-reduced .aqj-menu{animation:none!important}
+html.adam-motion-reduced .modal,
+html.adam-motion-reduced .modal .dialog{transition:none!important;transform:none!important;opacity:1!important}
