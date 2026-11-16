@@ -2224,3 +2224,87 @@ html[data-theme="dark-glass"] #smartInsightsCard .hint{
 @media(prefers-reduced-motion:reduce){
   #actionPlan+.action-plan-card{scroll-behavior:auto}
 }
+
+
+/* Phase 52.16 — wealth chart storytelling and data emphasis. */
+.chart-card{
+  position:relative;overflow:hidden;
+  border-color:color-mix(in srgb,var(--accent) 22%,var(--line))!important;
+}
+.chart-card>.row:first-child{
+  align-items:flex-start!important;gap:16px!important;
+  padding-bottom:14px;border-bottom:1px solid color-mix(in srgb,var(--accent) 14%,var(--line));
+}
+.chart-card #chartCurrent{
+  margin-top:5px;font-size:clamp(25px,4.5vw,36px)!important;
+  line-height:1.12;letter-spacing:-1px;overflow-wrap:anywhere;
+}
+.chart-card #chartChange{
+  display:inline-flex;align-items:center;gap:5px;margin-top:7px;
+  padding:5px 9px;border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));
+  border-radius:999px;background:color-mix(in srgb,var(--accent) 8%,var(--panel));
+  font-size:11px;font-weight:750;font-variant-numeric:tabular-nums;
+}
+.chart-card .chart-switch{
+  padding:4px;border:1px solid var(--line);border-radius:13px;
+  background:color-mix(in srgb,var(--panel) 88%,var(--accent) 5%);
+}
+.chart-card .chart-switch button{
+  min-width:38px;min-height:32px;border:0!important;border-radius:9px!important;
+  background:transparent!important;color:var(--muted)!important;
+  font-size:10px;font-weight:800;transition:background .18s ease,color .18s ease,transform .18s ease;
+}
+.chart-card .chart-switch button.active{
+  background:var(--accent)!important;color:var(--accent-contrast,#172315)!important;
+  box-shadow:0 3px 10px color-mix(in srgb,var(--accent) 25%,transparent)!important;
+}
+.chart-card .chart-wrap{
+  min-height:190px;padding:15px 4px 5px!important;
+  border:0!important;background:transparent!important;
+}
+.chart-card .chart-wrap svg{
+  display:block;width:100%;height:auto;max-height:230px;overflow:visible;
+}
+.chart-card .chart-wrap svg path[fill="url(#wealthFill)"]{
+  opacity:.95;
+}
+.chart-card .chart-wrap svg path[stroke="url(#wealthStroke)"]{
+  filter:drop-shadow(0 3px 4px color-mix(in srgb,var(--accent) 25%,transparent));
+}
+.chart-card .chart-wrap .wealth-point{
+  fill:var(--panel)!important;stroke:var(--accent)!important;stroke-width:2.5;
+  cursor:help;transition:r .18s ease,stroke-width .18s ease,filter .18s ease;
+}
+.chart-card .chart-wrap .wealth-point:last-child{
+  fill:var(--accent)!important;stroke:var(--panel)!important;stroke-width:3;
+  filter:drop-shadow(0 0 5px color-mix(in srgb,var(--accent) 50%,transparent));
+}
+.chart-card .chart-wrap .wealth-point:focus-visible{
+  outline:none;stroke-width:4;filter:drop-shadow(0 0 5px var(--accent));
+}
+.chart-card .chart-meta{
+  display:flex;justify-content:space-between;gap:12px;
+  padding:10px 12px;border:1px solid var(--line);border-radius:12px;
+  background:color-mix(in srgb,var(--panel) 88%,var(--accent) 4%);
+  color:var(--muted);font-size:10px;font-weight:700;font-variant-numeric:tabular-nums;
+}
+.chart-card .chart-empty{
+  display:grid;place-content:center;min-height:160px;padding:20px;
+  border:1px dashed color-mix(in srgb,var(--accent) 28%,var(--line));
+  border-radius:15px;background:color-mix(in srgb,var(--accent) 4%,transparent);
+  text-align:center;line-height:1.65;
+}
+html[data-theme="dark-premium"] .chart-card .chart-meta,
+html[data-theme="dark-glass"] .chart-card .chart-meta{
+  background:color-mix(in srgb,#1b2b3d 88%,var(--accent) 12%)!important;
+  border-color:color-mix(in srgb,var(--accent) 22%,rgba(190,211,230,.15))!important;
+}
+@media(max-width:520px){
+  .chart-card>.row:first-child{flex-direction:column;align-items:stretch!important}
+  .chart-card .chart-switch{align-self:flex-start}
+  .chart-card .chart-wrap{padding:12px 0 4px!important;min-height:160px}
+  .chart-card .chart-meta{font-size:9px;padding:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .chart-card .chart-switch button,.chart-card .chart-wrap .wealth-point{transition:none!important}
+}
