@@ -2467,3 +2467,83 @@ html[data-theme="dark-glass"] .wrap>.section>.small{
 @media(prefers-reduced-motion:reduce){
   .wrap .tabs button,.wrap .btn:not(.primary){transition:none!important}
 }
+
+
+/* Phase 52.19 — compact financial overview cards. */
+.grid:has(>[data-layout-widget]){
+  gap:12px!important;
+  align-items:stretch;
+}
+.grid>[data-layout-widget]{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-width:0;min-height:132px;padding:17px!important;
+  border:1px solid color-mix(in srgb,var(--accent) 17%,var(--line))!important;
+  border-radius:18px!important;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 5%,var(--panel)),var(--panel) 68%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 7px 20px rgba(0,0,0,.045)!important;
+  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.grid>[data-layout-widget]:after{
+  content:"";position:absolute;z-index:-1;right:-24px;bottom:-34px;
+  width:100px;height:100px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--accent) 15%,transparent);
+  box-shadow:0 0 0 13px color-mix(in srgb,var(--accent) 3%,transparent);
+  pointer-events:none;
+}
+.grid>[data-layout-widget]>h3{
+  position:relative;z-index:1;margin:0!important;
+  font-size:11px!important;font-weight:750!important;
+  line-height:1.45;letter-spacing:.005em;
+  color:var(--muted)!important;
+}
+.grid>[data-layout-widget]>.metric{
+  position:relative;z-index:1;margin:17px 0 7px!important;
+  font-size:clamp(20px,3vw,26px)!important;
+  font-weight:820!important;line-height:1.15;letter-spacing:-.75px;
+  font-variant-numeric:tabular-nums lining-nums;overflow-wrap:anywhere;
+}
+.grid>[data-layout-widget]>.small{
+  position:relative;z-index:1;margin-top:auto!important;
+  max-width:90%;font-size:10px!important;line-height:1.45;
+  color:var(--muted)!important;
+}
+.grid>[data-layout-widget="savings"]{--widget-accent:var(--accent)}
+.grid>[data-layout-widget="income"]{--widget-accent:#24a879}
+.grid>[data-layout-widget="expense"]{--widget-accent:#df6c72}
+.grid>[data-layout-widget="budget"]{--widget-accent:var(--accent)}
+.grid>[data-layout-widget="allowance"]{--widget-accent:var(--accent)}
+.grid>[data-layout-widget]:before{
+  content:"";position:absolute;top:15px;right:15px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--widget-accent,var(--accent));
+  box-shadow:0 0 10px color-mix(in srgb,var(--widget-accent,var(--accent)) 55%,transparent);
+}
+html[data-theme="dark-premium"] .grid>[data-layout-widget],
+html[data-theme="dark-glass"] .grid>[data-layout-widget]{
+  background:linear-gradient(145deg,color-mix(in srgb,#1b2b3d 88%,var(--accent) 12%),#172638 72%)!important;
+  border-color:color-mix(in srgb,var(--accent) 20%,rgba(190,211,230,.15))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 24px rgba(0,0,0,.16)!important;
+}
+@media(hover:hover){
+  .grid>[data-layout-widget]:hover{
+    transform:translateY(-2px);
+    border-color:color-mix(in srgb,var(--accent) 34%,var(--line))!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 12px 26px rgba(0,0,0,.09)!important;
+  }
+}
+@media(max-width:600px){
+  .grid:has(>[data-layout-widget]){gap:9px!important}
+  .grid>[data-layout-widget]{
+    min-height:119px;padding:13px!important;border-radius:15px!important;
+  }
+  .grid>[data-layout-widget]>.metric{
+    margin:14px 0 6px!important;font-size:clamp(18px,5vw,23px)!important;
+  }
+  .grid>[data-layout-widget]>h3{font-size:10px!important}
+  .grid>[data-layout-widget]>.small{font-size:9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .grid>[data-layout-widget]{transition:none!important}
+  .grid>[data-layout-widget]:hover{transform:none}
+}
