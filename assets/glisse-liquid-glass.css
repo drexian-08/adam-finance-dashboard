@@ -1999,3 +1999,32 @@ html[data-accent] #quickAdd,
 html[data-accent] #quickAdd span{
   color:var(--accent-contrast,#172315)!important;
 }
+
+/* Phase 52.11 — consistent interactive states across preference and utility controls.
+   Add feedback only; preserve each control's existing action and selected-state colors. */
+:is(.accent-option,.density-options button,.theme-option,.layout-widget-toggle,.action-plan-toggle,.chart-switch button,.aqj-grid button,.privacy-menu button){
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .2s var(--adam-press),border-color .2s ease,box-shadow .2s ease,background-color .2s ease,filter .2s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  :is(.accent-option,.density-options button,.theme-option,.layout-widget-toggle,.action-plan-toggle):not(:disabled):hover{
+    transform:translateY(-2px);
+    border-color:color-mix(in srgb,var(--accent) 58%,var(--adam-hairline,transparent));
+    box-shadow:0 8px 20px var(--adam-glow,rgba(0,0,0,.08));
+  }
+  :is(.accent-option,.density-options button,.theme-option,.layout-widget-toggle,.action-plan-toggle):not(:disabled):active{
+    transform:scale(.98);
+  }
+}
+:is(.accent-option,.density-options button,.theme-option,.layout-widget-toggle,.action-plan-toggle,.chart-switch button,.aqj-grid button,.privacy-menu button):focus-visible{
+  outline:2px solid var(--accent)!important;
+  outline-offset:3px!important;
+  box-shadow:0 0 0 5px var(--adam-ring,rgba(120,160,90,.18))!important;
+}
+:is(.btn,.quick-add,.tabs button,.chart-switch button,.aqj-trigger,.aqj-menu button,.privacy-menu button,.theme-option,.accent-option,.density-options button,.layout-widget-toggle,.action-plan-toggle):disabled,
+:is(.btn,.quick-add,.tabs button,.chart-switch button,.aqj-trigger,.aqj-menu button,.privacy-menu button,.theme-option,.accent-option,.density-options button,.layout-widget-toggle,.action-plan-toggle)[aria-disabled="true"]{
+  cursor:not-allowed!important;
+  opacity:.48!important;
+  filter:saturate(.55);
+  transform:none!important;
+}
