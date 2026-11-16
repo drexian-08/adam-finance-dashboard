@@ -2070,3 +2070,93 @@ html.adam-motion-reduced .personalisation-dialog,
 html.adam-motion-reduced .aqj-menu{animation:none!important}
 html.adam-motion-reduced .modal,
 html.adam-motion-reduced .modal .dialog{transition:none!important;transform:none!important;opacity:1!important}
+
+
+/* Phase 52.14 — clearer financial hierarchy, without changing calculations. */
+:root{
+  --adam-insight-line:color-mix(in srgb,var(--accent) 22%,var(--line));
+  --adam-insight-wash:color-mix(in srgb,var(--accent) 8%,var(--panel));
+}
+#healthScoreCard{
+  position:relative;
+  overflow:hidden;
+  border-color:var(--adam-insight-line)!important;
+  background:linear-gradient(135deg,var(--adam-insight-wash),var(--panel) 62%)!important;
+}
+#healthScoreCard>.row:first-child{align-items:center!important;gap:18px!important}
+#healthScore{font-size:clamp(39px,6vw,48px)!important;line-height:1;letter-spacing:-1.8px}
+#healthScoreCard>.progress{height:9px!important;margin-top:16px!important}
+#healthScoreCard>.grid>div{
+  min-width:0;padding:10px 11px;border:1px solid var(--adam-insight-line);
+  border-radius:13px;background:color-mix(in srgb,var(--panel) 82%,transparent);
+}
+#healthScoreCard>.grid strong{display:block;margin-top:5px;font-size:13px;line-height:1.35}
+#smartIntelligenceCard,#advancedInsightsCard,#smartInsightsCard{
+  border-color:var(--adam-insight-line)!important;
+}
+#smartIntelligenceCard .grid,#advancedInsightsCard .grid{gap:10px!important}
+#smartIntelligenceCard .item,#advancedInsightsCard .item{
+  position:relative;min-width:0;padding:15px!important;border-radius:16px!important;
+  border:1px solid var(--adam-insight-line)!important;
+  background:linear-gradient(145deg,var(--adam-insight-wash),color-mix(in srgb,var(--panel) 92%,transparent))!important;
+}
+#smartIntelligenceCard .item .metric,#advancedInsightsCard .item .metric{
+  margin:8px 0 5px;font-size:clamp(19px,3vw,25px)!important;
+  line-height:1.18;letter-spacing:-.55px;overflow-wrap:anywhere;
+}
+#smartIntelligenceCard .item .small:first-child,#advancedInsightsCard .item .small:first-child{
+  font-size:10px;font-weight:750;letter-spacing:.045em;line-height:1.4;
+}
+#smartInsightsCard>.grid>div{
+  padding:14px;border:1px solid var(--adam-insight-line);
+  border-radius:15px;background:var(--adam-insight-wash);
+}
+#smartInsightsCard>.grid .metric{font-size:clamp(20px,3.5vw,27px);line-height:1.2;overflow-wrap:anywhere}
+.action-plan-card .action-plan-head{
+  padding:13px 14px;border:1px solid var(--adam-insight-line);
+  border-radius:15px;background:var(--adam-insight-wash);
+}
+.action-plan-card .action-plan-item{
+  border-color:var(--adam-insight-line)!important;
+  background:color-mix(in srgb,var(--panel) 88%,var(--accent) 4%)!important;
+  transition:border-color .2s ease,background .2s ease,transform .2s ease;
+}
+.action-plan-card .action-plan-item.is-done{opacity:.72}
+html[data-theme="dark-premium"] #healthScoreCard,
+html[data-theme="dark-glass"] #healthScoreCard{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,#172638),#172638 62%)!important;
+}
+html[data-theme="dark-premium"] #healthScoreCard>.grid>div,
+html[data-theme="dark-glass"] #healthScoreCard>.grid>div,
+html[data-theme="dark-premium"] #smartIntelligenceCard .item,
+html[data-theme="dark-glass"] #smartIntelligenceCard .item,
+html[data-theme="dark-premium"] #advancedInsightsCard .item,
+html[data-theme="dark-glass"] #advancedInsightsCard .item,
+html[data-theme="dark-premium"] #smartInsightsCard>.grid>div,
+html[data-theme="dark-glass"] #smartInsightsCard>.grid>div,
+html[data-theme="dark-premium"] .action-plan-card .action-plan-head,
+html[data-theme="dark-glass"] .action-plan-card .action-plan-head,
+html[data-theme="dark-premium"] .action-plan-card .action-plan-item,
+html[data-theme="dark-glass"] .action-plan-card .action-plan-item{
+  background:color-mix(in srgb,#1b2b3d 90%,var(--accent) 10%)!important;
+  border-color:color-mix(in srgb,var(--accent) 24%,rgba(190,211,230,.14))!important;
+}
+html[data-theme="dark-premium"] #healthScoreCard .hint,
+html[data-theme="dark-glass"] #healthScoreCard .hint,
+html[data-theme="dark-premium"] #smartIntelligenceCard .hint,
+html[data-theme="dark-glass"] #smartIntelligenceCard .hint,
+html[data-theme="dark-premium"] #advancedInsightsCard .hint,
+html[data-theme="dark-glass"] #advancedInsightsCard .hint,
+html[data-theme="dark-premium"] #smartInsightsCard .hint,
+html[data-theme="dark-glass"] #smartInsightsCard .hint{
+  color:var(--muted)!important;
+}
+@media(max-width:600px){
+  #healthScoreCard>.grid{gap:8px!important}
+  #healthScoreCard>.grid>div{padding:9px}
+  #smartIntelligenceCard .item,#advancedInsightsCard .item{padding:12px!important}
+  .action-plan-card .action-plan-head{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .action-plan-card .action-plan-item{transition:none!important}
+}
