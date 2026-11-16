@@ -2585,3 +2585,43 @@ html[data-theme="dark-glass"] .grid>[data-layout-widget]{
 @media(prefers-reduced-motion:reduce){
   .grid>[data-layout-widget="budget"] .budget-intel-track i{transition:none!important}
 }
+
+
+/* Phase 52.21 — savings goal progress and milestone storytelling. */
+#goalsTracker .savings-goal-item{
+  position:relative;margin:0 0 13px;padding:16px!important;
+  border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 5%,var(--panel)),var(--panel) 78%);
+}
+#goalsTracker .savings-goal-item[data-goal-state="near"]{border-color:color-mix(in srgb,#d69b36 38%,var(--line))}
+#goalsTracker .savings-goal-item[data-goal-state="complete"]{
+  border-color:color-mix(in srgb,var(--accent) 40%,var(--line));
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel) 80%);
+}
+#goalsTracker .savings-goal-progress{
+  height:9px;margin:13px 0 8px;overflow:hidden;border-radius:999px;
+  background:color-mix(in srgb,var(--muted) 16%,transparent);
+}
+#goalsTracker .savings-goal-progress i{
+  display:block;height:100%;max-width:100%;border-radius:inherit;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 75%,#fff),var(--accent));
+  box-shadow:0 0 12px color-mix(in srgb,var(--accent) 26%,transparent);
+}
+#goalsTracker .savings-goal-item[data-goal-state="near"] .savings-goal-progress i{background:linear-gradient(90deg,#d69b36,#e9b85f)}
+#goalsTracker .savings-goal-item[data-goal-state="complete"] .savings-goal-progress i{background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 65%,#fff))}
+#goalsTracker .savings-goal-status{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#goalsTracker .savings-goal-status strong{color:var(--text);font-variant-numeric:tabular-nums}
+#goalsTracker .savings-goal-item[data-goal-state="near"] .savings-goal-status strong{color:#d69b36}
+#goalsTracker .savings-goal-item[data-goal-state="complete"] .savings-goal-status strong{color:var(--accent)}
+#goalsTracker .savings-goal-insight{margin-top:7px;color:var(--muted);font-size:10px;line-height:1.5}
+html[data-theme="dark-premium"] #goalsTracker .savings-goal-item,
+html[data-theme="dark-glass"] #goalsTracker .savings-goal-item{
+  background:linear-gradient(145deg,color-mix(in srgb,#1b2b3d 88%,var(--accent) 12%),#172638 80%);
+  border-color:color-mix(in srgb,var(--accent) 18%,rgba(190,211,230,.15));
+}
+@media(max-width:600px){
+  #goalsTracker .savings-goal-item{padding:13px!important;border-radius:14px}
+  #goalsTracker .savings-goal-progress{height:8px;margin-top:11px}
+  #goalsTracker .savings-goal-insight{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){#goalsTracker .savings-goal-progress i{transition:none!important}}
