@@ -2547,3 +2547,41 @@ html[data-theme="dark-glass"] .grid>[data-layout-widget]{
   .grid>[data-layout-widget]{transition:none!important}
   .grid>[data-layout-widget]:hover{transform:none}
 }
+
+
+/* Phase 52.20 — live budget intelligence on the overview card. */
+.grid>[data-layout-widget="budget"] .budget-intel{
+  position:relative;z-index:1;margin-top:12px;display:grid;gap:7px;
+}
+.grid>[data-layout-widget="budget"] .budget-intel-track{
+  height:6px;overflow:hidden;border-radius:999px;
+  background:color-mix(in srgb,var(--muted) 17%,transparent);
+}
+.grid>[data-layout-widget="budget"] .budget-intel-track i{
+  display:block;width:0;height:100%;border-radius:inherit;
+  background:var(--accent);box-shadow:0 0 10px color-mix(in srgb,var(--accent) 30%,transparent);
+  transition:width .45s cubic-bezier(.2,.7,.25,1),background .2s ease;
+}
+.grid>[data-layout-widget="budget"] .budget-intel-track i[data-state="warning"]{
+  background:#d69b36;box-shadow:0 0 10px rgba(214,155,54,.28);
+}
+.grid>[data-layout-widget="budget"] .budget-intel-track i[data-state="over"]{
+  background:#df6c72;box-shadow:0 0 10px rgba(223,108,114,.3);
+}
+.grid>[data-layout-widget="budget"] .budget-intel-meta{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:8px;
+  color:var(--muted);font-size:9px;line-height:1.4;
+}
+.grid>[data-layout-widget="budget"] .budget-intel-meta strong{
+  flex:0 0 auto;color:var(--text);font-size:10px;font-weight:850;
+  font-variant-numeric:tabular-nums;
+}
+.grid>[data-layout-widget="budget"] .budget-intel-track i[data-state="warning"]~.budget-intel-meta strong{color:#d69b36}
+.grid>[data-layout-widget="budget"] .budget-intel-track i[data-state="over"]~.budget-intel-meta strong{color:#df6c72}
+@media(max-width:600px){
+  .grid>[data-layout-widget="budget"] .budget-intel{margin-top:10px;gap:6px}
+  .grid>[data-layout-widget="budget"] .budget-intel-meta{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .grid>[data-layout-widget="budget"] .budget-intel-track i{transition:none!important}
+}
