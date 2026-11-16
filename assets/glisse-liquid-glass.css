@@ -1983,3 +1983,12 @@ html[data-accent][data-theme="dark-premium"] .wrap .chart-switch button.active,
 html[data-accent][data-theme="dark-glass"] .wrap .chart-switch button.active{
   color:var(--accent-contrast,#172315)!important;
 }
+
+/* Phase 52.9 — floating Rekod action sits outside .wrap.
+   Keep its foreground adaptive and preserve the existing tactile interaction states. */
+html[data-accent] .quick-add{
+  color:var(--accent-contrast,#172315)!important;
+  background:var(--accent)!important;
+  background-image:none!important;
+  border-color:var(--accent)!important;
+}
