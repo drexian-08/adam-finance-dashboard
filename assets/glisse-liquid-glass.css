@@ -2779,3 +2779,55 @@ body{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
  .quick-add{right:12px!important;bottom:calc(79px + env(safe-area-inset-bottom))!important}
 }
 @media(prefers-reduced-motion:reduce){.tabs,.tabs button{transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Phase 52.25 — unify primary actions and form controls across themes. */
+.btn.primary,
+html[data-accent] .btn.primary,
+html[data-accent] .quick-add{
+  background:var(--accent)!important;
+  background-image:none!important;
+  color:var(--accent-contrast,#172315)!important;
+  border-color:var(--accent)!important;
+}
+html[data-theme="dark-premium"] .btn.primary,
+html[data-theme="dark-glass"] .btn.primary,
+html[data-theme="dark-premium"] .quick-add,
+html[data-theme="dark-glass"] .quick-add{
+  color:var(--accent-contrast,#172315)!important;
+}
+.field,
+.formgrid input,
+.formgrid select,
+.formgrid textarea{
+  color:var(--text);
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+.field:focus,
+.formgrid input:focus,
+.formgrid select:focus,
+.formgrid textarea:focus{
+  outline:none;
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent);
+}
+.btn:focus-visible,
+.quick-add:focus-visible,
+.calendar-nav button:focus-visible{
+  outline:2px solid var(--accent)!important;
+  outline-offset:3px;
+}
+.btn.primary:disabled,
+.btn.primary[aria-disabled="true"]{
+  opacity:.58;
+  cursor:not-allowed;
+  filter:saturate(.65);
+}
+@media(prefers-reduced-motion:reduce){
+  .btn,.quick-add,.field,.formgrid input,.formgrid select,.formgrid textarea{
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
