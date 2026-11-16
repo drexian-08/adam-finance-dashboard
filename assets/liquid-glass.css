@@ -390,3 +390,40 @@ html[data-accent] .section h2:before{
 @media(prefers-reduced-motion:reduce){
   .tabs button,.tabs button .tab-label{transition:none!important}
 }
+
+/* Phase 52.13 — premium confirmation feedback for successful actions. */
+.adam-toast{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border-color:color-mix(in srgb,var(--accent) 48%,rgba(255,255,255,.55));
+  box-shadow:0 14px 34px rgba(0,0,0,.2),0 0 0 1px color-mix(in srgb,var(--accent) 15%,transparent);
+}
+.adam-toast.success::before{
+  content:"✓";
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 20px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  color:var(--accent-contrast,#172315);
+  background:var(--accent,#B9E477);
+  font-size:12px;
+  font-weight:900;
+}
+.adam-toast.error::before{
+  content:"!";
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 20px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  color:#fff;
+  background:#c84b45;
+  font-size:12px;
+  font-weight:900;
+}
+@media(prefers-reduced-motion:reduce){.adam-toast{transition:none!important}}
