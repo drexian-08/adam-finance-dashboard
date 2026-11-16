@@ -981,23 +981,44 @@ function setupScrollSpy(){
 const buttons=[...document.querySelectorAll('[data-tab]')];
 const sections=buttons.map(button=>({button,section:$(button.dataset.tab)})).filter(x=>x.section);
 if(!sections.length)return;
-let active=null;
-const activate=item=>{if(!item)return;active=item;buttons.forEach(b=>{const selected=b===item.button;b.classList.toggle('active',selected);if(selected)b.setAttribute('aria-current','location');else b.removeAttribute('aria-current');});};
+let active=null,ticking=false;
+const activate=item=>{
+ if(!item||active===item)return;
+ active=item;
+ buttons.forEach(b=>{
+  const selected=b===item.button;
+  b.classList.toggle('active',selected);
+  if(selected)b.setAttribute('aria-current','location');
+  else b.removeAttribute('aria-current');
+ });
+};
+const update=()=>{
+ ticking=false;
+ const y=window.scrollY||window.pageYOffset||0;
+ const line=y+Math.min(190,Math.max(112,window.innerHeight*.28));
+ let current=sections[0];
+ sections.forEach(item=>{
+  if(!item.section.isConnected||!item.section.getClientRects().length)return;
+  const top=item.section.getBoundingClientRect().top+y;
+  if(top<=line)current=item;
+ });
+ if(y+window.innerHeight>=document.documentElement.scrollHeight-12)current=sections[sections.length-1];
+ activate(current);
+};
+const schedule=()=>{
+ if(ticking)return;
+ ticking=true;
+ requestAnimationFrame(update);
+};
 activate(sections[0]);
-if('IntersectionObserver'in window){
-const visible=new Set();
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{if(entry.isIntersecting)visible.add(entry.target);else visible.delete(entry.target);});
-const line=window.innerHeight*.38;
-let nearest=null,distance=Infinity;
-sections.forEach(item=>{if(!visible.has(item.section))return;const d=Math.abs(item.section.getBoundingClientRect().top-line);if(d<distance){distance=d;nearest=item;}});
-if(nearest)activate(nearest);
-},{rootMargin:'-34% 0px -58% 0px',threshold:0});
-sections.forEach(item=>observer.observe(item.section));
+schedule();
+window.addEventListener('scroll',schedule,{passive:true});
+window.addEventListener('resize',schedule,{passive:true});
+document.addEventListener('toggle',schedule,true);
+if('ResizeObserver'in window){
+ const resizeObserver=new ResizeObserver(schedule);
+ sections.forEach(item=>resizeObserver.observe(item.section));
 }
-let ticking=false;
-const checkBottom=()=>{ticking=false;if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-8)activate(sections[sections.length-1]);};
-window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(checkBottom);}},{passive:true});
 }
 function setupMotion(){const targets=document.querySelectorAll('.hero,.card,.section');targets.forEach(el=>el.classList.add('reveal'));if('IntersectionObserver'in window){const ob=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');ob.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});targets.forEach(el=>ob.observe(el))}else targets.forEach(el=>el.classList.add('is-visible'))}
 
