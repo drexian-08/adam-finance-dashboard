@@ -1604,4 +1604,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)clo
  if(selected.currency==='MYR')fetchRate();else fetchRate();
 })();
 </script>
+
+<style>
+#adRecoveryRescue{position:fixed;right:14px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:99999;background:#b45309;color:#fff;border:2px solid #fff;border-radius:14px;padding:13px 16px;font:700 13px system-ui;box-shadow:0 6px 24px #0006;cursor:pointer}
+#adRecoveryRescue:focus{outline:3px solid #fbbf24;outline-offset:3px}
+</style>
+<button id="adRecoveryRescue" type="button">SELAMATKAN DATA</button>
+<script>
+(()=>{const b=document.getElementById('adRecoveryRescue');if(!b)return;b.addEventListener('click',()=>{try{const keys=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(/adam-finance|adamFinance|finance.*backup/i.test(k)))keys.push(k)}const captured={format:'adam-finance-emergency-capture',capturedAt:new Date().toISOString(),origin:location.origin,storage:{}};keys.forEach(k=>{captured.storage[k]=localStorage.getItem(k)});const blob=new Blob([JSON.stringify(captured,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='adam-finance-emergency-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);b.textContent='FAIL PEMULIHAN DIMUAT TURUN';}catch(e){b.textContent='GAGAL — '+e.message;}});})();
+</script>
+
 </body></html>
