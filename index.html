@@ -1269,7 +1269,7 @@ function pushCloudData(){
     adamCloudSyncRequested=false;
     if(!navigator.onLine){cloudMessage('Offline. Perubahan kekal pada peranti dan menunggu sambungan internet.','Menunggu sync');break;}
     if(adamCloudRevision===null)throw Error('Versi cloud belum diketahui. Muat semula data cloud sebelum sync.');
-    const payloadJson=JSON.stringify(data),expectedRevision=adamCloudRevision;
+    await saveIndexedRecoverySnapshot('Sebelum menghantar data ke Cloud Sync');const payloadJson=JSON.stringify(data),expectedRevision=adamCloudRevision;
     const nextRevision=await adamDb.runTransaction(async transaction=>{
      const snap=await transaction.get(targetDoc);
      const current=snap.exists?Number(snap.data()?.revision)||0:0;
@@ -1316,18 +1316,19 @@ document.getElementById('cloudKeepDevice').onclick=async()=>{
  if(!conflict||typeof conflict.localPayloadJson!=='string'){cloudMessage('Salinan konflik tidak ditemui. Data peranti tidak diubah.','Perlu semakan');return;}
  const targetUser=adamCloudUser,targetDoc=cloudDoc();
  try{
+  await saveIndexedRecoverySnapshot('Sebelum mengekalkan versi peranti dalam cloud');
   const next=await adamDb.runTransaction(async transaction=>{const snap=await transaction.get(targetDoc);const current=snap.exists?Number(snap.data()?.revision)||0:0;if(current!==(Number(conflict.remoteRevision)||0))throw Error('CLOUD_REVISION_CONFLICT');const revision=current+1;transaction.set(targetDoc,{payloadJson:conflict.localPayloadJson,revision,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});return revision;});
   if(adamCloudUser?.uid!==targetUser.uid)return;
   adamCloudRevision=next;adamCloudDirty=false;adamCloudConflict=false;localStorage.removeItem(key);hideCloudConflictActions();localStorage.setItem('adam-finance-last-cloud-sync',new Date().toISOString());refreshCloudLastSync();cloudMessage('Data peranti dikekalkan dan dihantar ke cloud sebagai versi '+next+'.','Disambungkan ✓');
  }catch(e){console.error(e);cloudMessage((e.message||'').includes('CLOUD_REVISION_CONFLICT')?'Cloud berubah sekali lagi. Kedua-dua versi lama masih disimpan; tunggu kemas kini konflik terkini.':'Gagal menyimpan pilihan peranti: '+e.message,'Perlu semakan');}
 };
-document.getElementById('cloudUseRemote').onclick=()=>{
+document.getElementById('cloudUseRemote').onclick=async()=>{
  const key=adamCloudUser&&cloudConflictKey(adamCloudUser.uid);if(!key)return;
  let conflict;try{conflict=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}
  if(!conflict||typeof conflict.remotePayloadJson!=='string'){cloudMessage('Salinan cloud dalam rekod konflik tidak ditemui. Data peranti tidak diubah.','Perlu semakan');return;}
  try{
   const remote=JSON.parse(conflict.remotePayloadJson);if(!remote||!Array.isArray(remote.transactions)||!Number.isFinite(Number(remote.cash))||!Number.isFinite(Number(remote.debt)))throw Error('Struktur data cloud tidak lengkap.');if((Array.isArray(data.transactions)?data.transactions.length:0)>(Array.isArray(remote.transactions)?remote.transactions.length:0))throw Error('Versi cloud mempunyai transaksi lebih sedikit. Pilihan ini disekat untuk melindungi rekod setempat.');
-  if(!preserveCloudRecoverySnapshot('Sebelum memilih versi cloud dalam konflik'))throw Error('Salinan pemulihan peranti gagal disimpan.');
+  await saveIndexedRecoverySnapshot('Sebelum menggantikan data peranti dengan versi cloud');if(!preserveCloudRecoverySnapshot('Sebelum memilih versi cloud dalam konflik'))throw Error('Salinan pemulihan peranti gagal disimpan.');
   adamApplyingRemote=true;data={...data,...remote};localStorage.setItem(KEY,JSON.stringify(data));render();adamApplyingRemote=false;
   adamCloudRevision=Number(conflict.remoteRevision)||0;adamCloudDirty=false;adamCloudConflict=false;localStorage.removeItem(key);hideCloudConflictActions();cloudMessage('Versi cloud dipilih. Data peranti sebelum pilihan masih ada dalam rekod pemulihan.','Disambungkan ✓');
  }catch(e){adamApplyingRemote=false;console.error(e);cloudMessage('Tidak dapat menggunakan versi cloud: '+e.message,'Perlu semakan');}
