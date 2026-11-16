@@ -2656,3 +2656,35 @@ html[data-theme="dark-glass"] #healthScoreCard .health-pulse-breakdown{
 @media(prefers-reduced-motion:reduce){
   #healthScoreCard .health-pulse-track i,#healthScoreCard .health-pulse-bar i{transition:none!important}
 }
+
+
+/* Phase 52.23 — contextual next-best financial action. */
+#smartIntelligenceCard .smart-next-move{
+  position:relative;overflow:hidden;margin:16px 0 12px;padding:16px 17px;
+  border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));
+  border-radius:17px;
+  background:linear-gradient(125deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),var(--panel) 76%);
+}
+#smartIntelligenceCard .smart-next-move:after{
+  content:"";position:absolute;right:-30px;top:-48px;width:112px;height:112px;
+  border:1px solid color-mix(in srgb,var(--accent) 23%,transparent);border-radius:50%;
+  box-shadow:0 0 0 15px color-mix(in srgb,var(--accent) 4%,transparent);pointer-events:none;
+}
+#smartIntelligenceCard .smart-next-move-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+#smartIntelligenceCard .smart-next-move-kicker{font-size:9px;font-weight:900;letter-spacing:.14em;color:var(--accent)}
+#smartIntelligenceCard .smart-next-move-state{font-size:8px;font-weight:850;letter-spacing:.08em;color:var(--muted);text-align:right}
+#smartIntelligenceCard .smart-next-move>strong{display:block;max-width:52ch;font-size:14px;line-height:1.4;letter-spacing:-.2px;color:var(--text)}
+#smartIntelligenceCard .smart-next-move>p{position:relative;z-index:1;margin:7px 0 0;max-width:68ch;color:var(--muted);font-size:11px;line-height:1.65}
+html[data-theme="dark-premium"] #smartIntelligenceCard .smart-next-move,
+html[data-theme="dark-glass"] #smartIntelligenceCard .smart-next-move{
+  background:linear-gradient(125deg,color-mix(in srgb,#1b2b3d 82%,var(--accent) 18%),#172638 78%);
+  border-color:color-mix(in srgb,var(--accent) 27%,rgba(190,211,230,.15));
+}
+@media(max-width:600px){
+  #smartIntelligenceCard .smart-next-move{padding:14px;border-radius:15px}
+  #smartIntelligenceCard .smart-next-move>strong{font-size:13px}
+  #smartIntelligenceCard .smart-next-move>p{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  #smartIntelligenceCard .smart-next-move{scroll-behavior:auto}
+}
