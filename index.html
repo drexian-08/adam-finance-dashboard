@@ -267,7 +267,7 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 </details>
 <section class="section" id="tools"><h2>Tools kewangan</h2><button class="btn" id="personalisationOpenTools" type="button">⚙ Personalisation Centre</button></section><div class="grid">
 <article class="card"><h3>🧮 Simpanan sasaran</h3><div class="metric" id="goalProgress">0%</div><div class="small" id="goalText">Tetapkan sasaran simpanan</div><div class="actions"><button class="btn" onclick="setGoal()">Tetapkan sasaran</button></div></article>
-<article class="card"><h3>📤 Data & privasi</h3><div class="small">Simpan salinan data atau pulihkan data pada peranti lain.</div><div id="dataHealth" class="data-health" aria-live="polite">Menyemak data peranti…</div><div class="actions"><button class="btn" onclick="exportData()">Export</button><button class="btn" id="runIntegrityCheck" type="button">Semak integriti</button><button class="btn" onclick="document.getElementById('importFile').click()">Import</button><button class="btn" id="cloudRecoveryExport" onclick="exportCloudRecovery()" hidden>Muat turun pemulihan</button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></article>
+<article class="card"><h3>📤 Data & privasi</h3><div class="small">Simpan salinan data atau pulihkan data pada peranti lain.</div><div id="dataHealth" class="data-health" aria-live="polite">Menyemak data peranti…</div><div class="actions"><button class="btn" onclick="exportData()">Export</button><button class="btn" id="runIntegrityCheck" type="button">Semak integriti</button><button class="btn" type="button" onclick="document.getElementById('backupCheckFile').click()">Sahkan fail backup</button><button class="btn" onclick="document.getElementById('importFile').click()">Import / Pulih</button><button class="btn" id="cloudRecoveryExport" onclick="exportCloudRecovery()" hidden>Muat turun pemulihan</button><div id="backupValidationStatus" class="small" role="status" aria-live="polite" style="flex-basis:100%;line-height:1.6"></div><input id="backupCheckFile" type="file" accept=".json,application/json" hidden onchange="validateBackupPreview(event)"><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></article>
 </div>
 <details class="dashboard-disclosure planning-disclosure" id="goalsPlanningDisclosure">
 <summary><span class="dashboard-disclosure-icon" aria-hidden="true">◎</span><span class="dashboard-disclosure-copy"><strong>Matlamat & simpanan</strong><small>Jejak sasaran kewangan dan susun agihan simpanan</small></span><span class="dashboard-disclosure-meta">2 modul</span></summary>
@@ -1076,6 +1076,24 @@ async function runDataIntegrityCheck(){
 }
 $('runIntegrityCheck')?.addEventListener('click',runDataIntegrityCheck);
 function exportData(){try{const now=new Date(),backup={_adamBackup:{format:'adam-finance-backup',schemaVersion:1,exportedAt:now.toISOString()},data},payload=JSON.stringify(backup,null,2),blob=new Blob([payload],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='adam-finance-backup-'+localDateKey(now)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);localStorage.setItem('adam-finance-last-backup',now.toISOString());refreshDataHealth();showToast('Backup berjaya dieksport')}catch(e){showToast('Backup gagal dibuat','error');console.error(e)}}
+
+ function validateBackupPreview(e){
+  const input=e.target,file=input.files&&input.files[0],status=$('backupValidationStatus');if(!file)return;
+  if(status)status.textContent='Sedang menyemak fail backup…';
+  if(file.size>15*1024*1024){if(status)status.textContent='GAGAL • Fail melebihi had 15 MB.';input.value='';return;}
+  const reader=new FileReader();
+  reader.onerror=()=>{if(status)status.textContent='GAGAL • Fail tidak dapat dibaca. Data semasa tidak diubah.';input.value='';};
+  reader.onload=()=>{
+   try{
+    const parsed=JSON.parse(reader.result),checked=validateBackupData(parsed),meta=parsed?._adamBackup||{};
+    const summary=['LULUS • Struktur backup sah','Transaksi: '+checked.transactions.length,'Pelaburan: '+(Array.isArray(checked.investments)?checked.investments.length:0),'Bil berulang: '+(Array.isArray(checked.recurringBills)?checked.recurringBills.length:0),'Tarikh eksport: '+(meta.exportedAt?new Date(meta.exportedAt).toLocaleString('ms-MY'):'Tidak dinyatakan'),'Saiz fail: '+(file.size/1024).toFixed(1)+' KB','Data semasa TIDAK diubah.'];
+    if(status)status.textContent=summary.join(' • ');
+    showToast('Fail backup lulus pemeriksaan');
+   }catch(err){if(status)status.textContent='GAGAL • '+err.message+' • Data semasa tidak diubah.';showToast('Fail backup tidak sah','error');}
+   finally{input.value='';}
+  };
+  reader.readAsText(file);
+ }
 function exportCloudRecovery(){try{const recovery=JSON.parse(localStorage.getItem('adam-finance-cloud-recovery-v1')||'null');if(!recovery?.payloadJson)throw Error('Tiada salinan pemulihan tersedia');const blob=new Blob([recovery.payloadJson],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='adam-finance-cloud-recovery-'+new Date(recovery.createdAt||Date.now()).toISOString().replace(/[:.]/g,'-')+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Salinan pemulihan berjaya dimuat turun')}catch(e){showToast('Salinan pemulihan gagal dieksport','error');console.error(e)}}
 function validateBackupData(raw){
  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Struktur backup tidak sah');
