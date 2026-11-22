@@ -2849,3 +2849,6 @@ html[data-theme="dark-glass"] .quick-add{
  .tabs .tab-label{max-width:none!important;margin-left:0!important;opacity:1!important;transform:none!important;font-size:12px!important}
  .quick-add{right:28px!important;bottom:28px!important}
 }
+
+/* Phone layout: force the two finance tools cards into one column */
+@media(max-width:699px){.wrap>.grid.tools-grid{grid-template-columns:minmax(0,1fr)!important}.wrap>.grid.tools-grid>.card{width:100%;min-width:0}}
