@@ -269,7 +269,7 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 </details>
 <section class="section" id="tools"><h2>Tools kewangan</h2><button class="btn" id="personalisationOpenTools" type="button">⚙ Personalisation Centre</button></section><div class="grid tools-grid">
 <article class="card"><h3>🧮 Simpanan sasaran</h3><div class="metric" id="goalProgress">0%</div><div class="small" id="goalText">Tetapkan sasaran simpanan</div><div class="actions"><button class="btn" onclick="setGoal()">Tetapkan sasaran</button></div></article>
-<article class="card"><h3>📤 Data & privasi</h3><div class="small">Simpan salinan data atau pulihkan data pada peranti lain.</div><div id="dataHealth" class="data-health" aria-live="polite">Menyemak data peranti…</div><div class="actions"><button class="btn" onclick="exportData()">Export</button><button class="btn" id="runIntegrityCheck" type="button">Semak integriti</button><button class="btn" type="button" onclick="document.getElementById('backupCheckFile').click()">Sahkan fail backup</button><button class="btn" onclick="document.getElementById('importFile').click()">Import / Pulih</button><button class="btn" id="cloudRecoveryExport" onclick="exportCloudRecovery()" hidden>Muat turun pemulihan</button><details class="dashboard-disclosure" style="margin-top:12px"><summary><strong>Pemulihan kecemasan (pilihan)</strong><span class="small"> Gunakan hanya jika pemulihan biasa tidak berjaya</span></summary><div class="actions" style="margin-top:10px"><button class="btn" id="adRecoveryRescue" type="button">Muat turun salinan kecemasan</button><button class="btn" id="adRecoveryRestore" type="button">Pulihkan fail kecemasan</button></div></details><div id="backupValidationStatus" class="small" role="status" aria-live="polite" style="flex-basis:100%;line-height:1.6"></div><input id="backupCheckFile" type="file" accept=".json,application/json" hidden onchange="validateBackupPreview(event)"><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></article>
+<article class="card"><h3>📤 Data & privasi</h3><div class="small">Simpan salinan data atau pulihkan data pada peranti lain.</div><div id="dataHealth" class="data-health" aria-live="polite">Menyemak data peranti…</div><div class="actions"><button class="btn" onclick="exportData()">Export</button><button class="btn" id="runIntegrityCheck" type="button">Semak integriti</button><button class="btn" type="button" onclick="document.getElementById('backupCheckFile').click()">Sahkan fail backup</button><button class="btn" type="button" onclick="document.getElementById('backupDryRunFile').click()">Simulasi pemulihan</button><button class="btn" onclick="document.getElementById('importFile').click()">Import / Pulih</button><button class="btn" id="cloudRecoveryExport" onclick="exportCloudRecovery()" hidden>Muat turun pemulihan</button><details class="dashboard-disclosure" style="margin-top:12px"><summary><strong>Pemulihan kecemasan (pilihan)</strong><span class="small"> Gunakan hanya jika pemulihan biasa tidak berjaya</span></summary><div class="actions" style="margin-top:10px"><button class="btn" id="adRecoveryRescue" type="button">Muat turun salinan kecemasan</button><button class="btn" id="adRecoveryRestore" type="button">Pulihkan fail kecemasan</button></div></details><div id="backupValidationStatus" class="small" role="status" aria-live="polite" style="flex-basis:100%;line-height:1.6"></div><input id="backupCheckFile" type="file" accept=".json,application/json" hidden onchange="validateBackupPreview(event)"><input id="backupDryRunFile" type="file" accept=".json,application/json" hidden onchange="runBackupRestoreDryRun(event)"><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></article>
 </div>
 <details class="dashboard-disclosure planning-disclosure" id="goalsPlanningDisclosure">
 <summary><span class="dashboard-disclosure-icon" aria-hidden="true">◎</span><span class="dashboard-disclosure-copy"><strong>Matlamat & simpanan</strong><small>Jejak sasaran kewangan dan susun agihan simpanan</small></span><span class="dashboard-disclosure-meta">2 modul</span></summary>
@@ -1096,6 +1096,29 @@ async function exportData(){try{const now=new Date(),snapshotSaved=await saveInd
   };
   reader.readAsText(file);
  }
+function runBackupRestoreDryRun(e){
+ const input=e.target,file=input.files&&input.files[0],status=$('backupValidationStatus');if(!file)return;
+ if(status)status.textContent='Sedang menjalankan simulasi pemulihan…';
+ if(file.size>15*1024*1024){if(status)status.textContent='SIMULASI GAGAL • Fail melebihi had 15 MB. Data semasa tidak diubah.';input.value='';return;}
+ const reader=new FileReader();
+ reader.onerror=()=>{if(status)status.textContent='SIMULASI GAGAL • Fail tidak dapat dibaca. Data semasa tidak diubah.';input.value='';};
+ reader.onload=()=>{
+  try{
+   const parsed=JSON.parse(reader.result),meta=parsed&&parsed._adamBackup?parsed._adamBackup:{},isolated=JSON.parse(JSON.stringify(parsed)),incoming=validateBackupData(isolated);
+   if(meta.transactionCount!==undefined&&Number(meta.transactionCount)!==incoming.transactions.length)throw Error('Jumlah transaksi tidak sepadan dengan metadata backup');
+   const currentSnapshot=JSON.stringify(data),incomingSnapshot=JSON.stringify(incoming),merged={...data,...incoming};
+   if(!merged||!Array.isArray(merged.transactions))throw Error('Simulasi gabungan data gagal');
+   JSON.stringify(merged);
+   const cloudBlocked=!!(adamCloudUser&&localStorage.getItem(cloudConflictKey(adamCloudUser.uid)));
+   const report=['SIMULASI LULUS • Fail boleh diproses untuk restore','Transaksi: '+incoming.transactions.length+(meta.transactionCount!==undefined?' • metadata sepadan':''),'Pelaburan: '+(Array.isArray(incoming.investments)?incoming.investments.length:0),'Bil berulang: '+(Array.isArray(incoming.recurringBills)?incoming.recurringBills.length:0),'Ujian gabungan data: LULUS','Cloud Sync: '+(cloudBlocked?'RESTORE SEBENAR DIHALANGI — konflik perlu diselesaikan dahulu':'Tiada konflik yang menghalang restore dikesan'),'Data semasa: TIDAK DIUBAH','localStorage / IndexedDB: TIDAK DITULIS'];
+   if(JSON.stringify(data)!==currentSnapshot)throw Error('Pengesahan keselamatan gagal: data semasa berubah ketika simulasi');
+   if(status)status.textContent=report.join(' • ');
+   showToast('Simulasi pemulihan selesai tanpa mengubah data');
+  }catch(err){if(status)status.textContent='SIMULASI GAGAL • '+err.message+' • Data semasa tidak diubah.';showToast('Simulasi pemulihan gagal','error');console.error(err);}
+  finally{input.value='';}
+ };
+ reader.readAsText(file);
+}
 function exportCloudRecovery(){try{const recovery=JSON.parse(localStorage.getItem('adam-finance-cloud-recovery-v1')||'null');if(!recovery?.payloadJson)throw Error('Tiada salinan pemulihan tersedia');const blob=new Blob([recovery.payloadJson],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='adam-finance-cloud-recovery-'+new Date(recovery.createdAt||Date.now()).toISOString().replace(/[:.]/g,'-')+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Salinan pemulihan berjaya dimuat turun')}catch(e){showToast('Salinan pemulihan gagal dieksport','error');console.error(e)}}
 function validateBackupData(raw){
  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Struktur backup tidak sah');
