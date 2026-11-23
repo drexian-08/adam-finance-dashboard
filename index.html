@@ -1109,7 +1109,7 @@ function runBackupRestoreDryRun(e){
    const currentSnapshot=JSON.stringify(data),incomingSnapshot=JSON.stringify(incoming),merged={...data,...incoming};
    if(!merged||!Array.isArray(merged.transactions))throw Error('Simulasi gabungan data gagal');
    JSON.stringify(merged);
-   const cloudBlocked=!!(adamCloudUser&&localStorage.getItem(cloudConflictKey(adamCloudUser.uid)));
+   const cloudUser=(typeof adamCloudUser!=='undefined')?adamCloudUser:null,cloudBlocked=!!(cloudUser&&typeof cloudConflictKey==='function'&&localStorage.getItem(cloudConflictKey(cloudUser.uid)));
    const report=['SIMULASI LULUS • Fail boleh diproses untuk restore','Transaksi: '+incoming.transactions.length+(meta.transactionCount!==undefined?' • metadata sepadan':''),'Pelaburan: '+(Array.isArray(incoming.investments)?incoming.investments.length:0),'Bil berulang: '+(Array.isArray(incoming.recurringBills)?incoming.recurringBills.length:0),'Ujian gabungan data: LULUS','Cloud Sync: '+(cloudBlocked?'RESTORE SEBENAR DIHALANGI — konflik perlu diselesaikan dahulu':'Tiada konflik yang menghalang restore dikesan'),'Data semasa: TIDAK DIUBAH','localStorage / IndexedDB: TIDAK DITULIS'];
    if(JSON.stringify(data)!==currentSnapshot)throw Error('Pengesahan keselamatan gagal: data semasa berubah ketika simulasi');
    if(status)status.textContent=report.join(' • ');
