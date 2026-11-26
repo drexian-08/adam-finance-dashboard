@@ -147,6 +147,26 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 .chart-card>.hint{margin-top:10px!important;font-size:10px!important;line-height:1.5!important;opacity:.76}
 @media(max-width:520px){.chart-card{padding:16px!important}.chart-card>.row:first-child{flex-direction:row!important;align-items:center!important}.chart-card .chart-switch{align-self:center}.chart-card .chart-wrap{min-height:158px;padding-top:10px!important}.chart-card #chartCurrent{font-size:24px!important}}
 @media(max-width:360px){.chart-card>.row:first-child{align-items:flex-start!important}.chart-card .chart-switch button{min-width:33px;padding:6px!important;font-size:9px!important}.chart-card #chartCurrent{font-size:21px!important}}
+
+/* Phase 52.34 — clear, readable financial intelligence modules */
+#smartIntelligenceCard,#advancedInsightsCard,.action-plan-card{padding:18px!important;border-radius:21px!important}
+#smartIntelligenceCard>.grid,#advancedInsightsCard>.grid{gap:10px!important}
+#smartIntelligenceCard .item,#advancedInsightsCard .item{padding:14px!important;border-radius:15px!important;min-width:0;border:1px solid color-mix(in srgb,var(--line,#9aa18f) 35%,transparent)!important;background:color-mix(in srgb,var(--accent,#8fc91c) 4%,transparent)!important;box-shadow:none!important}
+#smartIntelligenceCard .item .small,#advancedInsightsCard .item .small{font-size:10px!important;line-height:1.45!important}
+#smartIntelligenceCard .item .metric,#advancedInsightsCard .item .metric{font-size:clamp(19px,3vw,23px)!important;line-height:1.2!important;letter-spacing:-.03em!important;margin:7px 0 5px!important;overflow-wrap:anywhere}
+#smartIntelligenceCard .smart-next-move{margin-top:13px!important;padding:16px!important;border-radius:17px!important;border:1px solid color-mix(in srgb,var(--accent,#8fc91c) 24%,var(--line,transparent))!important;background:color-mix(in srgb,var(--accent,#8fc91c) 7%,transparent)!important}
+#smartIntelligenceCard .smart-next-move-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+#smartIntelligenceCard .smart-next-move-kicker{font-size:9px!important;font-weight:800;letter-spacing:.1em}
+#smartIntelligenceCard .smart-next-move-state{font-size:9px!important;font-weight:700;letter-spacing:.05em;opacity:.7}
+#smartIntelligenceCard .smart-next-move strong{font-size:15px!important;line-height:1.35;display:block}
+#smartIntelligenceCard .smart-next-move p{font-size:11px!important;line-height:1.55!important;margin:7px 0 0!important;opacity:.82}
+#smartIntelligenceDisclaimer,#advancedInsightsCard>.hint,.action-plan-card>.hint{font-size:10px!important;line-height:1.55!important;margin-top:13px!important}
+#advancedInsightsCard .item .metric{font-size:22px!important}
+.action-plan-head{gap:12px!important;align-items:center!important;margin-bottom:14px!important}
+.action-plan-head>div:first-child strong{font-size:16px!important}
+.action-plan-track{height:7px!important;border-radius:99px!important;overflow:hidden}
+.action-plan-list{display:grid;gap:9px!important}
+@media(max-width:390px){#smartIntelligenceCard,#advancedInsightsCard,.action-plan-card{padding:14px!important}#smartIntelligenceCard .item,#advancedInsightsCard .item{padding:11px!important}#smartIntelligenceCard .item .metric,#advancedInsightsCard .item .metric{font-size:18px!important}}
 </style>
 <link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=79">
 
@@ -179,17 +199,17 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 <details class="dashboard-disclosure" id="dailyInsightsDisclosure">
 <summary><span class="dashboard-disclosure-icon" aria-hidden="true">✦</span><span class="dashboard-disclosure-copy"><strong>Analisis pintar & tindakan</strong><small>Trend, corak perbelanjaan dan cadangan langkah seterusnya</small></span><span class="dashboard-disclosure-meta">3 modul</span></summary>
 <div class="dashboard-disclosure-content">
-<section class="section" id="smartIntelligence"><h2>🧠 Smart Financial Intelligence</h2><span class="small">Analisis automatik</span></section>
+<section class="section" id="smartIntelligence"><h2>🧠 Analisis kewangan pintar</h2><span class="small">Pemerhatian berdasarkan rekod anda</span></section>
 <article class="card" id="smartIntelligenceCard">
 <div class="grid" style="margin-top:0">
-<div class="item" style="display:block"><div class="small">📈 Wealth Trend Analysis</div><div class="metric mint" id="smartWealthTrend">—</div><div class="small" id="smartWealthTrendNote">Menganalisis sejarah kekayaan</div></div>
-<div class="item" style="display:block"><div class="small">🧾 Unusual Expense Detection</div><div class="metric" id="smartExpenseFlag">—</div><div class="small" id="smartExpenseNote">Menyemak corak perbelanjaan</div></div>
-<div class="item" style="display:block"><div class="small">💡 Smart Savings Recommendation</div><div class="metric mint" id="smartSavingsSuggestion">—</div><div class="small" id="smartSavingsNote">Mengira ruang simpanan</div></div>
+<div class="item" style="display:block"><div class="small">📈 Trend kekayaan</div><div class="metric mint" id="smartWealthTrend">—</div><div class="small" id="smartWealthTrendNote">Menganalisis sejarah kekayaan</div></div>
+<div class="item" style="display:block"><div class="small">🧾 Perbelanjaan luar biasa</div><div class="metric" id="smartExpenseFlag">—</div><div class="small" id="smartExpenseNote">Menyemak corak perbelanjaan</div></div>
+<div class="item" style="display:block"><div class="small">💡 Cadangan simpanan</div><div class="metric mint" id="smartSavingsSuggestion">—</div><div class="small" id="smartSavingsNote">Mengira ruang simpanan</div></div>
 </div>
-<div class="smart-next-move" id="smartNextMove" aria-live="polite"><div class="smart-next-move-top"><span class="smart-next-move-kicker">✦ NEXT BEST MOVE</span><span class="smart-next-move-state" id="smartNextMoveState">MENGANALISIS</span></div><strong id="smartNextMoveTitle">Mencari langkah paling berguna…</strong><p id="smartNextMoveDetail">Analisis akan dikemas kini berdasarkan rekod kewangan.</p></div>
+<div class="smart-next-move" id="smartNextMove" aria-live="polite"><div class="smart-next-move-top"><span class="smart-next-move-kicker">✦ LANGKAH SETERUSNYA</span><span class="smart-next-move-state" id="smartNextMoveState">MENILAI DATA</span></div><strong id="smartNextMoveTitle">Mencari langkah paling berguna…</strong><p id="smartNextMoveDetail">Analisis akan dikemas kini berdasarkan rekod kewangan.</p></div>
 <div class="hint" id="smartIntelligenceDisclaimer">Analisis berdasarkan transaksi dan snapshot yang direkodkan dalam dashboard. Semakin lengkap rekod, semakin berguna hasil analisis.</div>
 </article>
-<section class="section" id="advancedInsights"><h2>🧮 Advanced Financial Insights</h2><span class="small">Nisbah & daya tahan kewangan</span></section>
+<section class="section" id="advancedInsights"><h2>🧮 Ukuran kewangan lanjutan</h2><span class="small">Nisbah dan ketahanan kewangan</span></section>
 <article class="card" id="advancedInsightsCard">
 <div class="grid" style="margin-top:0">
 <div class="item" style="display:block"><div class="small">💚 Kadar simpanan</div><div class="metric mint" id="advancedSavingsRate">—</div><div class="small" id="advancedSavingsRateNote">Berdasarkan aliran tunai 90 hari</div></div>
@@ -199,7 +219,7 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 </div>
 <p class="hint">Nisbah menggunakan transaksi 90 hari terkini dan nilai aset semasa. Perlindungan tunai menganggap baki tunai sebagai dana yang boleh digunakan; ia bukan jaminan kecemasan atau nasihat kewangan.</p>
 </article>
-<section class="section" id="actionPlan"><h2>🧭 Smart Financial Action Plan</h2><span class="small">Langkah seterusnya berdasarkan data kau</span></section>
+<section class="section" id="actionPlan"><h2>🧭 Pelan tindakan kewangan</h2><span class="small">Langkah seterusnya berdasarkan rekod anda</span></section>
 <article class="card action-plan-card">
 <div class="action-plan-head"><div><div class="small">Kemajuan tindakan</div><strong id="actionPlanProgress">0 / 0 selesai</strong></div><div class="action-plan-track"><i id="actionPlanProgressBar"></i></div></div>
 <div id="actionPlanList" class="action-plan-list"><div class="empty">Menyediakan pelan tindakan...</div></div>
