@@ -2998,3 +2998,34 @@ html[data-theme="dark-glass"] .quick-add{
 }
 
 
+
+
+/* Phase 52.36 — soft blue/mint mobile workspace inspired by the supplied reference. */
+:root{--adam-surface:#f4f8fc;--adam-blue:#dcecff;--adam-mint:#d9f5ec;--adam-ink:#182433}
+@media(max-width:699px){
+ body{background:var(--adam-surface)!important;color:var(--adam-ink)}
+ .wrap{padding-left:14px!important;padding-right:14px!important;padding-bottom:92px!important}
+ .top{padding:18px 4px 12px!important;align-items:center}
+ .top .brand{font-size:10px!important;letter-spacing:.12em;max-width:150px}
+ .top .date{font-size:10px!important}
+ .wrap>.hero{background:linear-gradient(118deg,#dcecff 0%,#e9f5ff 48%,#d9f5ec 100%)!important;color:#172638!important;border:1px solid rgba(95,145,185,.12)!important;box-shadow:0 10px 26px rgba(67,116,153,.10)!important}
+ .wrap>.hero .brand,.wrap>.hero .sub,.wrap>.hero .balance-label,.wrap>.hero .hero-foot{color:#496174!important}
+ .card{background:rgba(255,255,255,.96)!important;border:1px solid rgba(91,133,166,.12)!important;border-radius:19px!important;box-shadow:0 7px 19px rgba(61,102,137,.08)!important}
+ .section{margin:22px 2px 9px!important;gap:4px}
+ .section h2{font-size:19px!important;letter-spacing:-.45px}
+ .section .small{font-size:10px}
+ #spendingCalendar{background:linear-gradient(145deg,#e2efff 0%,#eaf8f5 100%)!important;border-color:rgba(93,154,190,.13)!important;box-shadow:0 10px 24px rgba(75,133,170,.12)!important}
+ #spendingCalendar .calendar-nav{background:rgba(255,255,255,.72)!important;border-radius:12px}
+ #transactionsSection+.card .search,#transactionsSection+.card input{border-radius:999px!important}
+ .dashboard-disclosure{border:1px solid rgba(91,133,166,.13)!important;border-radius:17px!important;background:#fff!important;box-shadow:0 6px 17px rgba(61,102,137,.07)!important}
+ .dashboard-disclosure>summary{padding:14px!important}
+ .dashboard-disclosure-content{padding:0 12px 14px!important}
+ .tabs{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important;padding:7px 9px calc(7px + env(safe-area-inset-bottom))!important;background:rgba(255,255,255,.97)!important;border-top:1px solid rgba(89,130,164,.13)!important;box-shadow:0 -7px 24px rgba(55,91,121,.09)!important}
+ .tabs button{min-width:0!important;min-height:48px!important;padding:5px 2px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;border:0!important;border-radius:13px!important;background:transparent!important}
+ .tabs button.active{background:linear-gradient(135deg,#dcecff,#e1f5f0)!important;color:#315b79!important;box-shadow:none!important}
+ .tabs .tab-icon{font-size:17px!important;line-height:1.1}
+ .tabs .tab-label{font-size:9px!important;line-height:1.2;white-space:nowrap}
+ .quick-add{bottom:calc(78px + env(safe-area-inset-bottom))!important}
+ #monthlyReport,.chart-card{border-radius:19px!important}
+}
+@media(min-width:700px){.wrap{max-width:1080px}.tabs{grid-template-columns:repeat(5,minmax(0,1fr))}}
