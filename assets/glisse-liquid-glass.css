@@ -2885,3 +2885,48 @@ html[data-theme="dark-glass"] .quick-add{
  .overview-grid>.card h3{font-size:11px}
  .overview-grid>.card .metric{font-size:19px}
 }
+
+
+/* Phase 52.27 — refined hero and financial health overview. */
+.wrap>.hero{
+ position:relative;isolation:isolate;overflow:hidden;
+ padding:clamp(23px,4vw,34px)!important;
+ border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line))!important;
+ box-shadow:0 16px 42px rgba(0,0,0,.09),inset 0 1px 0 rgba(255,255,255,.16)!important;
+}
+.wrap>.hero .brand{font-size:9px;letter-spacing:.18em;font-weight:900;opacity:.78}
+.wrap>.hero .hello{font-size:clamp(23px,4vw,31px);letter-spacing:-.8px;line-height:1.2}
+.wrap>.hero .sub{max-width:42ch;font-size:12px;opacity:.88}
+.wrap>.hero .balance-label{margin-top:25px!important;letter-spacing:.14em;font-size:9px}
+.wrap>.hero .balance{font-size:clamp(36px,8vw,52px)!important;letter-spacing:-2px!important;line-height:1.05}
+.wrap>.hero .hero-foot{display:flex;flex-wrap:wrap;gap:8px;margin-top:19px}
+.wrap>.hero .hero-foot span{padding:8px 11px;border-radius:12px;font-size:10px}
+.wrap>.hero .hero-foot b{font-size:11px}
+.wrap>.section:has(+ #healthScoreCard){margin-top:23px}
+#healthScoreCard{
+ padding:18px!important;border-radius:20px;
+ border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line))!important;
+}
+#healthScoreCard>.row{align-items:center;gap:12px}
+#healthScoreCard #healthScore{font-size:clamp(34px,7vw,42px)!important;letter-spacing:-1.5px}
+#healthScoreCard #healthLabel{font-size:11px;line-height:1.5;margin-top:3px}
+#healthScoreCard #healthEmoji{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:color-mix(in srgb,var(--accent) 10%,var(--panel));font-size:27px!important}
+#healthScoreCard .health-pulse-track{height:8px;margin:13px 0 15px;border-radius:999px;overflow:hidden}
+#healthScoreCard .health-pulse-breakdown{padding:14px;border-radius:16px;gap:12px}
+#healthScoreCard .health-pulse-head{margin-bottom:3px}
+#healthScoreCard>.grid{gap:10px!important}
+#healthScoreCard>.grid>div{padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--panel) 82%,transparent);min-width:0}
+#healthScoreCard>.grid .small{font-size:9px;line-height:1.4}
+#healthScoreCard>.grid strong{display:block;margin-top:4px;font-size:12px;overflow-wrap:anywhere}
+#healthScoreCard #healthNote{font-size:10px;line-height:1.55;margin:13px 1px 0}
+@media(max-width:600px){
+ .wrap>.hero{padding:22px 19px!important;border-radius:22px!important}
+ .wrap>.hero .balance{font-size:clamp(34px,9vw,44px)!important}
+ #healthScoreCard{padding:14px!important}
+ #healthScoreCard .health-pulse-breakdown{padding:12px}
+ #healthScoreCard>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ #healthScoreCard>.grid>div{padding:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ #healthScoreCard .health-pulse-track i{transition:none!important}
+}
