@@ -203,7 +203,7 @@ html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .calendar-c
 
 </head>
 <body><main class="wrap">
-<header class="top" id="home"><div class="brand">ADAM / PRIVATE FINANCE</div><div style="display:flex;align-items:center;gap:12px"><button class="btn" id="personalisationOpenTop" type="button">⚙ Personalisation</button><div class="date" id="today"></div></div></header>
+<header class="top" id="home"><div class="brand">ADAM / PRIVATE FINANCE</div><div style="display:flex;align-items:center;gap:12px"><div class="date" id="today"></div></div></header>
 <section class="hero"><div class="brand">YOUR MONEY, YOUR PACE</div><div class="hello">Hi Mr. <span id="accountDisplayName">ADAM.</span></div><div class="sub">Sikit demi sedikit, lama-lama jadi bukit.</div><div class="balance-label">Jumlah kekayaan bersih</div><div class="balance" id="netWorth">RM 0.00</div><div class="hero-foot"><span>↑ Aset <b id="assetsMini">RM 0.00</b></span><span>↓ Hutang <b id="debtMini">RM 0.00</b></span></div></section>
 <section class="section"><h2>Kesihatan kewangan</h2><span class="small">Skor anggaran / 100</span></section>
 <article class="card" id="healthScoreCard">
@@ -510,9 +510,9 @@ html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .calendar-c
 
 <div class="personalisation-overlay" id="personalisationOverlay" hidden>
  <section class="personalisation-dialog" role="dialog" aria-modal="true" aria-labelledby="personalisationTitle">
-  <header class="personalisation-head"><div><div class="small">ADAM / SETTINGS</div><h2 id="personalisationTitle">Personalisation Centre</h2><p class="small">Sesuaikan dashboard mengikut citarasa anda.</p></div><button class="btn" id="personalisationClose" type="button" aria-label="Tutup">✕</button></header>
+  <header class="personalisation-head"><div><div class="small">ADAM / TETAPAN</div><h2 id="personalisationTitle">Tema & paparan</h2><p class="small">Sesuaikan rupa dashboard mengikut citarasa anda.</p></div><button class="btn" id="personalisationClose" type="button" aria-label="Tutup">✕</button></header>
   <div class="personalisation-sections">
-   <article class="personalisation-section personalisation-appearance"><h3>Appearance</h3><p class="small">Pilih tema dashboard. Perubahan dipaparkan serta-merta.</p>
+   <article class="personalisation-section personalisation-appearance"><h3>Tema paparan</h3><p class="small">Pilih tema dashboard. Perubahan dipaparkan serta-merta.</p>
     <div class="theme-options" role="group" aria-label="Pilihan tema">
      <button class="theme-option" type="button" data-theme-choice="light" aria-pressed="false"><span class="theme-swatch theme-swatch-light"></span><strong>Light</strong><small>Cerah & bersih</small></button>
      <button class="theme-option" type="button" data-theme-choice="dark-premium" aria-pressed="false"><span class="theme-swatch theme-swatch-premium"></span><strong>Dark Premium</strong><small>Gelap elegan</small></button>
