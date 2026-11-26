@@ -185,6 +185,19 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 .home-action-secondary .home-action small{font-size:9px}
 @media(min-width:700px){.home-actions{grid-template-columns:minmax(230px,.9fr) 1.5fr;align-items:stretch}.home-action-secondary{height:100%}.home-action-secondary .home-action{height:100%;padding:14px}.home-action-primary{height:100%}}
 @media(max-width:360px){.home-action-secondary .home-action{padding:9px;gap:7px}.home-action-secondary .home-action strong{font-size:10px}.home-action-secondary .home-action small{font-size:8px}}
+
+/* Phase 52.36 — five clear destinations and calm blue/mint surface */
+@media(max-width:699px){.tabs{grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+@media(min-width:700px){.tabs{display:grid!important;grid-template-columns:repeat(5,minmax(84px,112px));gap:8px!important}}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) body{background:linear-gradient(145deg,#f7fbff 0%,#f3f8ff 52%,#f3fbf8 100%)!important;color:#17232d!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero{background:linear-gradient(115deg,#dcecff 0%,#e8f4ff 48%,#d9f6eb 100%)!important;border:1px solid rgba(112,157,194,.16)!important;box-shadow:0 14px 34px rgba(78,119,151,.10)!important;color:#172b3b!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .brand,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .sub,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .balance-label,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hero-foot{color:#587087!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hero-foot b,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hello span{color:#287c70!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card{background:rgba(255,255,255,.94)!important;border:1px solid rgba(112,145,171,.13)!important;box-shadow:0 8px 22px rgba(60,91,119,.07)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card h3,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .section h2{color:#1d2b37!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .tabs{background:rgba(255,255,255,.96)!important;border-top:1px solid rgba(83,117,144,.14)!important;box-shadow:0 -8px 26px rgba(51,83,111,.08)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .tabs button.active{background:linear-gradient(120deg,#dcecff,#d9f6ec)!important;color:#315e7d!important;border-color:rgba(112,157,194,.20)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .calendar-card,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .dialog{background:#fff!important}
 </style>
 <link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=79">
 
@@ -493,7 +506,7 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
   </button>
 </div>
 <button class="quick-add" id="quickAdd" type="button" aria-label="Tambah transaksi">＋ <span>Rekod</span></button>
-<nav class="tabs" aria-label="Navigasi utama"><button class="active" data-tab="home" aria-current="location"><span class="tab-icon" aria-hidden="true">⌂</span><span class="tab-label">Utama</span></button><button data-tab="calendarSection"><span class="tab-icon" aria-hidden="true">▦</span><span class="tab-label">Kalendar</span></button><button data-tab="transactionsSection"><span class="tab-icon" aria-hidden="true">▤</span><span class="tab-label">Rekod</span></button><button data-tab="budgetViewPage"><span class="tab-icon" aria-hidden="true">◷</span><span class="tab-label">Bajet</span></button><button data-tab="insights"><span class="tab-icon" aria-hidden="true">⌁</span><span class="tab-label">Analisis</span></button><button data-tab="tools"><span class="tab-icon" aria-hidden="true">⚙</span><span class="tab-label">Tools</span></button></nav>
+<nav class="tabs" aria-label="Navigasi utama"><button class="active" data-tab="home" aria-current="location"><span class="tab-icon" aria-hidden="true">⌂</span><span class="tab-label">Utama</span></button><button data-tab="calendarSection"><span class="tab-icon" aria-hidden="true">▦</span><span class="tab-label">Kalendar</span></button><button data-tab="reportsDisclosure"><span class="tab-icon" aria-hidden="true">▤</span><span class="tab-label">Laporan</span></button><button data-tab="transactionsSection"><span class="tab-icon" aria-hidden="true">↻</span><span class="tab-label">Sejarah</span></button><button data-tab="tools"><span class="tab-icon" aria-hidden="true">⚙</span><span class="tab-label">Tetapan</span></button></nav>
 
 <div class="personalisation-overlay" id="personalisationOverlay" hidden>
  <section class="personalisation-dialog" role="dialog" aria-modal="true" aria-labelledby="personalisationTitle">
@@ -1287,7 +1300,7 @@ function importData(e){
  }catch(err){alert('Backup tidak dapat dipulihkan: '+err.message);console.error(err);}finally{input.value='';}};
  reader.readAsText(file);
 }
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>{const selected=x===b;x.classList.toggle('active',selected);if(selected)x.setAttribute('aria-current','location');else x.removeAttribute('aria-current');});const target=$(b.dataset.tab),budgetPage=$('budgetViewPage');if(budgetPage){budgetPage.classList.toggle('active',target===budgetPage);budgetPage.style.removeProperty('display');}if(target){target.classList.remove('tab-arrive');void target.offsetWidth;target.classList.add('tab-arrive');target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}));
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>{const selected=x===b;x.classList.toggle('active',selected);if(selected)x.setAttribute('aria-current','location');else x.removeAttribute('aria-current');});const target=$(b.dataset.tab),budgetPage=$('budgetViewPage');if(budgetPage){budgetPage.classList.toggle('active',target===budgetPage);budgetPage.style.removeProperty('display');}if(target?.tagName==='DETAILS')target.open=true;if(target){target.classList.remove('tab-arrive');void target.offsetWidth;target.classList.add('tab-arrive');target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}));
 $('modal')?.addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('modal')?.classList.contains('show'))closeModal()});
 $('today').textContent=new Date().toLocaleDateString('ms-MY',{weekday:'short',day:'numeric',month:'short',year:'numeric'});$('reportMonth').value=new Date().toISOString().slice(0,7);$('reportMonth').addEventListener('change',renderMonthlyReport);
 
