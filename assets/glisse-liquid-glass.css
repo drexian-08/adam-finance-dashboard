@@ -2930,3 +2930,69 @@ html[data-theme="dark-glass"] .quick-add{
 @media(prefers-reduced-motion:reduce){
  #healthScoreCard .health-pulse-track i{transition:none!important}
 }
+
+
+/* Phase 52.28 — wealth trend chart clarity and responsive polish. */
+.chart-card{
+ padding:clamp(15px,2.5vw,22px)!important;
+ border-radius:22px!important;
+ background:linear-gradient(155deg,color-mix(in srgb,var(--accent) 4%,var(--panel)),var(--panel) 62%)!important;
+}
+.chart-card> .row:first-child h3{
+ margin:0;font-size:13px;font-weight:850;letter-spacing:-.1px;
+}
+.chart-card> .row:first-child>div:first-child{min-width:0}
+.chart-card #chartCurrent{font-variant-numeric:tabular-nums;letter-spacing:-1.2px}
+.chart-card #chartChange{max-width:100%;white-space:normal;line-height:1.35}
+.chart-card .chart-switch{display:flex;align-items:center;gap:3px;flex-shrink:0}
+.chart-card .chart-switch button{padding:0 10px;min-width:42px}
+.chart-card .chart-wrap{
+ position:relative;margin-top:5px;
+ min-height:205px!important;
+ border-radius:17px!important;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 3%,var(--panel)),transparent 88%)!important;
+}
+.chart-card .chart-wrap svg{max-height:250px;min-height:170px}
+.chart-card .chart-wrap svg line{vector-effect:non-scaling-stroke}
+.chart-card .chart-wrap .wealth-point{vector-effect:non-scaling-stroke}
+@media(hover:hover){
+ .chart-card .chart-wrap .wealth-point:hover{
+  transform:scale(1.55);transform-box:fill-box;transform-origin:center;
+  filter:drop-shadow(0 0 5px color-mix(in srgb,var(--accent) 55%,transparent));
+ }
+ .chart-card .chart-switch button:not(.active):hover{
+  background:color-mix(in srgb,var(--accent) 10%,transparent)!important;
+  color:var(--text)!important;
+ }
+}
+.chart-card .chart-meta{
+ display:grid;grid-template-columns:1fr 1fr;gap:8px;
+ margin-top:2px;padding:10px 12px;
+}
+.chart-card .chart-meta span{min-width:0;overflow-wrap:anywhere}
+.chart-card .chart-meta span:first-child:before,
+.chart-card .chart-meta span:last-child:before{
+ display:block;margin-bottom:3px;font-size:8px;font-weight:900;letter-spacing:.12em;
+ color:var(--muted);opacity:.8;
+}
+.chart-card .chart-meta span:first-child:before{content:"MULA"}
+.chart-card .chart-meta span:last-child:before{content:"TERKINI";text-align:right}
+.chart-card .chart-meta span:last-child{text-align:right}
+.chart-card>p.hint{font-size:10px;line-height:1.55;margin:12px 1px 0}
+@media(max-width:520px){
+ .chart-card{padding:14px!important;border-radius:19px!important}
+ .chart-card>.row:first-child{flex-direction:row;align-items:flex-start!important;gap:9px!important}
+ .chart-card>.row:first-child>div:first-child{flex:1 1 auto}
+ .chart-card .chart-switch{align-self:flex-start;padding:3px}
+ .chart-card .chart-switch button{min-width:34px;min-height:30px;padding:0 7px;font-size:9px}
+ .chart-card .chart-wrap{min-height:175px!important;padding:12px 0 4px!important}
+ .chart-card .chart-wrap svg{min-height:150px}
+ .chart-card .chart-meta{padding:9px 10px}
+}
+@media(max-width:360px){
+ .chart-card>.row:first-child{flex-direction:column;align-items:stretch!important}
+ .chart-card .chart-switch{align-self:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+ .chart-card .chart-wrap .wealth-point,.chart-card .chart-switch button{transition:none!important}
+}
