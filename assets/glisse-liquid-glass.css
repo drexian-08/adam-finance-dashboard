@@ -3041,3 +3041,23 @@ html[data-theme="dark-glass"] .quick-add{
  .tabs button.active{background:#dcecff!important}
  .chart-card,.chart-card .chart-wrap{background:#fff!important}
 }
+
+
+/* Phase 52.38 — force solid colours over every older theme declaration. */
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) *,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) *::before,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) *::after{background-image:none!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) body{background:#f4f8fc!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero{background:#e4effa!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .dashboard-disclosure{background:#fff!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) #spendingCalendar{background:#eaf2fb!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .tabs{background:#fff!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .tabs button.active{background:#dcecff!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .btn.primary,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .progress>i,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .category-track i,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .health-score-ring{background:#9bc9e8!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .chart-card,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .chart-wrap,
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .cashflow-chart{background:#fff!important}
