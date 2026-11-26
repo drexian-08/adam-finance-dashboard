@@ -2996,3 +2996,38 @@ html[data-theme="dark-glass"] .quick-add{
 @media(prefers-reduced-motion:reduce){
  .chart-card .chart-wrap .wealth-point,.chart-card .chart-switch button{transition:none!important}
 }
+
+
+/* Phase 52.29 — clean, calm dashboard hierarchy inspired by the supplied UX reference. */
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) body{background:#f5f7f4!important;color:#202923;padding:18px 16px 108px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .wrap{max-width:1040px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .top{margin:5px 2px 20px;align-items:center;gap:12px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .brand{color:#718078;font-size:10px;letter-spacing:.16em;font-weight:850}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .date{color:#77827c}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero{padding:clamp(23px,4vw,34px)!important;border-radius:25px!important;color:#f7fbf8!important;background:linear-gradient(120deg,#183d35 0%,#24584b 64%,#347465 100%)!important;border:1px solid rgba(24,61,53,.12)!important;box-shadow:0 12px 28px rgba(28,67,56,.13),inset 0 1px 0 rgba(255,255,255,.16)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .brand{color:#c4ddd1}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hello{font-size:clamp(24px,4vw,32px);letter-spacing:-.9px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hello span{color:#c7eea2}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .sub,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .balance-label,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hero-foot{color:#c7d9d1}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .balance{color:#fff;font-size:clamp(36px,7vw,48px)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hero-foot span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.12);padding:8px 11px;border-radius:11px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero .hero-foot b{color:#d8f2b7}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .section{margin:25px 2px 11px;align-items:baseline;gap:10px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .section h2{color:#26332d;font-size:16px;font-weight:800;letter-spacing:-.25px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .section>.small{color:#87928c;font-size:10px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card[id]{background:#fff!important;border:1px solid #e8ede9!important;border-radius:18px!important;box-shadow:0 3px 12px rgba(31,53,42,.045)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card h3{color:#58665e;font-weight:750;font-size:12px;letter-spacing:0}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .metric{color:#25342c;font-weight:800;letter-spacing:-.65px;font-variant-numeric:tabular-nums}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .small,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hint{color:#87928c}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .overview-grid{gap:11px!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .overview-grid>.card{min-height:120px;padding:16px!important;gap:6px;border-radius:17px!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .overview-grid>.card h3{font-size:11px}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .overview-grid>.card .metric{font-size:clamp(19px,4vw,25px)}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .chart-card{background:#fff!important;border:1px solid #e8ede9!important;box-shadow:0 3px 12px rgba(31,53,42,.045)!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .item{background:#f8faf8!important;border:1px solid #edf1ed!important;box-shadow:none!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .btn:not(.primary){background:#fff!important;border:1px solid #e4eae5!important;box-shadow:none!important;color:#34443b}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .btn.primary{background:#dff2c8!important;color:#29442d!important;box-shadow:none!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .tabs{background:rgba(255,255,255,.96)!important;border:1px solid #e8ede9!important;box-shadow:0 5px 20px rgba(31,53,42,.09)!important;border-radius:18px 18px 0 0!important}
+html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .tabs button.active{background:#e7f3dc!important;color:#31543a!important;box-shadow:none!important}
+@media(max-width:600px){html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) body{padding:12px 12px 100px}html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .top{margin:3px 2px 15px}html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .hero{border-radius:21px!important;padding:21px 18px!important}html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .section{margin-top:21px}html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .overview-grid{gap:9px!important}html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .overview-grid>.card{min-height:112px;padding:13px!important}}
+@media(hover:hover) and (pointer:fine){html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card:hover,html:not([data-theme="dark-premium"]):not([data-theme="dark-glass"]) .card[id]:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(31,53,42,.075)!important}}
