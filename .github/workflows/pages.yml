@@ -1,4 +1,5 @@
 name: Deploy ADAM Finance Dashboard
+# Fresh deployment run avoids reusing duplicate artifacts from a retried run.
 on:
   push:
     branches: [main]
