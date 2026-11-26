@@ -2852,3 +2852,36 @@ html[data-theme="dark-glass"] .quick-add{
 
 /* Phone layout: force the two finance tools cards into one column */
 @media(max-width:699px){.wrap>.grid.tools-grid{grid-template-columns:minmax(0,1fr)!important}.wrap>.grid.tools-grid>.card{width:100%;min-width:0}}
+
+
+/* Phase 52.26 — clearer financial overview hierarchy across phone and desktop. */
+.overview-heading{margin-top:22px}
+.overview-grid{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:12px!important;
+ align-items:stretch;
+}
+.overview-grid>.card{
+ min-width:0;min-height:132px;margin:0!important;padding:16px!important;
+ display:flex;flex-direction:column;justify-content:flex-start;gap:7px;border-radius:19px;
+}
+.overview-grid>.card h3{margin:0;font-size:12px;line-height:1.4;letter-spacing:.005em}
+.overview-grid>.card .metric{
+ margin:3px 0 0;font-size:clamp(20px,4.6vw,27px);line-height:1.2;
+ overflow-wrap:anywhere;font-variant-numeric:tabular-nums;
+}
+.overview-grid>.card .small{font-size:10px;line-height:1.45}
+.overview-grid .budget-intel{margin-top:auto}
+@media(min-width:760px){
+ .overview-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+ .overview-grid>.card{min-height:148px;padding:19px!important}
+ .overview-grid>.card h3{font-size:13px}
+ .overview-grid>.card .metric{font-size:27px}
+}
+@media(max-width:360px){
+ .overview-grid{gap:8px!important}
+ .overview-grid>.card{padding:12px!important;min-height:124px;border-radius:16px}
+ .overview-grid>.card h3{font-size:11px}
+ .overview-grid>.card .metric{font-size:19px}
+}
