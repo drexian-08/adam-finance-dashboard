@@ -103,7 +103,7 @@ html[data-accent] input:focus,html[data-accent] select:focus,html[data-accent] t
 html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--accent) 12%,transparent)!important}
 .preference-fields{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0}.preference-fields label{display:grid;gap:7px;font-size:12px;font-weight:650}.preference-fields .field{min-width:0}.fx-rate-panel{padding:13px;border:1px solid var(--line);border-radius:14px;background:rgba(127,145,125,.07);margin-top:12px}.fx-rate-panel .row{align-items:center}.fx-rate-panel .small{line-height:1.5}.fx-rate-panel .hint{margin-bottom:0}@media(min-width:620px){.preference-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.preference-fields label:first-child{grid-column:1/-1}} 
 </style>
-<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=76">
+<link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=77">
 
 </head>
 <body><main class="wrap">
@@ -123,7 +123,8 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 <p class="hint" id="healthNote">Skor berdasarkan maklumat yang direkodkan sahaja. Ia panduan ringkas, bukan penilaian kewangan rasmi.</p></article>
 <section class="section"><h2>Perkembangan kekayaan</h2><span class="small">Rekod harian</span></section>
 <article class="card chart-card reveal"><div class="row"><div><h3>📊 Nilai kekayaan bersih</h3><div class="metric mint" id="chartCurrent">RM 0.00</div><div class="small" id="chartChange">Sejarah sedang dikumpulkan</div></div><div class="chart-switch"><button class="active" data-range="7">7H</button><button data-range="30">30H</button><button data-range="90">90H</button></div></div><div class="chart-wrap" id="wealthChart"><div class="chart-empty">Graf akan terbina apabila rekod kewangan dikumpulkan.</div></div><div class="chart-meta"><span id="chartStart">Belum ada sejarah</span><span id="chartEnd">Hari ini</span></div><p class="hint">Sejarah bermula apabila ciri ini diaktifkan. Data lama yang belum direkod tidak dapat dipulihkan.</p></article>
-<div class="grid">
+<section class="section overview-heading"><h2>Ringkasan kewangan</h2><span class="small">Gambaran utama bulan ini</span></section>
+<div class="grid overview-grid">
 <article class="card" data-layout-widget="savings"><h3>💰 Jumlah tabungan</h3><div class="metric mint" id="savings">RM 0.00</div><div class="small">Tunai + akaun simpanan</div></article>
 <article class="card" data-layout-widget="income"><h3>📈 Pendapatan bulan ini</h3><div class="metric" id="income">RM 0.00</div><div class="small">Rekod transaksi masuk</div></article>
 <article class="card" data-layout-widget="expense"><h3>🧾 Perbelanjaan bulan ini</h3><div class="metric red" id="expense">RM 0.00</div><div class="small">Rekod transaksi keluar</div></article>
