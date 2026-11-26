@@ -117,6 +117,21 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
  .tabs button.active{background:var(--accent-soft,rgba(143,201,28,.16))!important;color:var(--accent,#8fc91c)!important;border-color:color-mix(in srgb,var(--accent,#8fc91c) 35%,transparent)!important}
 }
 @media(max-width:360px){.tabs{gap:1px!important;padding-left:4px!important;padding-right:4px!important}.tabs button .tab-label{font-size:8px!important}.tabs button .tab-icon{font-size:17px!important}}
+
+/* Phase 52.32 — refined financial overview cards */
+.overview-heading{margin-top:24px!important;margin-bottom:11px!important;align-items:flex-end}
+.overview-grid{gap:11px!important;margin-top:0!important}
+.overview-grid>.card{position:relative;overflow:hidden;padding:17px!important;border-radius:19px!important;display:flex;flex-direction:column;align-items:flex-start;min-height:132px;box-shadow:0 8px 24px rgba(20,35,25,.055)!important;transition:transform .18s ease,border-color .18s ease}
+.overview-grid>.card:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent,#8fc91c) 75%,transparent),transparent 82%);opacity:.8}
+.overview-grid>.card h3{font-size:12px!important;line-height:1.4!important;font-weight:650!important;min-height:32px;margin:2px 0 8px!important;color:var(--text,#20231f);letter-spacing:.005em}
+.overview-grid>.card .metric{font-size:clamp(19px,3vw,23px)!important;line-height:1.18!important;letter-spacing:-.035em!important;font-weight:760!important;overflow-wrap:anywhere;margin:0 0 5px!important}
+.overview-grid>.card>.small{font-size:10px!important;line-height:1.4!important;color:var(--muted,#777c72)!important}
+.overview-grid>.card .budget-intel{width:100%;margin-top:auto;padding-top:13px}
+.overview-grid>.card .budget-intel-track{height:6px!important;border-radius:99px;overflow:hidden}
+.overview-grid>.card .budget-intel-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:7px;font-size:10px}
+.overview-grid>.card .budget-intel-meta strong{font-size:11px}
+@media(max-width:390px){.overview-grid{gap:9px!important}.overview-grid>.card{padding:14px!important;min-height:126px}.overview-grid>.card h3{font-size:11px!important}.overview-grid>.card .metric{font-size:19px!important}}
+@media(min-width:700px){.overview-grid>.card{min-height:146px;padding:19px!important}.overview-grid>.card h3{font-size:13px!important}}
 </style>
 <link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=79">
 
