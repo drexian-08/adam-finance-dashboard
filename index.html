@@ -132,6 +132,21 @@ html[data-accent] .accent-option.is-selected{background:color-mix(in srgb,var(--
 .overview-grid>.card .budget-intel-meta strong{font-size:11px}
 @media(max-width:390px){.overview-grid{gap:9px!important}.overview-grid>.card{padding:14px!important;min-height:126px}.overview-grid>.card h3{font-size:11px!important}.overview-grid>.card .metric{font-size:19px!important}}
 @media(min-width:700px){.overview-grid>.card{min-height:146px;padding:19px!important}.overview-grid>.card h3{font-size:13px!important}}
+
+/* Phase 52.33 — wealth trend card hierarchy */
+.chart-card{padding:19px!important;border-radius:22px!important;overflow:hidden}
+.chart-card>.row:first-child{align-items:flex-start!important;gap:14px!important;margin-bottom:8px!important}
+.chart-card>.row:first-child h3{font-size:13px!important;font-weight:700!important;letter-spacing:.005em;margin-bottom:7px!important}
+.chart-card #chartCurrent{font-size:clamp(23px,4vw,30px)!important;line-height:1.15!important;letter-spacing:-.04em!important;font-weight:780!important;margin:0 0 5px!important}
+.chart-card #chartChange{font-size:11px!important;line-height:1.4!important}
+.chart-card .chart-switch{display:flex;gap:4px!important;padding:4px!important;border-radius:13px!important;background:rgba(120,130,110,.09)!important;flex-shrink:0}
+.chart-card .chart-switch button{min-width:39px;padding:7px 9px!important;border-radius:9px!important;font-size:10px!important;font-weight:700!important;transition:background .18s ease,color .18s ease,transform .18s ease}
+.chart-card .chart-switch button.active{box-shadow:0 2px 8px rgba(30,45,25,.09)!important}
+.chart-card .chart-wrap{min-height:178px;padding:14px 2px 5px!important}
+.chart-card .chart-meta{display:flex;justify-content:space-between;gap:10px;padding:10px 12px!important;border-radius:12px!important;font-size:10px!important;line-height:1.35!important}
+.chart-card>.hint{margin-top:10px!important;font-size:10px!important;line-height:1.5!important;opacity:.76}
+@media(max-width:520px){.chart-card{padding:16px!important}.chart-card>.row:first-child{flex-direction:row!important;align-items:center!important}.chart-card .chart-switch{align-self:center}.chart-card .chart-wrap{min-height:158px;padding-top:10px!important}.chart-card #chartCurrent{font-size:24px!important}}
+@media(max-width:360px){.chart-card>.row:first-child{align-items:flex-start!important}.chart-card .chart-switch button{min-width:33px;padding:6px!important;font-size:9px!important}.chart-card #chartCurrent{font-size:21px!important}}
 </style>
 <link rel="stylesheet" href="assets/glisse-liquid-glass.css?v=79">
 
